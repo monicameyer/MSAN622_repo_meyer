@@ -2,11 +2,11 @@
 MSAN 622 Information Visualization
 ==================================
 
-|  **Name:** | Sophie Engle           |
+|  **Name:** | Monica Meyer           |
 |-----------:|:-----------------------|
-| **Email:** | <sjengle@cs.usfca.edu> |
-|   **Web:** | <http://msan622.github.io/spring-2015-msan622> |
+| **Email:** | <monica.meyer@comcast.net> |
+|   **Web:** | <http://monicameyer.github.io/MSAN622_repo_meyer> |
 
 ## About Me ##
 
-I am a professor at the [University of San Francisco](http://www.usfca.edu/). I am the graduate director for the Masters of Science in Computer Science program, and teach courses for the Department of Computer Science and Masters of Science in Analytics program. I have a stubborn yet adorable corgi named Casablanca (after the movie).
+I am a graduate student at the [University of San Francisco](http://www.usfca.edu/). I am master's candidate for the  [Masters of Science in Analytics](https://www.usfca.edu/analytics/) program, and am currently an intern at [Zephyr Health](https://zephyrhealth.com). </p>
