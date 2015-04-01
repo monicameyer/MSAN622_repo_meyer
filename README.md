@@ -9,4 +9,4 @@ MSAN 622 Information Visualization
 
 ## About Me ##
 
-I am a graduate student at the [University of San Francisco](http://www.usfca.edu/). I am master's candidate for the  [Masters of Science in Analytics](https://www.usfca.edu/analytics/) program, and am currently an intern at [Zephyr Health](https://zephyrhealth.com). </p>
+I am a graduate student at the [University of San Francisco](http://www.usfca.edu/). I am a master's candidate for the  [Masters of Science in Analytics](https://www.usfca.edu/analytics/) program, and am currently an intern at [Zephyr Health](https://zephyrhealth.com). </p>
