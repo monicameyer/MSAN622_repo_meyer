@@ -2,185 +2,282 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<title>MSAN 622 Information Visualization</title>
+<title>MSAN 622 - Information Visualization</title>
 
+    <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
-<style type="text/css">
-    body {
-        padding-top: 50px;
-        padding-bottom: 20px;
-    }
+    <!-- Custom CSS -->
+<link href="css/business-casual.css" rel="stylesheet">
 
-.chart div {
+    <!-- Fonts .bar:hover {
+  fill: brown;} -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+	
+<style>
+
+body {
   font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
+}
+
+.bar:hover {
+  fill: blue ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- Fixed Navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="brand">MSAN 622</div>
+<div class="address-bar">Information Visualization</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle Navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">MSN 622</a>
+            <a class="navbar-brand" href="index.html">Information Visualization</a>
         </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#homework">Homework</a></li>
-                <li><a href="#project">Project</a></li>
-                <li><a href="#participation">Participation</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#homework">Homework</a></li>
+                <li><a href="index.html#project">Project</a></li>
+                <li><a href="index.html#participation">Participation</a></li>                    
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 
-<div class="jumbotron">
-    <div class="container">
-        <h1>Homework 1</h1>
-
-        <p><a class="btn btn-primary btn-lg" href="#about" role="button">About Me &raquo;</a></p>
-    </div>
-</div>
-
 <div class="container">
-
-<div style="height: 75px;"></div>
-
-
-<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-
-var qstring = decodeURI(window.location.search).toLowerCase()
-var obj = {};
-
-for (var i = 0; i < qstring.length; i++){
-	
-	obj[qstring[i]] += 1
-}
-
-            
-var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
-                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
-                24, 18, 25, 9, 3 ];
-
-d3.select("body").selectAll("div")
-    .data(dataset)  // <-- The answer is here!
-    .enter()
-    .append("div")
-    .attr("class", "bar")
-    .style("height", function(d) {
-        var barHeight = d * 5;
-        return barHeight + "px";
-    });
-
-</script>
-
-
-<script type="text/javascript">
-		
-	var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19, 14, 11, 22, 29, 11, 13, 12, 17, 18, 10, 24, 18, 25, 9, 3 ];
-			
-	d3.select("body").selectAll("div")
-				.data(dataset)
-				.enter()
-				.append("div")
-				.attr("class", "bar")
-				.style("height", function(d) {
-					var barHeight = d * 5;
-					return barHeight + "px";
-				});
-			
-</script>
-
-<div class="row">
-    <div class="col-md-8">
-        <h2 class="page-header"><a name="about"></a>About Me</h2>
-
-        <div class="media">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object" src="img/profile.jpg" style="width: 150px; height: 150px;">
-                </a>
-            </div>
-
-            <div class="media-body">
-                <p>I am a graduate student at the <a href="http://www.usfca.edu/">University of San Francisco</a>. I am a master's candidate for the  <a href="https://www.usfca.edu/analytics/">Masters of Science in Analytics</a> program, and am currently an intern at <a href="https://zephyrhealth.com">Zephyr Health</a>. </p>
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <h1 class="brand-name">Homework 1</h1>
+                <hr class="tagline-divider">
+                <h2>
+                    <small>By <strong> Monica Meyer</strong></small>
+                </h2>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <h2 class="page-header"><a name="contact"></a>Contact</h2>
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12 text-center" id="chart"> 	
+            	<label><input type="checkbox"> Sort by value</label>
 
-        <table class="table table-bordered" style="width: auto;">
-            <thead>
-                <tr>
-                    <th colspan="2">Monica Meyer</th>
-                </tr>
-            </thead>
+				<script src="http://d3js.org/d3.v3.min.js"></script>
+				<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+				<script>
 
-            <tbody>
-                <tr>
-                    <th>Github:</th>
-                    <td><a href="http://www.github.com/monicameyer/MSAN622_repo_meyer">http://www.github.com/monicameyer/MSAN622_repo_meyer</a></td>
-                </tr>
+var qstring = decodeURI(window.location.search).toLowerCase();
+var st = qstring.replace(/\s/g, '');
+var str2 = (st.replace(/[^a-z]/g, '')).split('');
+var str = str2.sort();
 
-                <tr>
-                    <th>Email:</th>
-                    <td><a href="mailto:monica.meyer@comcast.net">monica.meyer@comcast.net</a></td>
-                </tr>
-                
-<!--                <tr>
-                	<th>LinkedIn:</th?>
-                	<td><a href=https://www.linkedin.com/in/monicameyer1">monicameyer1</a></td>
-                </tr> //-->
-            </tbody>
-        </table>
+var data = {};
+
+for (var i = 0; i < str.length; i++){
+	if (str[i] in data){
+		data[str[i]] += 1
+	}
+	else{
+		data[str[i]] = 1
+	}
+}			
+
+var data2 = d3.entries(data)
+
+var margin = {top: 40, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(d3.max(data2, function(d) {return d.value;}), '');
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Frequency:</strong> <span style='color:blue'>" + d.value + "</span>";
+  })
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+function draw_chart(data2){
+	x.domain(data2.map(function(d) { return d.key; }));
+	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+
+	svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+	svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+	.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Frequency");
+
+	svg.selectAll(".bar")
+      .data(data2)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.key); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+	  .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
+      
+	d3.select("input").on("change", change);
+
+	var sortTimeout = setTimeout(function() {
+		d3.select("input").property("checked", true).each(change);
+	}, 2000);
+
+	function change() {
+    	clearTimeout(sortTimeout);
+
+    var x0 = x.domain(data2.sort(this.checked
+        ? function(a, b) { return b.value - a.value; }
+        : function(a, b) { return d3.ascending(a.key, b.key); })
+        .map(function(d) { return d.key; }))
+        .copy();
+
+    svg.selectAll(".bar")
+        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
+
+    var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50; };
+
+    transition.selectAll(".bar")
+        .delay(delay)
+        .attr("x", function(d) { return x0(d.key); });
+
+    transition.select(".x.axis")
+        .call(xAxis)
+      .selectAll("g")
+        .delay(delay);
+  } 
+      
+};
+
+window.onload = draw_chart(data2);
+
+</script>
+            </div>
+            <div class="col-lg-12">
+            	<h4>Functionality</h4>
+            	<ul>
+            		<li>Tick marks always equal exact amounts...</li>
+                	<li>Sorted alphabetically</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
-<hr/>
+
 
 <footer>
-    <p style="text-align: center;">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p style="text-align: center;">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
+            </div>
+        </div>
+    </div>
 </footer>
 
-</div><!--/.container -->
-
-<script src="js/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/d3.min.js"></script>
 
 
-<!-- STUDENTS: Remove this after verifying D3 is working.
-<script src="js/testD3.js"></script>
-<script>testD3("demo");</script> 
-<script src="http://d3js.org/d3.v3.min.js"></script>  -->
 </body>
+
 </html>
