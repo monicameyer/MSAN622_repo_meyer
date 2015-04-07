@@ -2,83 +2,71 @@
 <html lang="en">
 
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+  <title>MSAN 622 - Information Visualization</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/business-casual.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+  	
+  <style>
+    body {
+      font: 10px sans-serif;
+    }
 
-<title>MSAN 622 - Information Visualization</title>
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
 
-    <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    .bar {
+      fill: steelblue;
+      fill-opacity: .9;
+    }
 
-    <!-- Custom CSS -->
-<link href="css/business-casual.css" rel="stylesheet">
+    .bar:hover {
+      fill: blue ;
+    }
 
-    <!-- Fonts .bar:hover {
-  fill: brown;} -->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-	
-<style>
+    .x.axis path {
+      display: none;
+    }
 
-body {
-  font: 10px sans-serif;
-}
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
 
-.bar {
-  fill: steelblue;
-  fill-opacity: .9;
-}
-
-.bar:hover {
-  fill: blue ;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
-
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-</style>
-
-</head>
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }</style></head>
 
 <body>
 
@@ -118,6 +106,7 @@ body {
                 <h2>
                     <small>By <strong> Monica Meyer</strong></small>
                 </h2>
+                <p> <a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/homework1.html">See Code</a></p>
             </div>
         </div>
     </div>
@@ -127,135 +116,145 @@ body {
             <div class="col-lg-12 text-center" id="chart"> 	
             	<label><input type="checkbox"> Sort by value</label>
 
-				<script src="http://d3js.org/d3.v3.min.js"></script>
-				<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-				<script>
+				      <script src="http://d3js.org/d3.v3.min.js"></script>
+				      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+				      <script> var qstring = decodeURI(window.location.search).toLowerCase();
+                var st = qstring.replace(/\s/g, '');
+                var str2 = (st.replace(/[^a-z]/g, '')).split('');
+                var str = str2.sort();
 
-var qstring = decodeURI(window.location.search).toLowerCase();
-var st = qstring.replace(/\s/g, '');
-var str2 = (st.replace(/[^a-z]/g, '')).split('');
-var str = str2.sort();
+                var data = {};
 
-var data = {};
+                for (var i = 0; i < str.length; i++){
+                	if (str[i] in data){
+                		data[str[i]] += 1
+                	}
+                	else{
+                		data[str[i]] = 1
+                	}
+                }			
 
-for (var i = 0; i < str.length; i++){
-	if (str[i] in data){
-		data[str[i]] += 1
-	}
-	else{
-		data[str[i]] = 1
-	}
-}			
+                var data2 = d3.entries(data)
 
-var data2 = d3.entries(data)
+                var margin = {top: 40, right: 20, bottom: 30, left: 40},
+                    width = 960 - margin.left - margin.right,
+                    height = 500 - margin.top - margin.bottom;
 
-var margin = {top: 40, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+                var x = d3.scale.ordinal()
+                    .rangeRoundBands([0, width], .1);
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+                var y = d3.scale.linear()
+                    .range([height, 0]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+                var xAxis = d3.svg.axis()
+                    .scale(x)
+                    .orient("bottom");
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+                var yAxis = d3.svg.axis()
+                    .scale(y)
+                    .orient("left")
+                    .ticks(d3.max(data2, function(d) {return d.value;}), '');
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(d3.max(data2, function(d) {return d.value;}), '');
+                var tip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .offset([-10, 0])
+                  .html(function(d) {
+                    return "<strong>Frequency:</strong> <span style='color:blue'>" + d.value + "</span>";
+                  })
 
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "<strong>Frequency:</strong> <span style='color:blue'>" + d.value + "</span>";
-  })
+                var svg = d3.select("#chart").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                svg.call(tip);
 
-svg.call(tip);
+                function draw_chart(data2){
+                	x.domain(data2.map(function(d) { return d.key; }));
+                	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
 
-function draw_chart(data2){
-	x.domain(data2.map(function(d) { return d.key; }));
-	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+                	svg.append("g")
+                      .attr("class", "x axis")
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(xAxis);
 
-	svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+                	svg.append("g")
+                      .attr("class", "y axis")
+                      .call(yAxis)
+                	.append("text")
+                      .attr("transform", "rotate(-90)")
+                      .attr("y", 6)
+                      .attr("dy", ".71em")
+                      .style("text-anchor", "end")
+                      .text("Frequency");
 
-	svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-	.append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
+                	svg.selectAll(".bar")
+                      .data(data2)
+                    .enter().append("rect")
+                      .attr("class", "bar")
+                      .attr("x", function(d) { return x(d.key); })
+                      .attr("width", x.rangeBand())
+                      .attr("y", function(d) { return y(d.value); })
+                      .attr("height", function(d) { return height - y(d.value); })
+                	  .on('mouseover', tip.show)
+                      .on('mouseout', tip.hide);
+                      
+                	d3.select("input").on("change", change);
 
-	svg.selectAll(".bar")
-      .data(data2)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.key); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-	  .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
-      
-	d3.select("input").on("change", change);
+                	var sortTimeout = setTimeout(function() {
+                		d3.select("input").property("checked", true).each(change);
+                	}, 2000);
 
-	var sortTimeout = setTimeout(function() {
-		d3.select("input").property("checked", true).each(change);
-	}, 2000);
+                	function change() {
+                    	clearTimeout(sortTimeout);
 
-	function change() {
-    	clearTimeout(sortTimeout);
+                    var x0 = x.domain(data2.sort(this.checked
+                        ? function(a, b) { return b.value - a.value; }
+                        : function(a, b) { return d3.ascending(a.key, b.key); })
+                        .map(function(d) { return d.key; }))
+                        .copy();
 
-    var x0 = x.domain(data2.sort(this.checked
-        ? function(a, b) { return b.value - a.value; }
-        : function(a, b) { return d3.ascending(a.key, b.key); })
-        .map(function(d) { return d.key; }))
-        .copy();
+                    svg.selectAll(".bar")
+                        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
 
-    svg.selectAll(".bar")
-        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
+                    var transition = svg.transition().duration(750),
+                        delay = function(d, i) { return i * 50; };
 
-    var transition = svg.transition().duration(750),
-        delay = function(d, i) { return i * 50; };
+                    transition.selectAll(".bar")
+                        .delay(delay)
+                        .attr("x", function(d) { return x0(d.key); });
 
-    transition.selectAll(".bar")
-        .delay(delay)
-        .attr("x", function(d) { return x0(d.key); });
+                    transition.select(".x.axis")
+                        .call(xAxis)
+                      .selectAll("g")
+                        .delay(delay);
+                  } 
+                      
+                };
 
-    transition.select(".x.axis")
-        .call(xAxis)
-      .selectAll("g")
-        .delay(delay);
-  } 
-      
-};
-
-window.onload = draw_chart(data2);
-
-</script>
+                window.onload = draw_chart(data2);
+              </script>
             </div>
+        </div>
+        <div class="box">
             <div class="col-lg-12">
-            	<h4>Functionality</h4>
-            	<ul>
-            		<li>Tick marks always equal exact amounts...</li>
-                	<li>Sorted alphabetically</li>
-                </ul>
+            	<h3>Functionality</h3>
+              <p style="font-size:18px">C-Level</p>
+            	<ul style="font-size:14px">
+                <li >No decimals in frequency counts on y-axis</li>
+            		<li>Total number of tick marks on y-axis is always equal to the maximum frequency of letters.</li>
+                <li>Sorted alphabetically or by value.</li>
+                <li></li>
+              </ul>
+              <p style="font-size:18px">B-Level</p>
+              <ul>
+                <li></li>
+              </ul>
+              <p style="font-size:18px">A-Level</p>
+              <ul>
+                <li></li>
+              </ul>              
             </div>
         </div>
     </div>
@@ -270,8 +269,7 @@ window.onload = draw_chart(data2);
                 <p style="text-align: center;">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
             </div>
         </div>
-    </div>
-</footer>
+    </div></footer>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
