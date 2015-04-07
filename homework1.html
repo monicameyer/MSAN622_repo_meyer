@@ -94,9 +94,6 @@
                 
               function text_box() {
                 var qstring = (document.getElementById('link_id').value).toLowerCase();
-                
-
-                //var qstring = decodeURI(window.location.search).toLowerCase();
                 var st = qstring.replace(/\s/g, '');
                 var str2 = (st.replace(/[^a-z]/g, '')).split('');
                 var str = str2.sort();
@@ -116,26 +113,28 @@
                 draw_chart(data2)
               }
 
-              var qstring = decodeURI(window.location.search).toLowerCase();
-              var st = qstring.replace(/\s/g, '');
-              var str2 = (st.replace(/[^a-z]/g, '')).split('');
-              var str = str2.sort();
+              function load_data(){
+                var qstring = decodeURI(window.location.search).toLowerCase();
+                var st = qstring.replace(/\s/g, '');
+                var str2 = (st.replace(/[^a-z]/g, '')).split('');
+                var str = str2.sort();
 
-              var data = {};
+                var data = {};
 
-              for (var i = 0; i < str.length; i++){
-                if (str[i] in data){
-                  data[str[i]] += 1
-                }
-                else{
-                  data[str[i]] = 1
-                }
-              }     
+                for (var i = 0; i < str.length; i++){
+                  if (str[i] in data){
+                    data[str[i]] += 1
+                  }
+                  else{
+                    data[str[i]] = 1
+                  }
+                }     
 
-              var data2 = d3.entries(data)
-              draw_chart(data2)
+                var data2 = d3.entries(data)
+                draw_chart(data2)
+              };
 
-              function draw_chart(data2){
+              function draw_chart(data){
                 var margin = {top: 40, right: 20, bottom: 30, left: 40},
                     width = 960 - margin.left - margin.right,
                     height = 500 - margin.top - margin.bottom;
@@ -153,7 +152,7 @@
                 var yAxis = d3.svg.axis()
                     .scale(y)
                     .orient("left")
-                    .ticks(d3.max(data2, function(d) {return d.value;}), '');
+                    .ticks(d3.max(data, function(d) {return d.value;}), '');
 
                 var svg = d3.select("#chart").append("svg")
                     .attr("width", width + margin.left + margin.right + 20)
@@ -161,8 +160,8 @@
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-              	x.domain(data2.map(function(d) { return d.key; }));
-              	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+              	x.domain(data.map(function(d) { return d.key; }));
+              	y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
               	svg.append("g")
                     .attr("class", "x axis")
@@ -180,7 +179,7 @@
                     .text("Frequency");
 
               	svg.selectAll(".bar")
-                    .data(data2)
+                    .data(data)
                   .enter().append("rect")
                     .attr("class", "bar")
                     .attr("x", function(d) { return x(d.key); })
@@ -197,46 +196,40 @@
                           .transition()
                           .duration(200)
                           .style("fill", "#377eb8");});
-                  
-                  //svg.transition()
-                  //  .duration(2000)
-                  //  .ease("bounce")
-                  //  .attr("x", x)
-                  //  .attr("y", y);
                     
               	d3.select("input").on("change", change);
 
               	var sortTimeout = setTimeout(function() {
               		d3.select("input").property("checked", true).each(change); }, 2000);
+                      
+                function change() {
+                  clearTimeout(sortTimeout);
 
-              	function change() {
-                  	clearTimeout(sortTimeout);
-
-                  var x0 = x.domain(data2.sort(this.checked
-                      ? function(a, b) { return b.value - a.value; }
-                      : function(a, b) { return d3.ascending(a.key, b.key); })
-                      .map(function(d) { return d.key; }))
-                      .copy();
+                  var x0 = x.domain(data.sort(this.checked
+                        ? function(a, b) { return b.value - a.value; }
+                        : function(a, b) { return d3.ascending(a.key, b.key); })
+                        .map(function(d) { return d.key; }))
+                        .copy();
 
                   svg.selectAll(".bar")
-                      .sort(function(a, b) { return x0(a.key) - x0(b.key); });
+                        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
 
                   var transition = svg.transition().duration(750),
-                      delay = function(d, i) { return i * 50; };
+                        delay = function(d, i) { return i * 50; };
 
                   transition.selectAll(".bar")
-                      .delay(delay)
-                      .attr("x", function(d) { return x0(d.key); });
+                        .delay(delay)
+                        .attr("x", function(d) { return x0(d.key); });
 
                   transition.select(".x.axis")
-                      .call(xAxis)
-                    .selectAll("g")
-                      .delay(delay);
+                        .call(xAxis)
+                      .selectAll("g")
+                        .delay(delay);
                   } 
-                      
-                };
 
-                //window.onload = draw_chart(data2);
+              };
+
+              window.onload = load_data();
               </script>
             </div>
         </div>
