@@ -16,7 +16,7 @@
   	
   <style>
     body {
-      font: 10px sans-serif;
+      font: 14px sans-serif;
     }
 
     .axis path,
@@ -27,46 +27,14 @@
     }
 
     .bar {
-      fill: steelblue;
+      fill: #377eb8;
       fill-opacity: .9;
-    }
-
-    .bar:hover {
-      fill: blue ;
     }
 
     .x.axis path {
       display: none;
     }
-
-    .d3-tip {
-      line-height: 1;
-      font-weight: bold;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      border-radius: 2px;
-    }
-
-    /* Creates a small triangle extender for the tooltip */
-    .d3-tip:after {
-      box-sizing: border-box;
-      display: inline;
-      font-size: 10px;
-      width: 100%;
-      line-height: 1;
-      color: rgba(0, 0, 0, 0.8);
-      content: "\25BC";
-      position: absolute;
-      text-align: center;
-    }
-
-    /* Style northward tooltips differently */
-    .d3-tip.n:after {
-      margin: -1px 0 0 0;
-      top: 100%;
-      left: 0;
-    }</style></head>
+  </style>
 
 <body>
 
@@ -113,12 +81,22 @@
 
     <div class="row">
         <div class="box">
-            <div class="col-lg-12 text-center" id="chart"> 	
-            	<label><input type="checkbox"> Sort by value</label>
+            <div class="col-lg-12 text-center" id="chart"> 
+              <label><input type="checkbox"> Sort by value</label>	
+
+              <h4> Search box </h4>
+              <input type='text' id='link_id'>
+              <input type='button' id='link' value='Search' onClick='d3.select("svg").remove() ;text_box()'>
 
 				      <script src="http://d3js.org/d3.v3.min.js"></script>
 				      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-				      <script> var qstring = decodeURI(window.location.search).toLowerCase();
+				      <script> 
+                
+              function text_box() {
+                var qstring = (document.getElementById('link_id').value).toLowerCase();
+                
+
+                //var qstring = decodeURI(window.location.search).toLowerCase();
                 var st = qstring.replace(/\s/g, '');
                 var str2 = (st.replace(/[^a-z]/g, '')).split('');
                 var str = str2.sort();
@@ -135,7 +113,29 @@
                 }			
 
                 var data2 = d3.entries(data)
+                draw_chart(data2)
+              }
 
+              var qstring = decodeURI(window.location.search).toLowerCase();
+              var st = qstring.replace(/\s/g, '');
+              var str2 = (st.replace(/[^a-z]/g, '')).split('');
+              var str = str2.sort();
+
+              var data = {};
+
+              for (var i = 0; i < str.length; i++){
+                if (str[i] in data){
+                  data[str[i]] += 1
+                }
+                else{
+                  data[str[i]] = 1
+                }
+              }     
+
+              var data2 = d3.entries(data)
+              draw_chart(data2)
+
+              function draw_chart(data2){
                 var margin = {top: 40, right: 20, bottom: 30, left: 40},
                     width = 960 - margin.left - margin.right,
                     height = 500 - margin.top - margin.bottom;
@@ -155,85 +155,88 @@
                     .orient("left")
                     .ticks(d3.max(data2, function(d) {return d.value;}), '');
 
-                var tip = d3.tip()
-                  .attr('class', 'd3-tip')
-                  .offset([-10, 0])
-                  .html(function(d) {
-                    return "<strong>Frequency:</strong> <span style='color:blue'>" + d.value + "</span>";
-                  })
-
                 var svg = d3.select("#chart").append("svg")
-                    .attr("width", width + margin.left + margin.right)
+                    .attr("width", width + margin.left + margin.right + 20)
                     .attr("height", height + margin.top + margin.bottom)
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-                svg.call(tip);
+              	x.domain(data2.map(function(d) { return d.key; }));
+              	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
 
-                function draw_chart(data2){
-                	x.domain(data2.map(function(d) { return d.key; }));
-                	y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+              	svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
 
-                	svg.append("g")
-                      .attr("class", "x axis")
-                      .attr("transform", "translate(0," + height + ")")
-                      .call(xAxis);
+              	svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+              	 .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 6)
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "end")
+                    .text("Frequency");
 
-                	svg.append("g")
-                      .attr("class", "y axis")
-                      .call(yAxis)
-                	.append("text")
-                      .attr("transform", "rotate(-90)")
-                      .attr("y", 6)
-                      .attr("dy", ".71em")
-                      .style("text-anchor", "end")
-                      .text("Frequency");
+              	svg.selectAll(".bar")
+                    .data(data2)
+                  .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function(d) { return x(d.key); })
+                    .attr("width", x.rangeBand())
+                    .attr("y", function(d) { return y(d.value); })
+                    .attr("height", function(d) { return height - y(d.value); })
+              	    .on('mouseover', function() {
+                        d3.select(this)
+                          .transition()
+                          .duration(200)
+                          .style("fill", "#984ea3");})
+                    .on('mouseout', function() {
+                        d3.select(this)
+                          .transition()
+                          .duration(200)
+                          .style("fill", "#377eb8");});
+                  
+                  //svg.transition()
+                  //  .duration(2000)
+                  //  .ease("bounce")
+                  //  .attr("x", x)
+                  //  .attr("y", y);
+                    
+              	d3.select("input").on("change", change);
 
-                	svg.selectAll(".bar")
-                      .data(data2)
-                    .enter().append("rect")
-                      .attr("class", "bar")
-                      .attr("x", function(d) { return x(d.key); })
-                      .attr("width", x.rangeBand())
-                      .attr("y", function(d) { return y(d.value); })
-                      .attr("height", function(d) { return height - y(d.value); })
-                	  .on('mouseover', tip.show)
-                      .on('mouseout', tip.hide);
-                      
-                	d3.select("input").on("change", change);
+              	var sortTimeout = setTimeout(function() {
+              		d3.select("input").property("checked", true).each(change); }, 2000);
 
-                	var sortTimeout = setTimeout(function() {
-                		d3.select("input").property("checked", true).each(change);
-                	}, 2000);
+              	function change() {
+                  	clearTimeout(sortTimeout);
 
-                	function change() {
-                    	clearTimeout(sortTimeout);
+                  var x0 = x.domain(data2.sort(this.checked
+                      ? function(a, b) { return b.value - a.value; }
+                      : function(a, b) { return d3.ascending(a.key, b.key); })
+                      .map(function(d) { return d.key; }))
+                      .copy();
 
-                    var x0 = x.domain(data2.sort(this.checked
-                        ? function(a, b) { return b.value - a.value; }
-                        : function(a, b) { return d3.ascending(a.key, b.key); })
-                        .map(function(d) { return d.key; }))
-                        .copy();
+                  svg.selectAll(".bar")
+                      .sort(function(a, b) { return x0(a.key) - x0(b.key); });
 
-                    svg.selectAll(".bar")
-                        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
+                  var transition = svg.transition().duration(750),
+                      delay = function(d, i) { return i * 50; };
 
-                    var transition = svg.transition().duration(750),
-                        delay = function(d, i) { return i * 50; };
+                  transition.selectAll(".bar")
+                      .delay(delay)
+                      .attr("x", function(d) { return x0(d.key); });
 
-                    transition.selectAll(".bar")
-                        .delay(delay)
-                        .attr("x", function(d) { return x0(d.key); });
-
-                    transition.select(".x.axis")
-                        .call(xAxis)
-                      .selectAll("g")
-                        .delay(delay);
+                  transition.select(".x.axis")
+                      .call(xAxis)
+                    .selectAll("g")
+                      .delay(delay);
                   } 
                       
                 };
 
-                window.onload = draw_chart(data2);
+                //window.onload = draw_chart(data2);
               </script>
             </div>
         </div>
@@ -242,17 +245,18 @@
             	<h3>Functionality</h3>
               <p style="font-size:18px">C-Level</p>
             	<ul style="font-size:14px">
-                <li >No decimals in frequency counts on y-axis</li>
+                <li >No decimals in tick marks of frequency counts on y-axis</li>
             		<li>Total number of tick marks on y-axis is always equal to the maximum frequency of letters.</li>
                 <li>Sorted alphabetically or by value.</li>
                 <li></li>
               </ul>
               <p style="font-size:18px">B-Level</p>
-              <ul>
-                <li></li>
+              <ul style="font-size:14px">
+                <li>Added a button that allows user to change between sorting alphabetically (default) and sorting by value.</li>
+                <li>Added a search box on the page, which allows user to show letter frequency for the text in that box instead of from the URL query.</li>
               </ul>
               <p style="font-size:18px">A-Level</p>
-              <ul>
+              <ul style="font-size:14px">
                 <li></li>
               </ul>              
             </div>
