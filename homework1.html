@@ -27,252 +27,310 @@
     }
 
     .bar {
-      fill: #377eb8;
+      fill: lightsteelblue;
       fill-opacity: .9;
+    }
+
+    .bar:hover{
+      fill: steelblue;
     }
 
     .x.axis path {
       display: none;
     }
+
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+/* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+/* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
+    div.tooltip {   
+      position: absolute;           
+      text-align: center;           
+      width: 60px;                  
+      height: 28px;                 
+      padding: 2px;             
+      font: 12px sans-serif;        
+      background: lightsteelblue;   
+      border: 0px;      
+      border-radius: 8px;           
+      pointer-events: none;         
+    }
   </style>
+</head>
 
 <body>
 
-<div class="brand">MSAN 622</div>
-<div class="address-bar">Information Visualization</div>
+  <div class="brand">MSAN 622</div>
+  <div class="address-bar">Information Visualization</div>
 
-<!-- Navigation -->
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Information Visualization</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#homework">Homework</a></li>
-                <li><a href="index.html#project">Project</a></li>
-                <li><a href="index.html#participation">Participation</a></li>                    
-            </ul>
-        </div>
-    </div>
-</nav>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Information Visualization</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html#about">About</a></li>
+                  <li><a href="index.html#homework">Homework</a></li>
+                  <li><a href="index.html#project">Project</a></li>
+                  <li><a href="index.html#participation">Participation</a></li>                    
+              </ul>
+          </div>
+      </div>
+  </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="box">
-            <div class="col-lg-12 text-center">
-                <h1 class="brand-name">Homework 1</h1>
-                <hr class="tagline-divider">
-                <h2>
-                    <small>By <strong> Monica Meyer</strong></small>
-                </h2>
-                <p> <a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/homework1.html">See Code</a></p>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+      <div class="row">
+          <div class="box">
+              <div class="col-lg-12 text-center">
+                  <h1 class="brand-name">Homework 1</h1>
+                  <hr class="tagline-divider">
+                  <h2><small>By <strong> Monica Meyer</strong></small></h2>
+                  <p> <a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/homework1.html">See Code</a></p>
+              </div>
+          </div>
+      </div>
 
-    <div class="row">
-        <div class="box">
-            <div class="col-lg-12 text-center" id="chart"> 
-              <label><input type="checkbox"> Sort by value</label>	
+      <div class="row">
+          <div class="box text-center">
+              <div class="col-lg-12 text-center" id="chart"> 
 
-              <h4> Search box </h4>
-              <input type='text' id='link_id'>
-              <input type='button' id='link' value='Search' onClick='d3.select("svg").remove() ;text_box()'>
+  				      <script src="http://d3js.org/d3.v3.min.js"></script>
+  				      <script src="http://rawgit.com/Caged/d3-tip/master/index.js" charset="utf-8"></script>
+  				      <script> 
+                  
+                  function text_box() {
 
-				      <script src="http://d3js.org/d3.v3.min.js"></script>
-				      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-				      <script> 
-                
-              function text_box() {
-                var qstring = (document.getElementById('link_id').value).toLowerCase();
-                var st = qstring.replace(/\s/g, '');
-                var str2 = (st.replace(/[^a-z]/g, '')).split('');
-                var str = str2.sort();
+                    var qstring = (document.getElementById('link_id').value).toLowerCase();
+                    var st = qstring.replace(/\s/g, '');
+                    var str2 = (st.replace(/[^a-z]/g, '')).split('');
+                    var str = str2.sort();
 
-                var data = {};
+                    var data = {};
 
-                for (var i = 0; i < str.length; i++){
-                	if (str[i] in data){
-                		data[str[i]] += 1
-                	}
-                	else{
-                		data[str[i]] = 1
-                	}
-                }			
+                    for (var i = 0; i < str.length; i++){
+                    	if (str[i] in data){
+                    		data[str[i]] += 1
+                    	}
+                    	else{
+                    		data[str[i]] = 1
+                    	}
+                    }			
 
-                var data2 = d3.entries(data)
-                draw_chart(data2)
-              }
-
-              function load_data(){
-                var qstring = decodeURI(window.location.search).toLowerCase();
-                var st = qstring.replace(/\s/g, '');
-                var str2 = (st.replace(/[^a-z]/g, '')).split('');
-                var str = str2.sort();
-
-                var data = {};
-
-                for (var i = 0; i < str.length; i++){
-                  if (str[i] in data){
-                    data[str[i]] += 1
+                    var data2 = d3.entries(data)
+                    draw_chart(data2)
                   }
-                  else{
-                    data[str[i]] = 1
-                  }
-                }     
 
-                var data2 = d3.entries(data)
-                draw_chart(data2)
-              };
+                  function load_data(){
+                    var qstring = decodeURI(window.location.search).toLowerCase();
+                    var st = qstring.replace(/\s/g, '');
+                    var str2 = (st.replace(/[^a-z]/g, '')).split('');
+                    var str = str2.sort();
 
-              function draw_chart(data){
-                var margin = {top: 40, right: 20, bottom: 30, left: 40},
-                    width = 960 - margin.left - margin.right,
-                    height = 500 - margin.top - margin.bottom;
+                    var data = {};
 
-                var x = d3.scale.ordinal()
-                    .rangeRoundBands([0, width], .1);
+                    for (var i = 0; i < str.length; i++){
+                      if (str[i] in data){
+                        data[str[i]] += 1
+                      }
+                      else{
+                        data[str[i]] = 1
+                      }
+                    }     
 
-                var y = d3.scale.linear()
-                    .range([height, 0]);
+                    var data2 = d3.entries(data)
+                    draw_chart(data2)
+                  };
 
-                var xAxis = d3.svg.axis()
-                    .scale(x)
-                    .orient("bottom");
+                  function draw_chart(data){
+                    var margin = {top: 40, right: 20, bottom: 50, left: 70},
+                        width = 960 - margin.left - margin.right,
+                        height = 500 - margin.top - margin.bottom;
 
-                var yAxis = d3.svg.axis()
-                    .scale(y)
-                    .orient("left")
-                    .ticks(d3.max(data, function(d) {return d.value;}), '');
+                    var x = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
 
-                var svg = d3.select("#chart").append("svg")
-                    .attr("width", width + margin.left + margin.right + 20)
-                    .attr("height", height + margin.top + margin.bottom)
-                  .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
 
-              	x.domain(data.map(function(d) { return d.key; }));
-              	y.domain([0, d3.max(data, function(d) { return d.value; })]);
+                    var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .orient("bottom");
 
-              	svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left")
+                        .ticks(d3.max(data, function(d) {return d.value;}), '');
 
-              	svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-              	 .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("y", 6)
-                    .attr("dy", ".71em")
-                    .style("text-anchor", "end")
-                    .text("Frequency");
+                    var div = d3.select("body").append("div")   
+                        .attr("class", "tooltip")               
+                        .style("opacity", 0);
 
-              	svg.selectAll(".bar")
-                    .data(data)
-                  .enter().append("rect")
-                    .attr("class", "bar")
-                    .attr("x", function(d) { return x(d.key); })
-                    .attr("width", x.rangeBand())
-                    .attr("y", function(d) { return y(d.value); })
-                    .attr("height", function(d) { return height - y(d.value); })
-              	    .on('mouseover', function() {
-                        d3.select(this)
-                          .transition()
-                          .duration(200)
-                          .style("fill", "#984ea3");})
-                    .on('mouseout', function() {
-                        d3.select(this)
-                          .transition()
-                          .duration(200)
-                          .style("fill", "#377eb8");});
+                    d3.select("svg").remove();
+
+                    var svg = d3.select("#chart").append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                      .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                    svg.on("mouseover", function(){
+                          var t = svg.transition().duration(1000).delay(function(d, i){ return i*400; });
+                          t.select(".x.axis").call(xAxis).style("opacity", 1);
+                          t.select(".y.axis").call(yAxis).style("opacity", 1); })
+                       .on("mouseout", function(){
+                          var t = svg.transition().duration(1000).delay(function(d, i){ return i*400; });
+                          t.select(".x.axis").call(xAxis).style("opacity", 0);
+                          t.select(".y.axis").call(yAxis).style("opacity", 0); });
+
+                  	x.domain(data.map(function(d) { return d.key; }));
+                  	y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+                  	svg.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + height + ")")
+                      .append("text")
+                        .attr("x", width/2)
+                        .attr("y", 45)
+                        .style("text-anchor", "middle")
+                        .text("Letter");
+ 
+                  	svg.append("g")
+                        .attr("class", "y axis")
+                  	 .append("text")
+                        .attr("y", 6)
+                        .attr("dy", "-1.5em")
+                        .style("text-anchor", "end")
+                        .text("Frequency");
+
+                  	svg.selectAll(".bar")
+                        .data(data)
+                      .enter().append("rect")
+                        .attr("class", "bar")
+                        .attr("x", function(d) { return x(d.key); })
+                        .attr("width", x.rangeBand())
+                        .attr("y", height)
+                        .attr("height", 0)
+                        .transition()
+                          .duration(400)
+                          .delay(function(d, i){ return i*400; })
+                          .attr("y", function(d) { return y(d.value); })
+                          .attr("height", function(d) { return height - y(d.value); });
                     
-              	d3.select("input").on("change", change);
+                  	d3.select("input").on("change", change_sort);
+                          
+                    function change_sort() {
 
-              	var sortTimeout = setTimeout(function() {
-              		d3.select("input").property("checked", true).each(change); }, 2000);
-                      
-                function change() {
-                  clearTimeout(sortTimeout);
+                      var x0 = x.domain(data.sort(this.checked
+                            ? function(a, b) { return b.value - a.value; }
+                            : function(a, b) { return d3.ascending(a.key, b.key); })
+                            .map(function(d) { return d.key; }))
+                            .copy();
 
-                  var x0 = x.domain(data.sort(this.checked
-                        ? function(a, b) { return b.value - a.value; }
-                        : function(a, b) { return d3.ascending(a.key, b.key); })
-                        .map(function(d) { return d.key; }))
-                        .copy();
+                      svg.selectAll(".bar")
+                            .sort(function(a, b) { return x0(a.key) - x0(b.key); });
 
-                  svg.selectAll(".bar")
-                        .sort(function(a, b) { return x0(a.key) - x0(b.key); });
+                      var transition = svg.transition().duration(750),
+                            delay = function(d, i) { return i * 50; };
 
-                  var transition = svg.transition().duration(750),
-                        delay = function(d, i) { return i * 50; };
+                      transition.selectAll(".bar")
+                            .delay(delay)
+                            .attr("x", function(d) { return x0(d.key); });
 
-                  transition.selectAll(".bar")
-                        .delay(delay)
-                        .attr("x", function(d) { return x0(d.key); });
+                      transition.select(".x.axis")
+                            .call(xAxis)
+                          .selectAll("g")
+                            .delay(delay);
+                      } 
 
-                  transition.select(".x.axis")
-                        .call(xAxis)
-                      .selectAll("g")
-                        .delay(delay);
-                  } 
+                  };
 
-              };
+                  window.onload = load_data();
+                </script>
+              </div>
+              <label><input type="checkbox"> Sort by value</label>  
+              <input type='text' id='link_id'>
+              <input type='button' id='link' value='Search' onClick='text_box()'>
+          </div>
+          <div class="box">
+              <div class="col-lg-12">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                  <hr>
+                	<h3 class= "text-center">Functionality</h3>
+                  <hr>
+                  <p style="font-size:18px">C-Level</p>
+                	<ul style="font-size:14px">
+                    <li>No decimals in tick marks of frequency counts on y-axis</li>
+                		<li>Total number of tick marks on y-axis is always equal to the maximum frequency of letters.</li>
+                    <li>Changed so that the x-axis is sorted alphabetically</li>
+                    <li>Rotated the y-axis label so that it is above the axis line</li>
+                    <li>Added "letter" label to the x-axis</li>
+                  </ul>
+                  <p style="font-size:18px">B-Level</p>
+                  <ul style="font-size:14px">
+                    <li>Added a button that allows user to change between sorting alphabetically (default) and sorting by value</li>
+                    <li>Added a search box on the page, which allows user to show letter frequency for the text in that box instead of from the URL query (while still allowing user to enter data in the url to draw the chart)</li>
+                  </ul>
+                  <p style="font-size:18px">A-Level</p>
+                  <ul style="font-size:14px">
+                    <li>At the start of the visualization, show one bar at a time and smoothly grow each bar from the bottom up to its value</li>
+                    <li>Mouseover and mouseout to show/hide axis lines/labels</li>
+                  </ul> 
+                  <hr>
+                  <h3 class= "text-center">Discussion</h3>
+                  <hr>
+                  <p style="font-size:14px">A short (1 to 3 paragraphs, 3 to 5 sentences per paragraph) discussion about the functionality you implemented. Focus on providing motivation behind some of your design decisions (e.g. why you choose to remove/add an element, how you decided on colors, etc.). This discussion could influence how your visualization is evaluated in peer reviews. You do not need to re-list everything you implemented!</p>
+                </div>  
+                <div class="col-md-2">
+                </div> 
+              </div>          
+          </div>
+      </div>
+  </div>
 
-              window.onload = load_data();
-              </script>
-            </div>
-        </div>
-        <div class="box">
-            <div class="col-lg-12">
-            	<h3>Functionality</h3>
-              <p style="font-size:18px">C-Level</p>
-            	<ul style="font-size:14px">
-                <li >No decimals in tick marks of frequency counts on y-axis</li>
-            		<li>Total number of tick marks on y-axis is always equal to the maximum frequency of letters.</li>
-                <li>Sorted alphabetically or by value.</li>
-                <li></li>
-              </ul>
-              <p style="font-size:18px">B-Level</p>
-              <ul style="font-size:14px">
-                <li>Added a button that allows user to change between sorting alphabetically (default) and sorting by value.</li>
-                <li>Added a search box on the page, which allows user to show letter frequency for the text in that box instead of from the URL query.</li>
-              </ul>
-              <p style="font-size:18px">A-Level</p>
-              <ul style="font-size:14px">
-                <li></li>
-              </ul>              
-            </div>
-        </div>
-    </div>
-</div>
-
-
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/d3.min.js"></script>
+</body>
 
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p style="text-align: center;">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
-            </div>
-        </div>
-    </div></footer>
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/d3.min.js"></script>
-
-
-</body>
+    <div class="row">          
+        <p style="text-align: center; font-size:12px">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
+    </div>
+</footer>
 
 </html>
