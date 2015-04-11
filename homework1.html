@@ -128,53 +128,24 @@
               <div class="col-lg-12 text-center" id="chart"> 
                 <label><input type="checkbox", id='check'> Sort by value</label>
                 <input type='text' id='link_id'>
-                <input type='button' id='link' value='Search' onClick='text_box()'>
+                <input type='button' id='link' value='Search' onClick='search_box()'>
 
   				      <script src="http://d3js.org/d3.v3.min.js"></script>
   				      <script> 
-                  
-                  function text_box() {
-
-                    var qstring = (document.getElementById('link_id').value).toLowerCase();
-                    var st = qstring.replace(/\s/g, '');
-                    var str2 = (st.replace(/[^a-z]/g, '')).split('');
-                    var str = str2.sort();
-
-                    var data = {};
-
-                    for (var i = 0; i < str.length; i++){
-                    	if (str[i] in data){
-                    		data[str[i]] += 1
-                    	}
-                    	else{
-                    		data[str[i]] = 1
-                    	}
-                    }			
-
-                    var data2 = d3.entries(data)
-                    draw_chart(data2)
+                  function search_box(){
+                    load_data((document.getElementById('link_id').value).toLowerCase());
                   }
 
-                  function load_data(){
-                    var qstring = decodeURI(window.location.search).toLowerCase();
-
-                    var st = qstring.replace(/\s/g, '');
-                    var str2 = (st.replace(/[^a-z]/g, '')).split('');
+                  function load_data(qstring){
+                    var str2 = (qstring.replace(/[^a-z]/g, '')).split('');
                     var str = str2.sort();
-
                     var data = {};
 
                     for (var i = 0; i < str.length; i++){
-                      if (str[i] in data){
-                        data[str[i]] += 1
-                      }
-                      else{
-                        data[str[i]] = 1
-                      }
-                    }     
+                      if (str[i] in data){ data[str[i]] += 1; }
+                      else{ data[str[i]] = 1; } };     
 
-                    var data2 = d3.entries(data)
-                    draw_chart(data2)
+                    draw_chart(d3.entries(data));
                   };
 
                   function draw_chart(data){
@@ -276,7 +247,7 @@
 
                   };
 
-                  window.onload = load_data();
+                  window.onload = load_data(decodeURI(window.location.search).toLowerCase());
                 </script>
               </div>
           </div>
@@ -309,7 +280,9 @@
                   <hr>
                   <h3 class= "text-center">Discussion</h3>
                   <hr>
-                  <p style="font-size:14px">A short (1 to 3 paragraphs, 3 to 5 sentences per paragraph) discussion about the functionality you implemented. Focus on providing motivation behind some of your design decisions (e.g. why you choose to remove/add an element, how you decided on colors, etc.). This discussion could influence how your visualization is evaluated in peer reviews. You do not need to re-list everything you implemented!</p>
+                  <p style="font-size:14px">For C-Level functionality, I chose to remove decimals in the tick marks and make the tick marks equal to the maximum frequency of letters for ease of reading by the viewer. Since the graph is counting frequency of letters, there is no need for non-integer values on the y-axis. I also sorted the letters on the x-axis in alphabetical order so that the viewer could more easily find specific letters. I also added a label to the x-axis for ease of reading by the viewer. I chose to make the color of the bars a light blue, with the hover being a much darker hue so that it would stand out more easily against the rest of the letters.</p>
+                  <p style="font-size:14px">For B-Level functionality, I added a button to allow the user to change between sorting the letters alphabetically or by value. This allows the user to more easily see letters in relation to each other. Then, so that the user did not have to reload the page from the url search for a new string, I added a search box that the user can type into to see letter frequency.</p>
+                  <p style="font-size:14px">For A-Level functionality, I added a mouseover/mouseout to show and hide the axis lines and labels of the graph. With this functionality, I wanted to influence the user and get them to interact with the graph. I also grew one bar at a time because this highlighted the differences between letters in a smooth way. </p>
                 </div>  
                 <div class="col-md-2">
                 </div> 
