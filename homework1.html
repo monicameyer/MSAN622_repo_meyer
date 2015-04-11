@@ -126,9 +126,11 @@
       <div class="row">
           <div class="box text-center">
               <div class="col-lg-12 text-center" id="chart"> 
+                <label><input type="checkbox", id='check'> Sort by value</label>
+                <input type='text' id='link_id'>
+                <input type='button' id='link' value='Search' onClick='text_box()'>
 
   				      <script src="http://d3js.org/d3.v3.min.js"></script>
-  				      <script src="http://rawgit.com/Caged/d3-tip/master/index.js" charset="utf-8"></script>
   				      <script> 
                   
                   function text_box() {
@@ -155,6 +157,7 @@
 
                   function load_data(){
                     var qstring = decodeURI(window.location.search).toLowerCase();
+
                     var st = qstring.replace(/\s/g, '');
                     var str2 = (st.replace(/[^a-z]/g, '')).split('');
                     var str = str2.sort();
@@ -194,12 +197,8 @@
                         .orient("left")
                         .ticks(d3.max(data, function(d) {return d.value;}), '');
 
-                    var div = d3.select("body").append("div")   
-                        .attr("class", "tooltip")               
-                        .style("opacity", 0);
-
                     d3.select("svg").remove();
-
+                    
                     var svg = d3.select("#chart").append("svg")
                         .attr("width", width + margin.left + margin.right)
                         .attr("height", height + margin.top + margin.bottom)
@@ -244,13 +243,13 @@
                         .attr("y", height)
                         .attr("height", 0)
                         .transition()
-                          .duration(400)
-                          .delay(function(d, i){ return i*400; })
+                          .duration(300)
+                          .delay(function(d, i){ return i*300; })
                           .attr("y", function(d) { return y(d.value); })
                           .attr("height", function(d) { return height - y(d.value); });
-                    
+
                   	d3.select("input").on("change", change_sort);
-                          
+
                     function change_sort() {
 
                       var x0 = x.domain(data.sort(this.checked
@@ -280,9 +279,6 @@
                   window.onload = load_data();
                 </script>
               </div>
-              <label><input type="checkbox"> Sort by value</label>  
-              <input type='text' id='link_id'>
-              <input type='button' id='link' value='Search' onClick='text_box()'>
           </div>
           <div class="box">
               <div class="col-lg-12">
