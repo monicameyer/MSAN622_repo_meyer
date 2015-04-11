@@ -145,6 +145,7 @@
                       if (str[i] in data){ data[str[i]] += 1; }
                       else{ data[str[i]] = 1; } };     
 
+                    console.log(data)
                     draw_chart(d3.entries(data));
                   };
 
