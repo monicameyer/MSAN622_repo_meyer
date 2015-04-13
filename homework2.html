@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>MSAN 622 - Information Visualization</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/business-casual.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+  <style>
+    /*
+    body {
+      font: 11px sans-serif;
+      margin: 10px;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .bar:hover {
+      fill: #bcbcbc ;
+    }
+
+    .x.axis path {
+      display: none;
+    }*/
+
+
+
+    #chart {
+      margin-left: -40px;
+      height: 506px;
+    }
+
+    text {
+      font: 10px sans-serif;
+    }
+
+    .dot {
+      stroke: #000;
+    }
+
+    .axis path, .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .label {
+      fill: #777;
+    }
+
+    .overlay {
+      fill: none;
+      pointer-events: all;
+      cursor: ew-resize;
+    }
+
+    .grid .tick {
+      stroke: lightgrey;
+      stroke-opacity: 0.7;
+      shape-rendering: crispEdges;
+    }
+
+    .grid path {
+      stroke-width: 0;
+    }
+
+    .legend rect {
+      fill:white;
+      stroke:black;
+      opacity:0.8;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <div class="brand">MSAN 622</div>
+  <div class="address-bar">Information Visualization</div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Information Visualization</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html#about">About</a></li>
+                  <li><a href="index.html#homework">Homework</a></li>
+                  <li><a href="index.html#project">Project</a></li>
+                  <li><a href="index.html#participation">Participation</a></li>                    
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+      <div class="row">
+          <div class="box">
+              <div class="col-lg-12 text-center">
+                  <h1 class="brand-name">Homework 2</h1>
+                  <hr class="tagline-divider">
+                  <h2><small>By <strong> Monica Meyer</strong></small></h2>
+                  <p> <a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/homework2.html">See Code</a></p>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px">State Murder Rates by Per Capita Income in 1974</p>
+              <div class="col-lg-12 text-center" id="chart"> 
+  				      <script src="js/d3.min.js"></script>
+  				      <script src="js/hw2_bubble.js"></script>
+
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px">State Illiteracy, Murder and HS Graduation Rates in 1974</p>
+              <div class="col-lg-12 text-center" id="chart-B">
+                <script src="js/d3.min.js"></script>
+                <!--<script src="js/hw2_smallmult.js"></script>-->
+                
+
+          </div>        
+      </div>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/d3.min.js"></script>
+</body>
+
+<footer>
+    <div class="row">          
+        <p style="text-align: center; font-size:12px">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
+    </div>
+</footer>
+
+</html>
