@@ -1,151 +1,201 @@
 "State","variable","value"
-"Alabama","Illiteracy",2.1
+"Alabama","LifeExp",69.05
 "Alabama","Murder",15.1
 "Alabama","hsGrad",41.3
-"Alaska","Illiteracy",1.5
+"Alabama","Frost",20
+"Alaska","LifeExp",69.31
 "Alaska","Murder",11.3
 "Alaska","hsGrad",66.7
-"Arizona","Illiteracy",1.8
+"Alaska","Frost",152
+"Arizona","LifeExp",70.55
 "Arizona","Murder",7.8
 "Arizona","hsGrad",58.1
-"Arkansas","Illiteracy",1.9
+"Arizona","Frost",15
+"Arkansas","LifeExp",70.66
 "Arkansas","Murder",10.1
 "Arkansas","hsGrad",39.9
-"California","Illiteracy",1.1
+"Arkansas","Frost",65
+"California","LifeExp",71.71
 "California","Murder",10.3
 "California","hsGrad",62.6
-"Colorado","Illiteracy",0.7
+"California","Frost",20
+"Colorado","LifeExp",72.06
 "Colorado","Murder",6.8
 "Colorado","hsGrad",63.9
-"Connecticut","Illiteracy",1.1
+"Colorado","Frost",166
+"Connecticut","LifeExp",72.48
 "Connecticut","Murder",3.1
 "Connecticut","hsGrad",56
-"Delaware","Illiteracy",0.9
+"Connecticut","Frost",139
+"Delaware","LifeExp",70.06
 "Delaware","Murder",6.2
 "Delaware","hsGrad",54.6
-"Florida","Illiteracy",1.3
+"Delaware","Frost",103
+"Florida","LifeExp",70.66
 "Florida","Murder",10.7
 "Florida","hsGrad",52.6
-"Georgia","Illiteracy",2
+"Florida","Frost",11
+"Georgia","LifeExp",68.54
 "Georgia","Murder",13.9
 "Georgia","hsGrad",40.6
-"Hawaii","Illiteracy",1.9
+"Georgia","Frost",60
+"Hawaii","LifeExp",73.6
 "Hawaii","Murder",6.2
 "Hawaii","hsGrad",61.9
-"Idaho","Illiteracy",0.6
+"Hawaii","Frost",0
+"Idaho","LifeExp",71.87
 "Idaho","Murder",5.3
 "Idaho","hsGrad",59.5
-"Illinois","Illiteracy",0.9
+"Idaho","Frost",126
+"Illinois","LifeExp",70.14
 "Illinois","Murder",10.3
 "Illinois","hsGrad",52.6
-"Indiana","Illiteracy",0.7
+"Illinois","Frost",127
+"Indiana","LifeExp",70.88
 "Indiana","Murder",7.1
 "Indiana","hsGrad",52.9
-"Iowa","Illiteracy",0.5
+"Indiana","Frost",122
+"Iowa","LifeExp",72.56
 "Iowa","Murder",2.3
 "Iowa","hsGrad",59
-"Kansas","Illiteracy",0.6
+"Iowa","Frost",140
+"Kansas","LifeExp",72.58
 "Kansas","Murder",4.5
 "Kansas","hsGrad",59.9
-"Kentucky","Illiteracy",1.6
+"Kansas","Frost",114
+"Kentucky","LifeExp",70.1
 "Kentucky","Murder",10.6
 "Kentucky","hsGrad",38.5
-"Louisiana","Illiteracy",2.8
+"Kentucky","Frost",95
+"Louisiana","LifeExp",68.76
 "Louisiana","Murder",13.2
 "Louisiana","hsGrad",42.2
-"Maine","Illiteracy",0.7
+"Louisiana","Frost",12
+"Maine","LifeExp",70.39
 "Maine","Murder",2.7
 "Maine","hsGrad",54.7
-"Maryland","Illiteracy",0.9
+"Maine","Frost",161
+"Maryland","LifeExp",70.22
 "Maryland","Murder",8.5
 "Maryland","hsGrad",52.3
-"Massachusetts","Illiteracy",1.1
+"Maryland","Frost",101
+"Massachusetts","LifeExp",71.83
 "Massachusetts","Murder",3.3
 "Massachusetts","hsGrad",58.5
-"Michigan","Illiteracy",0.9
+"Massachusetts","Frost",103
+"Michigan","LifeExp",70.63
 "Michigan","Murder",11.1
 "Michigan","hsGrad",52.8
-"Minnesota","Illiteracy",0.6
+"Michigan","Frost",125
+"Minnesota","LifeExp",72.96
 "Minnesota","Murder",2.3
 "Minnesota","hsGrad",57.6
-"Mississippi","Illiteracy",2.4
+"Minnesota","Frost",160
+"Mississippi","LifeExp",68.09
 "Mississippi","Murder",12.5
 "Mississippi","hsGrad",41
-"Missouri","Illiteracy",0.8
+"Mississippi","Frost",50
+"Missouri","LifeExp",70.69
 "Missouri","Murder",9.3
 "Missouri","hsGrad",48.8
-"Montana","Illiteracy",0.6
+"Missouri","Frost",108
+"Montana","LifeExp",70.56
 "Montana","Murder",5
 "Montana","hsGrad",59.2
-"Nebraska","Illiteracy",0.6
+"Montana","Frost",155
+"Nebraska","LifeExp",72.6
 "Nebraska","Murder",2.9
 "Nebraska","hsGrad",59.3
-"Nevada","Illiteracy",0.5
+"Nebraska","Frost",139
+"Nevada","LifeExp",69.03
 "Nevada","Murder",11.5
 "Nevada","hsGrad",65.2
-"New Hampshire","Illiteracy",0.7
+"Nevada","Frost",188
+"New Hampshire","LifeExp",71.23
 "New Hampshire","Murder",3.3
 "New Hampshire","hsGrad",57.6
-"New Jersey","Illiteracy",1.1
+"New Hampshire","Frost",174
+"New Jersey","LifeExp",70.93
 "New Jersey","Murder",5.2
 "New Jersey","hsGrad",52.5
-"New Mexico","Illiteracy",2.2
+"New Jersey","Frost",115
+"New Mexico","LifeExp",70.32
 "New Mexico","Murder",9.7
 "New Mexico","hsGrad",55.2
-"New York","Illiteracy",1.4
+"New Mexico","Frost",120
+"New York","LifeExp",70.55
 "New York","Murder",10.9
 "New York","hsGrad",52.7
-"North Carolina","Illiteracy",1.8
+"New York","Frost",82
+"North Carolina","LifeExp",69.21
 "North Carolina","Murder",11.1
 "North Carolina","hsGrad",38.5
-"North Dakota","Illiteracy",0.8
+"North Carolina","Frost",80
+"North Dakota","LifeExp",72.78
 "North Dakota","Murder",1.4
 "North Dakota","hsGrad",50.3
-"Ohio","Illiteracy",0.8
+"North Dakota","Frost",186
+"Ohio","LifeExp",70.82
 "Ohio","Murder",7.4
 "Ohio","hsGrad",53.2
-"Oklahoma","Illiteracy",1.1
+"Ohio","Frost",124
+"Oklahoma","LifeExp",71.42
 "Oklahoma","Murder",6.4
 "Oklahoma","hsGrad",51.6
-"Oregon","Illiteracy",0.6
+"Oklahoma","Frost",82
+"Oregon","LifeExp",72.13
 "Oregon","Murder",4.2
 "Oregon","hsGrad",60
-"Pennsylvania","Illiteracy",1
+"Oregon","Frost",44
+"Pennsylvania","LifeExp",70.43
 "Pennsylvania","Murder",6.1
 "Pennsylvania","hsGrad",50.2
-"Rhode Island","Illiteracy",1.3
+"Pennsylvania","Frost",126
+"Rhode Island","LifeExp",71.9
 "Rhode Island","Murder",2.4
 "Rhode Island","hsGrad",46.4
-"South Carolina","Illiteracy",2.3
+"Rhode Island","Frost",127
+"South Carolina","LifeExp",67.96
 "South Carolina","Murder",11.6
 "South Carolina","hsGrad",37.8
-"South Dakota","Illiteracy",0.5
+"South Carolina","Frost",65
+"South Dakota","LifeExp",72.08
 "South Dakota","Murder",1.7
 "South Dakota","hsGrad",53.3
-"Tennessee","Illiteracy",1.7
+"South Dakota","Frost",172
+"Tennessee","LifeExp",70.11
 "Tennessee","Murder",11
 "Tennessee","hsGrad",41.8
-"Texas","Illiteracy",2.2
+"Tennessee","Frost",70
+"Texas","LifeExp",70.9
 "Texas","Murder",12.2
 "Texas","hsGrad",47.4
-"Utah","Illiteracy",0.6
+"Texas","Frost",35
+"Utah","LifeExp",72.9
 "Utah","Murder",4.5
 "Utah","hsGrad",67.3
-"Vermont","Illiteracy",0.6
+"Utah","Frost",137
+"Vermont","LifeExp",71.64
 "Vermont","Murder",5.5
 "Vermont","hsGrad",57.1
-"Virginia","Illiteracy",1.4
+"Vermont","Frost",168
+"Virginia","LifeExp",70.08
 "Virginia","Murder",9.5
 "Virginia","hsGrad",47.8
-"Washington","Illiteracy",0.6
+"Virginia","Frost",85
+"Washington","LifeExp",71.72
 "Washington","Murder",4.3
 "Washington","hsGrad",63.5
-"West Virginia","Illiteracy",1.4
+"Washington","Frost",32
+"West Virginia","LifeExp",69.48
 "West Virginia","Murder",6.7
 "West Virginia","hsGrad",41.6
-"Wisconsin","Illiteracy",0.7
+"West Virginia","Frost",100
+"Wisconsin","LifeExp",72.48
 "Wisconsin","Murder",3
 "Wisconsin","hsGrad",54.5
-"Wyoming","Illiteracy",0.6
+"Wisconsin","Frost",149
+"Wyoming","LifeExp",70.29
 "Wyoming","Murder",6.9
 "Wyoming","hsGrad",62.9
+"Wyoming","Frost",173

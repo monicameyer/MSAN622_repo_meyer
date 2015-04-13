@@ -1,10 +1,3 @@
-function x(d) { return d.Income; }
-function y(d) { return d.Murder; }
-function radius(d) { return d.Population; }
-function color(d) { return d.Region; }
-function key(d) { return d.State; }
-
-
 var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
     width = 960 - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -53,13 +46,13 @@ svg.append("text")
     .text("Murder (per 100K Pop)");
 
 svg.append("title")
-    .attr("text-anchor", "end")
+    .attr("text-anchor", "end");
               
 // Load the data.
 d3.json("statex77.json", function(states) {
   
   states.forEach(function(d){
-    d.color = colorScale(color(d))
+    d.color = colorScale(d.Region)
   })
 
   var dot = svg.append("g")
@@ -68,8 +61,7 @@ d3.json("statex77.json", function(states) {
       .data(states)
     .enter().append("circle")
       .attr("class", "dot")
-      // .style("fill", "steelblue")
-      .style("fill", function(d) { return colorScale(color(d)); })
+      .style("fill", function(d) { return colorScale(d.Region); })
       .call(position)
       .sort(order);
 
@@ -79,9 +71,9 @@ d3.json("statex77.json", function(states) {
 
   // Positions the dots based on data.
   function position(dot) {
-    dot .attr("cx", function(d) { return xScale(x(d)); })
-        .attr("cy", function(d) { return yScale(y(d)); })
-        .attr("r", function(d) { return radiusScale(radius(d)); });
+    dot .attr("cx", function(d) { return xScale(d.Income); })
+        .attr("cy", function(d) { return yScale(d.Murder); })
+        .attr("r", function(d) { return radiusScale(d.Population); });
   }
 
   // Defines a sort order so that the smallest dots are drawn on top.
@@ -100,7 +92,6 @@ d3.json("statex77.json", function(states) {
   var legendRectSize = 18;
   var legendSpacing = 4;
   var colors = d3.entries(color_div)
-
 
   var legend = svg.selectAll('.legend')
       .data(colors)
