@@ -1,81 +1,76 @@
-var margin = {top: 45, right: 35, bottom: 45, left: 35},
-  width = 280,
-  height =  290 - margin.top - margin.bottom;
+var margin2 = {top: 45, right: 35, bottom: 45, left: 35},
+  width2 = 280,
+  height2 =  290 - margin2.top - margin2.bottom;
 
-var x = d3.scale.ordinal()
-  .rangeRoundBands([0, width], .1);
+var x2 = d3.scale.ordinal()
+  .rangeRoundBands([0, width2], .1);
 
-var y = d3.scale.linear()
-  .range([height, 0]);
+var y2 = d3.scale.linear()
+  .range([height2, 0]);
 
 var xAxis = d3.svg.axis()
-  .scale(x)
+  .scale(x2)
   .orient("bottom");
 
+
 var yAxis = d3.svg.axis()
-  .scale(y)
+  .scale(y2)
   .orient("left")
   .ticks(5);
+
+var tip2 = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-5, 0])
+  .html(function(d) {
+    return "<span style='color:white'>" + d.value + "</span>";
+  })
 
 d3.csv("statex77.csv", function(data) {
   var states = d3.nest()
       .key(function(d){ return d.State; })
       .entries(data);
 
-  x.domain(data.map(function(d) { return d.variable; }));
-  y.domain([0, 200]);
+  x2.domain(data.map(function(d) { return d.variable; }));
+  y2.domain([0, 200]);
 
   var svg = d3.select("#chart-B").selectAll("svg")
       .data(states)
     .enter().append("svg:svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width2 + margin2.left + margin2.right)
+      .attr("height", height2 + margin2.top + margin2.bottom)
     .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  // svg.append("g")
-  //     .attr("class", "y axis")
-  //     .call(yAxis)
-  //     .append("text")
-  //     .attr("x", height - 400)
-  //     .attr("y", width + 40)
-  //     .attr("transform", "rotate(-90)" )
-  //     .attr("dy", "-.9em")
-  //     .attr("text-anchor", "start")
-  //     .attr("font-size", "1.5em")
-  //     .text(function(d) { return d.key});
+  svg.call(tip2);
 
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
       .append("text")
-      .attr("x", .5*width)
-      .attr("y", 10)// height + 60)
+      .attr("x", .5*width2)
+      .attr("y", 10)// height2 + 60)
       .attr("dy", "-.9em")
       .attr("text-anchor", "middle")
       .attr("font-size", "1.5em")
       .text(function(d) { return d.key});
-
-  // svg.append("title")
-  //     .attr("text-anchor", "end");
 
   svg.selectAll(".bar")
       .data(function(d) { return d.values; })
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.variable); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .attr("fill", "steelblue");
+      .attr("x", function(d) { return x2(d.variable); })
+      .attr("width", x2.rangeBand())
+      .attr("y", function(d) { return y2(d.value); })
+      .attr("height", function(d) { return height2 - y2(d.value); })
+      .attr("fill", "steelblue")
+      .on('mouseover', tip2.show)
+      .on('mouseout', tip2.hide);
 
-    // svg.append("title")
-    //   .text(function(d) { return y(d.value); });
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height2 + ")")
+      // .attr("opacity", 0)
+      .call(xAxis);
 
 });

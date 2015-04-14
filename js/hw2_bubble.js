@@ -1,4 +1,4 @@
-var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
+var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 19.5},
     width = 960 - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -16,11 +16,20 @@ var yAxis = d3.svg.axis()
     .scale(yScale)
     .orient("left");
 
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.State +"<br><strong>Population:</strong> <span style='color:white'>" + d.Population + "</span><br><strong>Income:</strong> <span style='color:white'>" + d.Income + "</span><br><strong>Murder:</strong> <span style='color:white'>" + d.Murder + "</span>";
+  })
+
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
 
 svg.append("g")
     .attr("class", "x axis")
@@ -61,6 +70,8 @@ d3.json("statex77.json", function(states) {
       .data(states)
     .enter().append("circle")
       .attr("class", "dot")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .style("fill", function(d) { return colorScale(d.Region); })
       .call(position)
       .sort(order);
@@ -78,7 +89,7 @@ d3.json("statex77.json", function(states) {
 
   // Defines a sort order so that the smallest dots are drawn on top.
   function order(a, b) {
-    return radius(b) - radius(a);
+    return b.Population - a.Population;
   }
 
   // Draw a legend to explain color of dots
@@ -89,8 +100,8 @@ d3.json("statex77.json", function(states) {
       color_div[states[i].Region] = states[i].color;
   };
 
-  var legendRectSize = 18;
-  var legendSpacing = 4;
+  var legendSize = 18;
+  var legendSpace = 4;
   var colors = d3.entries(color_div)
 
   var legend = svg.selectAll('.legend')
@@ -98,23 +109,19 @@ d3.json("statex77.json", function(states) {
       .enter()
       .append('g')
       .attr('class', 'legend')
-      .attr('transform', function(d, i) {
-          var height = legendRectSize + legendSpacing;
-          var offset =  height * colors.length;
-          var horz = width - 130;
-          var vert = i * height;
-          return 'translate(' + horz + ',' + vert + ')';
+      .attr('transform', function(d, i) { 
+        return 'translate(' + (width - 130) + ',' + (i * (legendSize + legendSpace)) + ')';
         });
 
   legend.append('rect')
-    .attr('width', legendRectSize)
-    .attr('height', legendRectSize)
+    .attr('width', legendSize)
+    .attr('height', legendSize)
     .style('fill', function(d) { return d.value; })
     .style('stroke', 'black');
 
   legend.append('text')
-    .attr('x', legendRectSize + legendSpacing)
-    .attr('y', legendRectSize - legendSpacing)
+    .attr('x', legendSize + legendSpace)
+    .attr('y', legendSize - legendSpace)
     .text(function(d) { return d.key; });
 
 });

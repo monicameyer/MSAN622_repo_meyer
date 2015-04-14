@@ -14,40 +14,19 @@
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
   <style>
-    /*
-    body {
-      font: 11px sans-serif;
-      margin: 10px;
+             
+    .bar {
+      fill: lightsteelblue;
+      fill-opacity: .9;
     }
 
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
-
-    .bar:hover {
-      fill: #bcbcbc ;
-    }
-
-    .x.axis path {
-      display: none;
-    }*/
-
-
-
-    #chart {
-      margin-left: -40px;
-      height: 506px;
-    }
-
-    text {
-      font: 10px sans-serif;
+    .bar:hover{
+      fill: steelblue;
     }
 
     .dot {
       stroke: #000;
+      fill-opacity:  .8;
     }
 
     .axis path, .axis line {
@@ -55,32 +34,63 @@
       stroke: #000;
       shape-rendering: crispEdges;
     }
-
-    .label {
-      fill: #777;
+      
+    svg {
+      font: 10px sans-serif;
     }
 
-    .overlay {
+    .background path {
       fill: none;
-      pointer-events: all;
-      cursor: ew-resize;
-    }
-
-    .grid .tick {
-      stroke: lightgrey;
-      stroke-opacity: 0.7;
+      stroke: #ccc;
+      stroke-opacity: .4;
       shape-rendering: crispEdges;
     }
 
-    .grid path {
-      stroke-width: 0;
+    .foreground path {
+      fill: none;
+      stroke: steelblue;
+      stroke-opacity: .7;
     }
 
-    .legend rect {
-      fill:white;
-      stroke:black;
-      opacity:0.8;
+    .brush .extent {
+      fill-opacity: .3;
+      stroke: #fff;
+      shape-rendering: crispEdges;
     }
+
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.7);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
+
+/*    .axis text {
+      text-shadow: 0 1px 0 #fff;
+      cursor: move;
+    }*/
   </style>
   
 </head>
@@ -131,25 +141,64 @@
             <p style="font-size:20px">State Murder Rates by Per Capita Income in 1974</p>
               <div class="col-lg-12 text-center" id="chart"> 
   				      <script src="js/d3.min.js"></script>
+                <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   				      <script src="js/hw2_bubble.js"></script>
-
               </div>
           </div>
       </div>
       <div class="row">
           <div class="box text-center">
             <p style="font-size:20px">State Illiteracy, Murder and HS Graduation Rates in 1974</p>
-              <div class="col-lg-12 text-center" id="chart-B">
-                <script src="js/d3.min.js"></script>
-                <!--<script src="js/hw2_smallmult.js"></script>-->
+              <div class="col-lg-12 text-center smallMult" id="chart-B">
+                <script src="js/hw2_smallmult.js"></script>
               </div>
           </div>        
       </div>
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px">Parallel Coordinates</p>
+              <div class="col-lg-12 text-center" id="chart-C"> 
+                 <script src="js/hw2_parallel.js"></script>
+              </div>
+          </div>
+      </div>  
+      <div class = "row">
+          <div class="box">
+              <div class="col-lg-12">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                  <hr>
+                  <h3 class= "text-center">Functionality</h3>
+                  <hr>
+                  <p style="font-size:18px">C-Level</p>
+                  <ul style="font-size:14px">
+                    <li> </li>
+                  </ul>
+                  <p style="font-size:18px">B-Level</p>
+                  <ul style="font-size:14px">
+                    <li> </li>
+                  </ul>
+                  <p style="font-size:18px">A-Level</p>
+                  <ul style="font-size:14px">
+                    <li> </li>
+                  </ul> 
+                  <hr>
+                  <h3 class= "text-center">Discussion</h3>
+                  <hr>
+                  <p style="font-size:14px">For C-Level functionality...</p>
+                  <p style="font-size:14px">For B-Level functionality...</p>
+                  <p style="font-size:14px">For A-Level functionality... </p>
+                </div>  
+                <div class="col-md-2">
+                </div> 
+              </div>
+          </div> 
+      </div>         
   </div>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/d3.min.js"></script>
+  <!-- <script src="js/jquery.js"></script> -->
+  <!-- // <script src="js/bootstrap.min.js"></script> -->
 </body>
 
 <footer>
