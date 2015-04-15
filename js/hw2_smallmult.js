@@ -28,7 +28,7 @@ var tip2 = d3.tip()
   })
 
 
-d3.csv("statex77_2.csv", function(data) {
+d3.csv("statex77.csv", function(data) {
 
   var states = d3.nest()
       .key(function(d){ return d.State; })

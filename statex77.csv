@@ -1,201 +1,251 @@
 "State","variable","value"
-"Alabama","LifeExp",69.05
-"Alabama","Murder",15.1
-"Alabama","hsGrad",41.3
-"Alabama","Frost",20
-"Alaska","LifeExp",69.31
-"Alaska","Murder",11.3
-"Alaska","hsGrad",66.7
-"Alaska","Frost",152
-"Arizona","LifeExp",70.55
-"Arizona","Murder",7.8
-"Arizona","hsGrad",58.1
-"Arizona","Frost",15
-"Arkansas","LifeExp",70.66
-"Arkansas","Murder",10.1
-"Arkansas","hsGrad",39.9
-"Arkansas","Frost",65
-"California","LifeExp",71.71
-"California","Murder",10.3
-"California","hsGrad",62.6
-"California","Frost",20
-"Colorado","LifeExp",72.06
-"Colorado","Murder",6.8
-"Colorado","hsGrad",63.9
-"Colorado","Frost",166
-"Connecticut","LifeExp",72.48
-"Connecticut","Murder",3.1
-"Connecticut","hsGrad",56
-"Connecticut","Frost",139
-"Delaware","LifeExp",70.06
-"Delaware","Murder",6.2
-"Delaware","hsGrad",54.6
-"Delaware","Frost",103
-"Florida","LifeExp",70.66
-"Florida","Murder",10.7
-"Florida","hsGrad",52.6
-"Florida","Frost",11
-"Georgia","LifeExp",68.54
-"Georgia","Murder",13.9
-"Georgia","hsGrad",40.6
-"Georgia","Frost",60
-"Hawaii","LifeExp",73.6
-"Hawaii","Murder",6.2
-"Hawaii","hsGrad",61.9
-"Hawaii","Frost",0
-"Idaho","LifeExp",71.87
-"Idaho","Murder",5.3
-"Idaho","hsGrad",59.5
-"Idaho","Frost",126
-"Illinois","LifeExp",70.14
-"Illinois","Murder",10.3
-"Illinois","hsGrad",52.6
-"Illinois","Frost",127
-"Indiana","LifeExp",70.88
-"Indiana","Murder",7.1
-"Indiana","hsGrad",52.9
-"Indiana","Frost",122
-"Iowa","LifeExp",72.56
-"Iowa","Murder",2.3
-"Iowa","hsGrad",59
-"Iowa","Frost",140
-"Kansas","LifeExp",72.58
-"Kansas","Murder",4.5
-"Kansas","hsGrad",59.9
-"Kansas","Frost",114
-"Kentucky","LifeExp",70.1
-"Kentucky","Murder",10.6
-"Kentucky","hsGrad",38.5
-"Kentucky","Frost",95
-"Louisiana","LifeExp",68.76
-"Louisiana","Murder",13.2
-"Louisiana","hsGrad",42.2
-"Louisiana","Frost",12
-"Maine","LifeExp",70.39
-"Maine","Murder",2.7
-"Maine","hsGrad",54.7
-"Maine","Frost",161
-"Maryland","LifeExp",70.22
-"Maryland","Murder",8.5
-"Maryland","hsGrad",52.3
-"Maryland","Frost",101
-"Massachusetts","LifeExp",71.83
-"Massachusetts","Murder",3.3
-"Massachusetts","hsGrad",58.5
-"Massachusetts","Frost",103
-"Michigan","LifeExp",70.63
-"Michigan","Murder",11.1
-"Michigan","hsGrad",52.8
-"Michigan","Frost",125
-"Minnesota","LifeExp",72.96
-"Minnesota","Murder",2.3
-"Minnesota","hsGrad",57.6
-"Minnesota","Frost",160
-"Mississippi","LifeExp",68.09
-"Mississippi","Murder",12.5
-"Mississippi","hsGrad",41
-"Mississippi","Frost",50
-"Missouri","LifeExp",70.69
-"Missouri","Murder",9.3
-"Missouri","hsGrad",48.8
-"Missouri","Frost",108
-"Montana","LifeExp",70.56
-"Montana","Murder",5
-"Montana","hsGrad",59.2
-"Montana","Frost",155
-"Nebraska","LifeExp",72.6
-"Nebraska","Murder",2.9
-"Nebraska","hsGrad",59.3
-"Nebraska","Frost",139
-"Nevada","LifeExp",69.03
-"Nevada","Murder",11.5
-"Nevada","hsGrad",65.2
-"Nevada","Frost",188
-"New Hampshire","LifeExp",71.23
-"New Hampshire","Murder",3.3
-"New Hampshire","hsGrad",57.6
-"New Hampshire","Frost",174
-"New Jersey","LifeExp",70.93
-"New Jersey","Murder",5.2
-"New Jersey","hsGrad",52.5
-"New Jersey","Frost",115
-"New Mexico","LifeExp",70.32
-"New Mexico","Murder",9.7
-"New Mexico","hsGrad",55.2
-"New Mexico","Frost",120
-"New York","LifeExp",70.55
-"New York","Murder",10.9
-"New York","hsGrad",52.7
-"New York","Frost",82
-"North Carolina","LifeExp",69.21
-"North Carolina","Murder",11.1
-"North Carolina","hsGrad",38.5
-"North Carolina","Frost",80
-"North Dakota","LifeExp",72.78
-"North Dakota","Murder",1.4
-"North Dakota","hsGrad",50.3
-"North Dakota","Frost",186
-"Ohio","LifeExp",70.82
-"Ohio","Murder",7.4
-"Ohio","hsGrad",53.2
-"Ohio","Frost",124
-"Oklahoma","LifeExp",71.42
-"Oklahoma","Murder",6.4
-"Oklahoma","hsGrad",51.6
-"Oklahoma","Frost",82
-"Oregon","LifeExp",72.13
-"Oregon","Murder",4.2
-"Oregon","hsGrad",60
-"Oregon","Frost",44
-"Pennsylvania","LifeExp",70.43
-"Pennsylvania","Murder",6.1
-"Pennsylvania","hsGrad",50.2
-"Pennsylvania","Frost",126
-"Rhode Island","LifeExp",71.9
-"Rhode Island","Murder",2.4
-"Rhode Island","hsGrad",46.4
-"Rhode Island","Frost",127
-"South Carolina","LifeExp",67.96
-"South Carolina","Murder",11.6
-"South Carolina","hsGrad",37.8
-"South Carolina","Frost",65
-"South Dakota","LifeExp",72.08
-"South Dakota","Murder",1.7
-"South Dakota","hsGrad",53.3
-"South Dakota","Frost",172
-"Tennessee","LifeExp",70.11
-"Tennessee","Murder",11
-"Tennessee","hsGrad",41.8
-"Tennessee","Frost",70
-"Texas","LifeExp",70.9
-"Texas","Murder",12.2
-"Texas","hsGrad",47.4
-"Texas","Frost",35
-"Utah","LifeExp",72.9
-"Utah","Murder",4.5
-"Utah","hsGrad",67.3
-"Utah","Frost",137
-"Vermont","LifeExp",71.64
-"Vermont","Murder",5.5
-"Vermont","hsGrad",57.1
-"Vermont","Frost",168
-"Virginia","LifeExp",70.08
-"Virginia","Murder",9.5
-"Virginia","hsGrad",47.8
-"Virginia","Frost",85
-"Washington","LifeExp",71.72
-"Washington","Murder",4.3
-"Washington","hsGrad",63.5
-"Washington","Frost",32
-"West Virginia","LifeExp",69.48
-"West Virginia","Murder",6.7
-"West Virginia","hsGrad",41.6
-"West Virginia","Frost",100
-"Wisconsin","LifeExp",72.48
-"Wisconsin","Murder",3
-"Wisconsin","hsGrad",54.5
-"Wisconsin","Frost",149
-"Wyoming","LifeExp",70.29
-"Wyoming","Murder",6.9
-"Wyoming","hsGrad",62.9
-"Wyoming","Frost",173
+"Alabama","LifeExp","69.05"
+"Alabama","Murder","15.1"
+"Alabama","hsGrad","41.3"
+"Alabama","Frost","20"
+"Alabama","Region","South"
+"Alaska","LifeExp","69.31"
+"Alaska","Murder","11.3"
+"Alaska","hsGrad","66.7"
+"Alaska","Frost","152"
+"Alaska","Region","West"
+"Arizona","LifeExp","70.55"
+"Arizona","Murder","7.8"
+"Arizona","hsGrad","58.1"
+"Arizona","Frost","15"
+"Arizona","Region","West"
+"Arkansas","LifeExp","70.66"
+"Arkansas","Murder","10.1"
+"Arkansas","hsGrad","39.9"
+"Arkansas","Frost","65"
+"Arkansas","Region","South"
+"California","LifeExp","71.71"
+"California","Murder","10.3"
+"California","hsGrad","62.6"
+"California","Frost","20"
+"California","Region","West"
+"Colorado","LifeExp","72.06"
+"Colorado","Murder","6.8"
+"Colorado","hsGrad","63.9"
+"Colorado","Frost","166"
+"Colorado","Region","West"
+"Connecticut","LifeExp","72.48"
+"Connecticut","Murder","3.1"
+"Connecticut","hsGrad","56"
+"Connecticut","Frost","139"
+"Connecticut","Region","Northeast"
+"Delaware","LifeExp","70.06"
+"Delaware","Murder","6.2"
+"Delaware","hsGrad","54.6"
+"Delaware","Frost","103"
+"Delaware","Region","South"
+"Florida","LifeExp","70.66"
+"Florida","Murder","10.7"
+"Florida","hsGrad","52.6"
+"Florida","Frost","11"
+"Florida","Region","South"
+"Georgia","LifeExp","68.54"
+"Georgia","Murder","13.9"
+"Georgia","hsGrad","40.6"
+"Georgia","Frost","60"
+"Georgia","Region","South"
+"Hawaii","LifeExp","73.6"
+"Hawaii","Murder","6.2"
+"Hawaii","hsGrad","61.9"
+"Hawaii","Frost","0"
+"Hawaii","Region","West"
+"Idaho","LifeExp","71.87"
+"Idaho","Murder","5.3"
+"Idaho","hsGrad","59.5"
+"Idaho","Frost","126"
+"Idaho","Region","West"
+"Illinois","LifeExp","70.14"
+"Illinois","Murder","10.3"
+"Illinois","hsGrad","52.6"
+"Illinois","Frost","127"
+"Illinois","Region","North Central"
+"Indiana","LifeExp","70.88"
+"Indiana","Murder","7.1"
+"Indiana","hsGrad","52.9"
+"Indiana","Frost","122"
+"Indiana","Region","North Central"
+"Iowa","LifeExp","72.56"
+"Iowa","Murder","2.3"
+"Iowa","hsGrad","59"
+"Iowa","Frost","140"
+"Iowa","Region","North Central"
+"Kansas","LifeExp","72.58"
+"Kansas","Murder","4.5"
+"Kansas","hsGrad","59.9"
+"Kansas","Frost","114"
+"Kansas","Region","North Central"
+"Kentucky","LifeExp","70.1"
+"Kentucky","Murder","10.6"
+"Kentucky","hsGrad","38.5"
+"Kentucky","Frost","95"
+"Kentucky","Region","South"
+"Louisiana","LifeExp","68.76"
+"Louisiana","Murder","13.2"
+"Louisiana","hsGrad","42.2"
+"Louisiana","Frost","12"
+"Louisiana","Region","South"
+"Maine","LifeExp","70.39"
+"Maine","Murder","2.7"
+"Maine","hsGrad","54.7"
+"Maine","Frost","161"
+"Maine","Region","Northeast"
+"Maryland","LifeExp","70.22"
+"Maryland","Murder","8.5"
+"Maryland","hsGrad","52.3"
+"Maryland","Frost","101"
+"Maryland","Region","South"
+"Massachusetts","LifeExp","71.83"
+"Massachusetts","Murder","3.3"
+"Massachusetts","hsGrad","58.5"
+"Massachusetts","Frost","103"
+"Massachusetts","Region","Northeast"
+"Michigan","LifeExp","70.63"
+"Michigan","Murder","11.1"
+"Michigan","hsGrad","52.8"
+"Michigan","Frost","125"
+"Michigan","Region","North Central"
+"Minnesota","LifeExp","72.96"
+"Minnesota","Murder","2.3"
+"Minnesota","hsGrad","57.6"
+"Minnesota","Frost","160"
+"Minnesota","Region","North Central"
+"Mississippi","LifeExp","68.09"
+"Mississippi","Murder","12.5"
+"Mississippi","hsGrad","41"
+"Mississippi","Frost","50"
+"Mississippi","Region","South"
+"Missouri","LifeExp","70.69"
+"Missouri","Murder","9.3"
+"Missouri","hsGrad","48.8"
+"Missouri","Frost","108"
+"Missouri","Region","North Central"
+"Montana","LifeExp","70.56"
+"Montana","Murder","5"
+"Montana","hsGrad","59.2"
+"Montana","Frost","155"
+"Montana","Region","West"
+"Nebraska","LifeExp","72.6"
+"Nebraska","Murder","2.9"
+"Nebraska","hsGrad","59.3"
+"Nebraska","Frost","139"
+"Nebraska","Region","North Central"
+"Nevada","LifeExp","69.03"
+"Nevada","Murder","11.5"
+"Nevada","hsGrad","65.2"
+"Nevada","Frost","188"
+"Nevada","Region","West"
+"New Hampshire","LifeExp","71.23"
+"New Hampshire","Murder","3.3"
+"New Hampshire","hsGrad","57.6"
+"New Hampshire","Frost","174"
+"New Hampshire","Region","Northeast"
+"New Jersey","LifeExp","70.93"
+"New Jersey","Murder","5.2"
+"New Jersey","hsGrad","52.5"
+"New Jersey","Frost","115"
+"New Jersey","Region","Northeast"
+"New Mexico","LifeExp","70.32"
+"New Mexico","Murder","9.7"
+"New Mexico","hsGrad","55.2"
+"New Mexico","Frost","120"
+"New Mexico","Region","West"
+"New York","LifeExp","70.55"
+"New York","Murder","10.9"
+"New York","hsGrad","52.7"
+"New York","Frost","82"
+"New York","Region","Northeast"
+"North Carolina","LifeExp","69.21"
+"North Carolina","Murder","11.1"
+"North Carolina","hsGrad","38.5"
+"North Carolina","Frost","80"
+"North Carolina","Region","South"
+"North Dakota","LifeExp","72.78"
+"North Dakota","Murder","1.4"
+"North Dakota","hsGrad","50.3"
+"North Dakota","Frost","186"
+"North Dakota","Region","North Central"
+"Ohio","LifeExp","70.82"
+"Ohio","Murder","7.4"
+"Ohio","hsGrad","53.2"
+"Ohio","Frost","124"
+"Ohio","Region","North Central"
+"Oklahoma","LifeExp","71.42"
+"Oklahoma","Murder","6.4"
+"Oklahoma","hsGrad","51.6"
+"Oklahoma","Frost","82"
+"Oklahoma","Region","South"
+"Oregon","LifeExp","72.13"
+"Oregon","Murder","4.2"
+"Oregon","hsGrad","60"
+"Oregon","Frost","44"
+"Oregon","Region","West"
+"Pennsylvania","LifeExp","70.43"
+"Pennsylvania","Murder","6.1"
+"Pennsylvania","hsGrad","50.2"
+"Pennsylvania","Frost","126"
+"Pennsylvania","Region","Northeast"
+"Rhode Island","LifeExp","71.9"
+"Rhode Island","Murder","2.4"
+"Rhode Island","hsGrad","46.4"
+"Rhode Island","Frost","127"
+"Rhode Island","Region","Northeast"
+"South Carolina","LifeExp","67.96"
+"South Carolina","Murder","11.6"
+"South Carolina","hsGrad","37.8"
+"South Carolina","Frost","65"
+"South Carolina","Region","South"
+"South Dakota","LifeExp","72.08"
+"South Dakota","Murder","1.7"
+"South Dakota","hsGrad","53.3"
+"South Dakota","Frost","172"
+"South Dakota","Region","North Central"
+"Tennessee","LifeExp","70.11"
+"Tennessee","Murder","11"
+"Tennessee","hsGrad","41.8"
+"Tennessee","Frost","70"
+"Tennessee","Region","South"
+"Texas","LifeExp","70.9"
+"Texas","Murder","12.2"
+"Texas","hsGrad","47.4"
+"Texas","Frost","35"
+"Texas","Region","South"
+"Utah","LifeExp","72.9"
+"Utah","Murder","4.5"
+"Utah","hsGrad","67.3"
+"Utah","Frost","137"
+"Utah","Region","West"
+"Vermont","LifeExp","71.64"
+"Vermont","Murder","5.5"
+"Vermont","hsGrad","57.1"
+"Vermont","Frost","168"
+"Vermont","Region","Northeast"
+"Virginia","LifeExp","70.08"
+"Virginia","Murder","9.5"
+"Virginia","hsGrad","47.8"
+"Virginia","Frost","85"
+"Virginia","Region","South"
+"Washington","LifeExp","71.72"
+"Washington","Murder","4.3"
+"Washington","hsGrad","63.5"
+"Washington","Frost","32"
+"Washington","Region","West"
+"West Virginia","LifeExp","69.48"
+"West Virginia","Murder","6.7"
+"West Virginia","hsGrad","41.6"
+"West Virginia","Frost","100"
+"West Virginia","Region","South"
+"Wisconsin","LifeExp","72.48"
+"Wisconsin","Murder","3"
+"Wisconsin","hsGrad","54.5"
+"Wisconsin","Frost","149"
+"Wisconsin","Region","North Central"
+"Wyoming","LifeExp","70.29"
+"Wyoming","Murder","6.9"
+"Wyoming","hsGrad","62.9"
+"Wyoming","Frost","173"
+"Wyoming","Region","West"
