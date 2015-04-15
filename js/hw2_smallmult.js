@@ -1,6 +1,6 @@
-var margin2 = {top: 45, right: 35, bottom: 45, left: 35},
-  width2 = 280,
-  height2 =  290 - margin2.top - margin2.bottom;
+var margin2 = {top: 40, right: 20, bottom: 20, left: 30},
+  width2 = 150,
+  height2 =  200 - margin2.top - margin2.bottom;
 
 var x2 = d3.scale.ordinal()
   .rangeRoundBands([0, width2], .1);
@@ -12,11 +12,13 @@ var xAxis = d3.svg.axis()
   .scale(x2)
   .orient("bottom");
 
-
 var yAxis = d3.svg.axis()
   .scale(y2)
   .orient("left")
   .ticks(5);
+
+var colorScale = d3.scale.ordinal()
+        .range(colorbrewer.Set1[4]);
 
 var tip2 = d3.tip()
   .attr('class', 'd3-tip')
@@ -25,12 +27,19 @@ var tip2 = d3.tip()
     return "<span style='color:white'>" + d.value + "</span>";
   })
 
-d3.csv("statex77.csv", function(data) {
+
+d3.csv("statex77_2.csv", function(data) {
+
   var states = d3.nest()
       .key(function(d){ return d.State; })
       .entries(data);
 
-  x2.domain(data.map(function(d) { return d.variable; }));
+  regions = {};
+  for (var i = 0; i < states.length; i++){
+    regions[states[i].values[4].State] = colorScale(states[i].values[4].value);
+  }
+
+  x2.domain(["LifeExp", "Murder", "hsGrad", "Frost"])
   y2.domain([0, 200]);
 
   var svg = d3.select("#chart-B").selectAll("svg")
@@ -55,7 +64,7 @@ d3.csv("statex77.csv", function(data) {
       .text(function(d) { return d.key});
 
   svg.selectAll(".bar")
-      .data(function(d) { return d.values; })
+      .data(function(d) { return d.values.slice(0, 4); })
       .enter()
       .append("rect")
       .attr("class", "bar")
@@ -63,14 +72,15 @@ d3.csv("statex77.csv", function(data) {
       .attr("width", x2.rangeBand())
       .attr("y", function(d) { return y2(d.value); })
       .attr("height", function(d) { return height2 - y2(d.value); })
-      .attr("fill", "steelblue")
+      .attr("fill", function(d){ return regions[d.State]; })
+      .attr("opacity", .8)
       .on('mouseover', tip2.show)
       .on('mouseout', tip2.hide);
+
 
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height2 + ")")
-      // .attr("opacity", 0)
       .call(xAxis);
 
 });

@@ -15,15 +15,6 @@
   <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
   <style>
              
-    .bar {
-      fill: lightsteelblue;
-      fill-opacity: .9;
-    }
-
-    .bar:hover{
-      fill: steelblue;
-    }
-
     .dot {
       stroke: #000;
       fill-opacity:  .8;
@@ -42,18 +33,17 @@
     .background path {
       fill: none;
       stroke: #ccc;
-      stroke-opacity: .4;
+      stroke-opacity: .5;
       shape-rendering: crispEdges;
     }
 
     .foreground path {
       fill: none;
-      stroke: steelblue;
-      stroke-opacity: .7;
+      stroke-opacity: .8;
     }
 
     .brush .extent {
-      fill-opacity: .3;
+      fill-opacity: .4;
       stroke: #fff;
       shape-rendering: crispEdges;
     }
@@ -62,35 +52,29 @@
       line-height: 1;
       font-weight: bold;
       padding: 10px;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.5);
       color: #fff;
       border-radius: 2px;
     }
 
-    /* Creates a small triangle extender for the tooltip */
     .d3-tip:after {
       box-sizing: border-box;
       display: inline;
       font-size: 10px;
       width: 100%;
       line-height: 1;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(0, 0, 0, 0.5);
       content: "\25BC";
       position: absolute;
       text-align: center;
     }
 
-    /* Style northward tooltips differently */
     .d3-tip.n:after {
       margin: -1px 0 0 0;
       top: 100%;
       left: 0;
     }
 
-/*    .axis text {
-      text-shadow: 0 1px 0 #fff;
-      cursor: move;
-    }*/
   </style>
   
 </head>
@@ -142,6 +126,7 @@
               <div class="col-lg-12 text-center" id="chart"> 
   				      <script src="js/d3.min.js"></script>
                 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+                <script src="js/colorbrewer.js"></script>
   				      <script src="js/hw2_bubble.js"></script>
               </div>
           </div>
@@ -196,7 +181,7 @@
           </div> 
       </div>         
   </div>
-
+  <script src="js/colorbrewer.js"></script>
   <!-- <script src="js/jquery.js"></script> -->
   <!-- // <script src="js/bootstrap.min.js"></script> -->
 </body>
