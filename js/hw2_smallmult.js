@@ -25,10 +25,10 @@ var tip2 = d3.tip()
   .offset([-5, 0])
   .html(function(d) {
     return "<span style='color:white'>" + d.value + "</span>";
-  })
+  });
 
 
-d3.csv("statex77.csv", function(data) {
+d3.csv("statex77_2.csv", function(data) {
 
   var states = d3.nest()
       .key(function(d){ return d.State; })
@@ -36,11 +36,16 @@ d3.csv("statex77.csv", function(data) {
 
   regions = {};
   for (var i = 0; i < states.length; i++){
-    regions[states[i].values[4].State] = colorScale(states[i].values[4].value);
+    regions[states[i].values[3].State] = colorScale(states[i].values[3].value);
   }
 
-  x2.domain(["LifeExp", "Murder", "hsGrad", "Frost"])
-  y2.domain([0, 200]);
+  color_div = {};
+  for (var i = 0; i < states.length; i++){
+    color_div[states[i].values[3].value] = colorScale(states[i].values[3].value);
+  }
+
+  x2.domain(["Illiteracy", "Murder", "hsGrad"])
+  y2.domain([0, 70]);
 
   var svg = d3.select("#chart-B").selectAll("svg")
       .data(states)
@@ -77,10 +82,35 @@ d3.csv("statex77.csv", function(data) {
       .on('mouseover', tip2.show)
       .on('mouseout', tip2.hide);
 
-
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height2 + ")")
       .call(xAxis);
+
+  // var legendSize = 18;
+  // var legendSpace = 4;
+  // var colors = d3.entries(color_div)
+
+  // var legend = d3.select("#chart-B").selectAll('.legend')
+  //     .data(colors)
+  //     .enter()
+  //     .append('g')
+  //     .attr('class', 'legend')
+  //     .attr('transform', function(d, i) { 
+  //       // return 'translate(' + (width2 - 130) + ',' + (i * (legendSize + legendSpace)) + ')';
+  //       return "translate(" + margin2.left + "," + margin2.top + ")";
+  //       });
+
+  // legend.append('rect')
+  //     .attr('width', legendSize)
+  //     .attr('height', legendSize)
+  //     .style('fill', function(d) { return d.value; })
+  //     .style('opacity', .8)
+  //     .style('stroke', 'black');
+
+  // legend.append('text')
+  //     .attr('x', legendSize + legendSpace)
+  //     .attr('y', legendSize - legendSpace)
+  //     .text(function(d) { return d.key; });
 
 });
