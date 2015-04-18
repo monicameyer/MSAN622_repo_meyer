@@ -5,9 +5,9 @@ var margin2 = {top: 20, right: 100, bottom: 20, left: 30},
 var formatting = d3.format(",.0f");
 
 var color = d3.scale.ordinal()
-        .range(colorbrewer.Set1[4]);
+        .range(colorbrewer.Dark2[4]);
 
-var plot_names = ["Population", "Income", "Murder", "Area"];
+var plot_names = ["hsGrad", "Income", "Murder", "Illiteracy"];
 
 var x2 = d3.scale.ordinal()
     .rangeRoundBands([0, width2 + 10], .1);
@@ -64,7 +64,7 @@ d3.json("../data/statex77.json", function(data) {
         .attr("dy", ".71em")
         .attr("text-anchor", "start")
         .attr("font-size", "1.1em")
-        .text(function(d){ return d.key; });
+        .text(function(d){ if (d.key == "hsGrad") { return "HS Grad Rate";} else { return d.key; } });
 
 
     var tip2 = d3.tip()
@@ -72,7 +72,7 @@ d3.json("../data/statex77.json", function(data) {
         .offset([-10, 0])
         .direction('n')
         .html(function(d) {
-          return "<span style='color:white font-size:14px'>"+ d.State +"</span><br><strong>Region:</strong> <span style='color:'" + color(d.Region) + ">" + d.Region + "</span><br><strong>Population:</strong> <span style='color:white'>" + formatting(d.Population) + "</span><br><strong>Income:</strong> <span style='color:white'>" + formatting(d.Income) + "</span><br><strong>Murder:</strong> <span style='color:white'>" + d.Murder + "</span><br><strong>Area:</strong> <span style='color:white'>" + formatting(d.Area) + "</span><br>";
+          return "<span style='color:white font-size:14px'>"+ d.State +"</span><br>Region: <span style='color:" + color(d.Region) + "'>" + d.Region + "</span><br>HS Grad Rate: <span style='color:white'>" + formatting(d.hsGrad) + "</span><br>Income: <span style='color:white'>" + formatting(d.Income) + "</span><br>Murder: <span style='color:white'>" + d.Murder + "</span><br>Illiteracy: <span style='color:white'>" + d.Illiteracy + "</span><br>";
         });
 
     svg.call(tip2);
@@ -88,7 +88,6 @@ d3.json("../data/statex77.json", function(data) {
               .attr("width", x2.rangeBand())
               .attr("y", function(d) { return y2(d[category.key]); })
               .attr("height", function(d) { return height2 - y2(d[category.key]); })
-              .attr("opacity", .8)//function (d) { return opacity(category.key); })
               .style("fill", function(d) {return color(d.Region); })
               .on('mouseover', function (d) {
                   tip2.show(d);
@@ -101,8 +100,9 @@ d3.json("../data/statex77.json", function(data) {
         }
 
     function fade(state_region, opacity) {
+
         svg.selectAll("rect")
-            // .transition().duration(500)
+            .transition().duration(1500)
             .style("fill", function(d) {return color(d.Region); })
             .filter(function (d) { return d.Region != state_region; })
             .style("opacity", opacity);
@@ -110,7 +110,7 @@ d3.json("../data/statex77.json", function(data) {
 
     function fadeOut() {
         svg.selectAll("rect")
-            .transition().duration(1000)
+            .transition().duration(2000)
             .style("fill", function(d) {return color(d.Region); })
             .style("opacity", function (d) { opacity(d.Region); });
     }

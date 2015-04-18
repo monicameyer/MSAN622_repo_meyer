@@ -1,9 +1,9 @@
-var m = {top: 30, right: 40, bottom: 20, left: 80},
-    w = 960 - m.right - m.left,
-    h = 500 - m.top - m.bottom;
+var m = {top: 30, right: 40, bottom: 20, left: 100},
+    w = 1000 - m.right - m.left,
+    h = 600 - m.top - m.bottom;
 
 var colorScale3 = d3.scale.ordinal()
-        .range(colorbrewer.Set1[4]);
+        .range(colorbrewer.Dark2[4]);
 
 var line3 = d3.svg.line()
       .defined(function(d) { return !isNaN(d[1]); });
@@ -73,7 +73,7 @@ d3.csv("../data/statex77_parallel.csv", function(data) {
         .data(data)
       .enter().append("path")
         .style("stroke", function(d) { return color_div3[d.Region]; })
-        .style("opacity", .7)
+        .style("opacity", .9)
         .attr("d", draw);
 
     dimension.append("g")
@@ -83,7 +83,11 @@ d3.csv("../data/statex77_parallel.csv", function(data) {
         .attr("class", "title")
         .attr("text-anchor", "middle")
         .attr("y", -9)
-        .text(function(d) { return d.name; });
+        .text(function(d) { 
+          if (d.name == "LifeExp"){ return "Life Expectancy"; }
+          else if (d.name == "hsGrad"){ return "HS Grad Rate"; }
+          else { return d.name; } })
+        .each(moveToFront);
 
     svg3.select(".axis").selectAll("text:not(.title)")
         .attr("class", "label")
@@ -93,9 +97,10 @@ d3.csv("../data/statex77_parallel.csv", function(data) {
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
 
+
     function mouseover(d) {
       projection.classed("inactive", function(p) { return p !== d; });
-      projection.filter(function(p) { return p === d; }).each(moveToFront);
+      projection.filter(function(p) { return p === d; });//.each(moveToFront);
     }
 
     function mouseout(d) {
