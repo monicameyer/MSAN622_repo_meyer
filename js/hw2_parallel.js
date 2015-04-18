@@ -8,7 +8,7 @@ var colorScale3 = d3.scale.ordinal()
 var line3 = d3.svg.line()
       .defined(function(d) { return !isNaN(d[1]); });
 
-d3.csv("statex77_parallel.csv", function(data) {
+d3.csv("../data/statex77_parallel.csv", function(data) {
   var test = d3.entries(data[0])
 
   var dimensions = []

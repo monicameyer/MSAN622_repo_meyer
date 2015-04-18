@@ -24,7 +24,7 @@ var xAxis2 = d3.svg.axis()
 var yAxis2 = d3.svg.axis()
     .scale(y2);
 
-d3.json("statex77.json", function(data) { 
+d3.json("../data/statex77.json", function(data) { 
 
     var opacity = d3.scale.linear()
           .domain([d3.min(data, function (d) { return d[name]; }), 

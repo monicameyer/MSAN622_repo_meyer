@@ -58,7 +58,7 @@ svg.append("text")
     .text("Murder (per 100K Pop)");
               
 // Load the data.
-d3.json("statex77.json", function(states) {
+d3.json("../data/statex77.json", function(states) {
   
   states.forEach(function(d){
     d.color = colorScale(d.Region)
