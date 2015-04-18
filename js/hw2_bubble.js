@@ -8,6 +8,8 @@ var xScale = d3.scale.linear().domain([3000, 6400]).range([0, width]),
     colorScale = d3.scale.ordinal()
         .range(colorbrewer.Set1[4]);
 
+var formatting = d3.format(",.0f");
+
 var xAxis = d3.svg.axis()
     .orient("bottom")
     .scale(xScale)
@@ -21,7 +23,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span style='color:white font-size:14px'>"+ d.State +"</span><br><strong>Population:</strong> <span style='color:white'>" + d.Population + "</span><br><strong>Income:</strong> <span style='color:white'>" + d.Income + "</span><br><strong>Murder:</strong> <span style='color:white'>" + d.Murder + "</span>";
+    return "<span style='color:white font-size:14px'>"+ d.State +"</span><br><strong>Population:</strong> <span style='color:white'>" + formatting(d.Population) + "</span><br><strong>Income:</strong> <span style='color:white'>" + formatting(d.Income) + "</span><br><strong>Murder:</strong> <span style='color:white'>" + d.Murder + "</span>";
   })
 
 var svg = d3.select("#chart").append("svg")
