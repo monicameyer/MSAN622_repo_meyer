@@ -1,8 +1,8 @@
-var margin1 = {top: 10, right: 90, bottom: 100, left: 40},
-    margin2 = {top: 430, right: 90, bottom: 20, left: 40},
+var margin1 = {top: 10, right: 30, bottom: 120, left: 40},
+    margin2 = {top: 450, right: 30, bottom: 20, left: 40},
     width1 = 960 - margin1.left - margin1.right,
-    height1 = 500 - margin1.top - margin1.bottom,
-    height2 = 500 - margin2.top - margin2.bottom;
+    height1 = 550 - margin1.top - margin1.bottom,
+    height2 = 550 - margin2.top - margin2.bottom;
 
 var parseDate2 = d3.time.format("%b %Y").parse;
 
@@ -55,6 +55,7 @@ var context = svg2.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 d3.csv("../data/seatbelts.csv", function(error, data) {
+  
   data.forEach(function(d) {
     d.date = parseDate2(d.date);
   });
@@ -110,6 +111,45 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     .selectAll("rect")
       .attr("y", 0)
       .attr("height", height2 + 7);
+
+    columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
+    color_div = {}
+    for  (var i = 0; i < columns.length; i++)
+    {
+        color_div[columns[i]] = color(columns[i]);
+    };
+
+    var legendSize = 18;
+    var legendSpace = 100;
+    var colors = d3.entries(color_div)
+
+    var svg3 = d3.select("#chart2").append("svg")
+        .attr("width", width1 + margin1.left + margin1.right)
+        .attr("height", 100);
+
+    var legend = svg3.selectAll('.legend')
+        .data(colors)
+        .enter()
+        .append('g')
+        .attr('class', 'legend')
+        .attr('transform', function(d, i) { 
+          return 'translate(' + (350 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
+          });
+
+    legend.append('rect')
+        .attr('width', legendSize)
+        .attr('height', legendSize)
+        .style('fill', function(d) { return d.value; })
+        .style('opacity', 1)
+        .style('stroke', 'black');
+
+    legend.append('text')
+        .attr('x', legendSize + 5)
+        .attr('y', legendSize - 5)
+        .text(function(d) { 
+          if (d.key == "front"){ return "Front Passengers"; }
+          else if (d.key == "rear"){ return "Rear Passengers"; }
+          else { return "Drivers"; }; });
 
 });
 

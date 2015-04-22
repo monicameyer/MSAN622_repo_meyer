@@ -95,32 +95,10 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.number) + ")"; })
       .attr("x", 3)
       .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
+      .text(function(d) { 
+        if (d.name == "front"){ return "Front Passengers"; }
+        else if (d.name == "rear"){ return "Rear Passengers"; }
+        else { return "Drivers"; }; });
 
-
-
-
-  // driver.append("rect")
-  //     .attr("class", "overlay")
-  //     .attr("width", width)
-  //     .attr("height", height)
-  //     .on("mouseover", function() { focus.style("display", null); })
-  //     .on("mouseout", function() { focus.style("display", "none"); })
-  //     .on("mousemove", mousemove);
-
-  // function mousemove() {
-  //   var x0 = x.invert(d3.mouse(this)[0]),
-  //       i = bisectDate(data, x0, 1),
-  //       d0 = data[i - 1],
-  //       d1 = data[i],
-  //       d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-  //   focus.select("circle.y").attr("transform", "translate(" + x(d.date) + "," + y(d.DriversKilled) + ")");
-  //   focus.select("text.y").attr("transform", "translate(" + x(d.date) + "," + y(d.DriversKilled) + ")").text(d.date);
-  //   // focus.select("circle.y1").attr("transform", "translate(" + x(d.date) + "," + y1(d.front) + ")");
-  //   // focus.select("text.y1").attr("transform", "translate(" + x(d.date) + "," + y1(d.front) + ")").text(d.date);
-  //   focus.select(".x").attr("transform", "translate(" + x(d.date) + ",0)");
-  //   focus.select(".y").attr("transform", "translate(" + width * -1 + ", " + y(d.DriversKilled) + ")").attr("x2", width + x(d.date));
-  //   // focus.select(".y1").attr("transform", "translate(0, " + y1(d.front) + ")").attr("x1", x(d.date));
-  // }
 });
 
