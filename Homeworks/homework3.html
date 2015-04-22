@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>MSAN 622 - Information Visualization</title>
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/business-casual.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    .brush .extent {
+      stroke: #fff;
+      fill-opacity: .125;
+      shape-rendering: crispEdges;
+    }
+
+    .area {
+      fill: steelblue;
+      clip-path: url(#clip);
+    }
+    .overlay {
+      fill: none;
+      pointer-events: all;
+    }
+    .browser text {
+      text-anchor: end;
+    }
+
+/*    .line {
+      stroke: black;
+      fill: none;
+      stroke-width: 0.75px;
+    }
+
+    .line.line0 {
+      stroke: steelblue;
+    }
+
+    .line.line1 {
+      stroke: indianred;
+    }
+
+    .overlay {
+      fill: none;
+      pointer-events: all;
+    }
+
+    .focus circle {
+      fill: none;
+    }
+
+    .focus circle.y0 {
+      stroke: blue;
+    }
+
+    .focus circle.y1 {
+      stroke: red;
+    }
+
+    .focus line {
+      stroke: purple;
+      shape-rendering: crispEdges;
+    }
+
+    .focus line.y0 {
+      stroke: steelblue;
+      stroke-dasharray: 3 3;
+      opacity: .5;
+    }
+
+    .focus line.y1 {
+      stroke: indianred;
+      stroke-dasharray: 3 3;
+      opacity: .5;
+    }
+
+    .brush .extent {
+      stroke: #fff;
+      fill-opacity: .125;
+      shape-rendering: crispEdges;
+    }*/
+
+  </style>
+  
+</head>
+
+<body>
+
+  <div class="brand">MSAN 622</div>
+  <div class="address-bar">Information Visualization</div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Information Visualization</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="../index.html#about">About</a></li>
+                  <li><a href="../index.html#homework">Homework</a></li>
+                  <li><a href="../index.html#project">Project</a></li>
+                  <li><a href="../index.html#participation">Participation</a></li>                    
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+      <div class="row">
+          <div class="box">
+              <div class="col-lg-12 text-center">
+                  <h1 class="brand-name">Homework 3</h1>
+                  <hr class="tagline-divider">
+                  <h2><small>By <strong> Monica Meyer</strong></small></h2>
+                  <p> <a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/Homeworks/homework3.html">See Code</a></p>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px">Multiline Chart</p>
+              <div class="col-lg-12 text-center" id="chart1"> 
+  				      <script src="../js/d3.min.js"></script>
+                <script src="../js/colorbrewer.js"></script>
+                <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+                <script src="../js/hw3_line.js"></script>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px">Stacked Area</p>
+              <div class="col-lg-12 text-center" id="chart2">
+                <script src="../js/hw3_area.js"></script>
+
+              </div>
+          </div>        
+      </div>
+      <div class="row">
+          <div class="box text-center">
+            <p style="font-size:20px"></p>
+              <div class="col-lg-12 text-center" id="chart-C"> 
+                 
+              </div>
+          </div>
+      </div>  
+      <div class = "row">
+          <div class="box">
+              <div class="col-lg-12">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                  <hr>
+                  <h3 class= "text-center">Functionality</h3>
+                  <hr>
+                  <p style="font-size:18px">C-Level</p>
+                  <ul style="font-size:14px">
+                    <li></li>
+                  </ul>
+                  <p style="font-size:18px">B-Level</p>
+                  <ul style="font-size:14px">
+                    <li></li>
+                  </ul>
+                  <p style="font-size:18px">A-Level</p>
+                  <ul style="font-size:14px">
+                    <li></li>
+                  </ul> 
+                  <hr>
+                  <h3 class= "text-center">Discussion</h3>
+                  <hr>
+                  <p style="font-size:14px"></p>
+                  <p style="font-size:14px"></p>
+                  <p style="font-size:14px"></p>
+                </div>  
+                <div class="col-md-2">
+                </div> 
+              </div>
+          </div> 
+      </div>         
+  </div>
+
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41707651-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<footer>
+    <div class="row">          
+        <p style="text-align: center; font-size:12px">Monica Meyer &bullet; MSAN 622 Information Visualization &bullet; Spring 2015</p>
+    </div>
+</footer>
+
+</html>
