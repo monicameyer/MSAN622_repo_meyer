@@ -61,7 +61,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.date; }));
 
-  y.domain([0 , d3.max(seatbelts, function(c) { return d3.max(c.values, function(v) { return v.number; }); })]);
+  y.domain([0 ,d3.max(seatbelts, function(c) { return d3.max(c.values, function(v) { return v.number; }); }) ]);
 
   svg.append("g")
       .attr("class", "x axis")
