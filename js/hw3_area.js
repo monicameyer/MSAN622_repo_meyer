@@ -72,7 +72,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   x1.domain(d3.extent(data.map(function(d) { return d.date; })));
-  y1.domain([0, 2000]);
+  y1.domain([0, 4500]);
   x2.domain(x1.domain());
   y2.domain(y1.domain());
 
@@ -110,7 +110,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .call(brush)
     .selectAll("rect")
       .attr("y", 0)
-      .attr("height", height2 + 7);
+      .attr("height", height2 + 1);
 
     columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
     color_div = {}
@@ -119,8 +119,8 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         color_div[columns[i]] = color(columns[i]);
     };
 
-    var legendSize = 18;
-    var legendSpace = 100;
+    var legendSize = 16;
+    var legendSpace = 120;
     var colors = d3.entries(color_div)
 
     var svg3 = d3.select("#chart2").append("svg")
@@ -133,7 +133,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         .append('g')
         .attr('class', 'legend')
         .attr('transform', function(d, i) { 
-          return 'translate(' + (350 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
+          return 'translate(' + (300 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
           });
 
     legend.append('rect')
@@ -144,12 +144,12 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         .style('stroke', 'black');
 
     legend.append('text')
-        .attr('x', legendSize + 5)
-        .attr('y', legendSize - 5)
+        .attr('x', legendSize + 7)
+        .attr('y', legendSize - 3)
         .text(function(d) { 
           if (d.key == "front"){ return "Front Passengers"; }
           else if (d.key == "rear"){ return "Rear Passengers"; }
-          else { return "Drivers"; }; });
+          else { return "Automobile Drivers"; }; });
 
 });
 

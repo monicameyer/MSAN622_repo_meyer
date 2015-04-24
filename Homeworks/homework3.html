@@ -15,7 +15,7 @@
   <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
   <style>
     body {
-      font: 10px sans-serif;
+      font: 12px sans-serif;
     }
 
     .axis path,
@@ -32,7 +32,7 @@
     .line {
       fill: none;
       stroke: steelblue;
-      stroke-width: 1.5px;
+      stroke-width: 2px;
     }
 
     .brush .extent {
@@ -49,6 +49,40 @@
     .overlay {
       fill: none;
       pointer-events: all;
+    }
+    .buttons {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+    }
+
+   .d3-tip {
+      line-height: 1;
+      /*font-weight: bold;*/
+      font-family: "Georgia";
+      line-height: 1.3;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 12px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.5);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
     }
 
   </style>
@@ -100,6 +134,13 @@
           <div class="box text-center">
             <p style="font-size:20px">Multiline Chart</p>
               <div class="col-lg-12 text-center" id="chart1"> 
+                Click to filter <label><input type="checkbox", id='check1'> Drivers</label>
+                <label><input type="checkbox", id='check2'> Front</label>
+                <label><input type="checkbox", id='check3'> Rear</label>
+<!--                 <div class="buttons">
+                  <button data-zoom="+1">Zoom In</button>
+                  <button data-zoom="-1">Zoom Out</button>
+                </div> -->
   				      <script src="../js/d3.min.js"></script>
                 <script src="../js/colorbrewer.js"></script>
                 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -127,16 +168,18 @@
                   <hr>
                   <p style="font-size:18px">Basic</p>
                   <ul style="font-size:14px">
-                    <li>Implemented a multi-series line plot displaying the values over time of drivers, front passengers and rear passengers killed in the UK</li>
-                    <li>Implemented a stacked area plot for drivers, front passengers and rear passengers killed over time in the UK</li>
+                    <li>Implemented a multi-series line plot displaying the values over time of drivers, front passengers and rear passengers killed or seriously injured in the UK</li>
+                    <li>Implemented a stacked area plot for drivers, front passengers and rear passengers killed or seriously injured over time in the UK</li>
                   </ul>
                   <p style="font-size:18px">Moderate</p>
                   <ul style="font-size:14px">
                     <li>panning</li>
+                    <li>Details-On-Demand</li>
                   </ul>
                   <p style="font-size:18px">Advanced</p>
                   <ul style="font-size:14px">
                     <li>brushing</li>
+                    <li>filtering</li>
                   </ul> 
                   <hr>
                   <h3 class= "text-center">Discussion</h3>
