@@ -1,9 +1,8 @@
 var margin = {top: 20, right: 100, bottom: 30, left: 50},
     width = 1000 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 550 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%b %Y").parse;
-    // bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
 var x = d3.time.scale()
         .range([0, width]);
@@ -41,7 +40,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span style='color:white font-size:14px'>"+d.name+" Killed or<br>Seriously Injured: "+ d.value +"</span><br>Date: <span style='color:white'>" +monthNames[(d.date).getMonth()]+" "+ (d.date).getFullYear()+"</span>";
+    return "<span style='color:white font-size:14px'>" + d.label + " Killed or<br>Seriously Injured: "+ d.value +"</span><br>Date: <span style='color:white'>" + monthNames[(d.date).getMonth()-1]+" "+ (d.date).getFullYear()+"</span>";
   })
 
 d3.csv("../data/seatbelts.csv", function(error, data) {
@@ -58,19 +57,22 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     var data_points = {
       date: (data[i]).date,
       value: (data[i]).drivers,
-      name: "Drivers"
+      name: "drivers",
+      label: "Drivers"
     };
     all_dots.push(data_points);
     var data_points2 = {
       date: (data[i]).date,
       value: (data[i]).front,
-      name: "Front Passengers"
+      name: "front",
+      label: "Front Passengers"
     };
     all_dots.push(data_points2);
     var data_points3 = {
       date: (data[i]).date,
       value: (data[i]).rear,
-      name: "Rear Passengers"
+      name: "rear",
+      label: "Rear Passengers"
     };
     all_dots.push(data_points3);
 
@@ -130,12 +132,16 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("class", "dot")
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
-      .attr("r", 5)
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .style("fill", "white")
-      .style("opacity", 0)
-      .style("stroke", "black");
+      .attr("r", 4)
+      .style("fill", function(d) { return color(d.name);})
+      .style("opacity", 0);
+
+  dot2.on("mouseover", function(d){
+          d3.select(this).style("opacity", 1)
+          tip.show(d); })
+      .on("mouseout", function(d){
+          d3.select(this).style("opacity", 0)
+          tip.hide(d); });
 
   drivers.append("text")
       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
@@ -147,47 +153,6 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         if (d.name == "front"){ return "Front Passengers"; }
         else if (d.name == "rear"){ return "Rear Passengers"; }
         else { return "Drivers"; }; });
-
-    // columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
-
-    // color_div = {}
-    // for  (var i = 0; i < columns.length; i++)
-    // {
-    //     color_div[columns[i]] = color2(columns[i]);
-    // };
-
-    // var legendSize = 10;
-    // var legendSpace = 40;
-    // var colors = d3.entries(color_div)
-
-    // var svg3 = d3.select("#chart1").append("svg")
-    //     .attr("width", width1 + margin1.left + margin1.right)
-    //     .attr("height", 100);
-
-    // var legend = svg3.selectAll('.legend')
-    //     .data(colors)
-    //     .enter()
-    //     .append('g')
-    //     .attr('class', 'legend')
-    //     .attr('transform', function(d, i) { 
-    //       return 'translate(' + (width - 130) + ',' + (i * (legendSize + legendSpace)) + ')';
-    //       // return 'translate(' + (330 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
-    //       });
-
-    // legend.append('rect')
-    //     .attr('width', legendSize)
-    //     .attr('height', legendSize)
-    //     .style('fill', function(d) { return d.value; })
-    //     .style('opacity', 1)
-    //     .style('stroke', 'black');
-
-    // legend.append('text')
-    //     .attr('x', legendSize + legendSpace)
-    //     .attr('y', legendSize - legendSpace)
-    //     .text(function(d) { 
-    //       if (d.key == "front"){ return "Front Passengers"; }
-    //       else if (d.key == "rear"){ return "Rear Passengers"; }
-    //       else { return "Drivers"; }; });
   
   window.onload = d3.select("input#check1").property("checked", true)
                     .each(function(){

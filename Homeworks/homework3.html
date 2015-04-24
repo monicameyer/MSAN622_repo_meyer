@@ -132,15 +132,11 @@
 
       <div class="row">
           <div class="box text-center">
-            <p style="font-size:20px">Multiline Chart</p>
+            <p style="font-size:20px">UK Automobile Deaths and Serious Injuries: Drivers, Front Passengers and Rear Passengers</p>
               <div class="col-lg-12 text-center" id="chart1"> 
-                Click to filter <label><input type="checkbox", id='check1'> Drivers</label>
+                <b>Click to Filter: </b> <label><input type="checkbox", id='check1'> Drivers</label>
                 <label><input type="checkbox", id='check2'> Front</label>
                 <label><input type="checkbox", id='check3'> Rear</label>
-<!--                 <div class="buttons">
-                  <button data-zoom="+1">Zoom In</button>
-                  <button data-zoom="-1">Zoom Out</button>
-                </div> -->
   				      <script src="../js/d3.min.js"></script>
                 <script src="../js/colorbrewer.js"></script>
                 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -150,10 +146,9 @@
       </div>
       <div class="row">
           <div class="box text-center">
-            <p style="font-size:20px">Stacked Area</p>
+            <p style="font-size:20px">Total UK Automobile Deaths and Serious Injuries</p>
               <div class="col-lg-12 text-center" id="chart2">
                 <script src="../js/hw3_area.js"></script>
-
               </div>
           </div>        
       </div>
@@ -173,14 +168,25 @@
                   </ul>
                   <p style="font-size:18px">Moderate</p>
                   <ul style="font-size:14px">
-                    <li>panning</li>
-                    <li>Details-On-Demand</li>
+                    <li>Added the ability to pan on the stacked area plot (when brushing is on)</li>
+                    <li>Added details-on-demand, or hover to show tooltip details on the date and value for the multiline plot</li>
                   </ul>
                   <p style="font-size:18px">Advanced</p>
                   <ul style="font-size:14px">
-                    <li>brushing</li>
-                    <li>filtering</li>
+                    <li>Implemented brushing on the stacked area plot</li>
+                    <li>Added user filtering on the multiline plot</li>
                   </ul> 
+                  <hr>
+                  <h3 class= "text-center">Interactivity Guide</h3>
+                  <hr>
+                  <p style="font-size:18px">Multi-Line Chart</p>
+                  <ul style="font-size:14px">
+                      <li>Hover over the lines to show tooltip, </li>
+                  </ul>
+                  <p style="font-size:18px">Stacked Area Chart</p>
+                  <ul style="font-size:14px">
+                      <li>p</li>
+                  </ul>
                   <hr>
                   <h3 class= "text-center">Discussion</h3>
                   <hr>

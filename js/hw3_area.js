@@ -60,7 +60,9 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     d.date = parseDate2(d.date);
   });
 
-  var drivers = stack(color.domain().map(function(name) {
+  color2.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+  var drivers = stack(color2.domain().map(function(name) {
     return {
       name: name,
       values: data.map(function(d) {
@@ -68,8 +70,6 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       })
     };
   }));
-
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   x1.domain(d3.extent(data.map(function(d) { return d.date; })));
   y1.domain([0, 4500]);
@@ -82,7 +82,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr('clip-path', 'url(#clip)')
       .attr("d", function(d) { return area(d.values); })
       .attr('class', 'focus')
-      .style("fill", function(d) { return color(d.name); });
+      .style("fill", function(d) { return color2(d.name); });
 
   focus.append("g")
       .attr("class", "x axis")
@@ -98,7 +98,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     .enter().append('path')
       .attr('class', 'context')
       .attr("d", function(d) { return area2(d.values); })
-      .style("fill", function(d) { return color(d.name); });
+      .style("fill", function(d) { return color2(d.name); });
 
   context.append("g")
       .attr("class", "x axis")
@@ -116,10 +116,10 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     color_div = {}
     for  (var i = 0; i < columns.length; i++)
     {
-        color_div[columns[i]] = color(columns[i]);
+        color_div[columns[i]] = color2(columns[i]);
     };
 
-    var legendSize = 16;
+    var legendSize = 12;
     var legendSpace = 120;
     var colors = d3.entries(color_div)
 
@@ -141,11 +141,12 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         .attr('height', legendSize)
         .style('fill', function(d) { return d.value; })
         .style('opacity', 1)
-        .style('stroke', 'black');
+        .style('stroke', 'black')
+        .style('stroke-width', '.5px');
 
     legend.append('text')
-        .attr('x', legendSize + 7)
-        .attr('y', legendSize - 3)
+        .attr('x', legendSize + 4)
+        .attr('y', legendSize - 2)
         .text(function(d) { 
           if (d.key == "front"){ return "Front Passengers"; }
           else if (d.key == "rear"){ return "Rear Passengers"; }
