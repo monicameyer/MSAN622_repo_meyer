@@ -109,8 +109,8 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("class", "x brush")
       .call(brush)
     .selectAll("rect")
-      .attr("y", 0)
-      .attr("height", height2 + 1);
+      .attr("y", 1)
+      .attr("height", height2 + 2);
 
     columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
     color_div = {}

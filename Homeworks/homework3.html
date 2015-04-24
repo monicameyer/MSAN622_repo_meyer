@@ -25,14 +25,9 @@
       shape-rendering: crispEdges;
     }
 
-    .x.axis path {
-      display: none;
-    }
-
     .line {
       fill: none;
-      stroke: steelblue;
-      stroke-width: 2px;
+      stroke-width: 2.5px;
     }
 
     .brush .extent {
@@ -42,27 +37,16 @@
     }
 
     .area {
-      fill: steelblue;
       clip-path: url(#clip);
-    }
-
-    .overlay {
-      fill: none;
-      pointer-events: all;
-    }
-    .buttons {
-      position: absolute;
-      right: 30px;
-      top: 30px;
+      shape-rendering: crispEdges;
     }
 
    .d3-tip {
       line-height: 1;
-      /*font-weight: bold;*/
       font-family: "Georgia";
       line-height: 1.3;
       padding: 10px;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       color: #fff;
       border-radius: 2px;
     }
@@ -73,7 +57,7 @@
       font-size: 12px;
       width: 100%;
       line-height: 1;
-      color: rgba(0, 0, 0, 0.5);
+      color: rgba(0, 0, 0, 0.8);
       content: "\25BC";
       position: absolute;
       text-align: center;
@@ -168,7 +152,7 @@
                   </ul>
                   <p style="font-size:18px">Moderate</p>
                   <ul style="font-size:14px">
-                    <li>Added the ability to pan on the stacked area plot (when brushing is on)</li>
+                    <li>Added the ability to pan on the stacked area plot (when brushing is on) by dragging the brush across the context bar</li>
                     <li>Added details-on-demand, or hover to show tooltip details on the date and value for the multiline plot</li>
                   </ul>
                   <p style="font-size:18px">Advanced</p>
@@ -181,11 +165,14 @@
                   <hr>
                   <p style="font-size:18px">Multi-Line Chart</p>
                   <ul style="font-size:14px">
-                      <li>Hover over the lines to show tooltip, </li>
+                      <li>Hover over the lines to show the data point and a tooltip with details</li>
+                      <li>Click the checkboxes to trigger filtering. When box is checked, the line is drawn, when the box becomes unchecked, the line referencing that category is removed</li>
                   </ul>
                   <p style="font-size:18px">Stacked Area Chart</p>
                   <ul style="font-size:14px">
-                      <li>p</li>
+                      <li>Click and drag in the context window to brush and choose an area to show in the focus window</li>
+                      <li>Once brush is selected, click and drag the selection to pan through the data</li>
+                      <li>Click off of the selected area in the context window to revert back to the original chart</li>
                   </ul>
                   <hr>
                   <h3 class= "text-center">Discussion</h3>

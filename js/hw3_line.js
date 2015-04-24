@@ -36,14 +36,19 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-var tip = d3.tip()
+
+
+d3.csv("../data/seatbelts.csv", function(error, data) {
+
+  var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span style='color:white font-size:14px'>" + d.label + " Killed or<br>Seriously Injured: "+ d.value +"</span><br>Date: <span style='color:white'>" + monthNames[(d.date).getMonth()-1]+" "+ (d.date).getFullYear()+"</span>";
+    return "<span style='color:" + color(d.name)+ "'>" + d.label + 
+    "</span><span style='color:white'> killed or seriously<br>injured in </span><span style='color:"
+    + color(d.name) + "'>" + monthNames[(d.date).getMonth()] + " " + (d.date).getFullYear() 
+    + "</span><span style='color:white'>: " + d.value + "</span>";
   })
-
-d3.csv("../data/seatbelts.csv", function(error, data) {
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
@@ -124,7 +129,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("x", 5)
       .text("or Seriously Injured");
 
-  var dot2 = svg.append("g")
+  var dot = svg.append("g")
       .attr("class", "dots")
     .selectAll(".dot")
       .data(all_dots)
@@ -136,7 +141,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .style("fill", function(d) { return color(d.name);})
       .style("opacity", 0);
 
-  dot2.on("mouseover", function(d){
+  dot.on("mouseover", function(d){
           d3.select(this).style("opacity", 1)
           tip.show(d); })
       .on("mouseout", function(d){
