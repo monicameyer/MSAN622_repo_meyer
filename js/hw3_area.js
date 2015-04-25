@@ -112,45 +112,41 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("y", 1)
       .attr("height", height2 + 2);
 
-    columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
-    color_div = {}
-    for  (var i = 0; i < columns.length; i++)
-    {
-        color_div[columns[i]] = color2(columns[i]);
-    };
+  columns = d3.keys(data[0]).filter(function(key) { return key !== "date"; })
+  color_div = {}
+  for  (var i = 0; i < columns.length; i++)
+  {
+      color_div[columns[i]] = color2(columns[i]);
+  };
 
-    var legendSize = 12;
-    var legendSpace = 120;
-    var colors = d3.entries(color_div)
+  var legendSize = 12;
+  var legendSpace = 120;
+  var colors = d3.entries(color_div)
 
-    var svg3 = d3.select("#chart2").append("svg")
-        .attr("width", width1 + margin1.left + margin1.right)
-        .attr("height", 100);
+  var legend = svg2.selectAll('.legend')
+      .data(colors)
+      .enter()
+      .append('g')
+      .attr('class', 'legend')
+      .attr('transform', function(d, i) { 
+        return 'translate(' + (300 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
+        });
 
-    var legend = svg3.selectAll('.legend')
-        .data(colors)
-        .enter()
-        .append('g')
-        .attr('class', 'legend')
-        .attr('transform', function(d, i) { 
-          return 'translate(' + (300 + (i * (legendSize + legendSpace))) + ',' + 10 + ')';
-          });
+  legend.append('rect')
+      .attr('width', legendSize)
+      .attr('height', legendSize)
+      .style('fill', function(d) { return d.value; })
+      .style('opacity', 1)
+      .style('stroke', 'black')
+      .style('stroke-width', '.5px');
 
-    legend.append('rect')
-        .attr('width', legendSize)
-        .attr('height', legendSize)
-        .style('fill', function(d) { return d.value; })
-        .style('opacity', 1)
-        .style('stroke', 'black')
-        .style('stroke-width', '.5px');
-
-    legend.append('text')
-        .attr('x', legendSize + 4)
-        .attr('y', legendSize - 2)
-        .text(function(d) { 
-          if (d.key == "front"){ return "Front Passengers"; }
-          else if (d.key == "rear"){ return "Rear Passengers"; }
-          else { return "Automobile Drivers"; }; });
+  legend.append('text')
+      .attr('x', legendSize + 4)
+      .attr('y', legendSize - 2)
+      .text(function(d) { 
+        if (d.key == "front"){ return "Front Passengers"; }
+        else if (d.key == "rear"){ return "Rear Passengers"; }
+        else { return "Automobile Drivers"; }; });
 
 });
 

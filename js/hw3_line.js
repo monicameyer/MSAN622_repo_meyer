@@ -36,8 +36,6 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-
-
 d3.csv("../data/seatbelts.csv", function(error, data) {
 
   var tip = d3.tip()
@@ -56,32 +54,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
     d.date = parseDate(d.date);
   });
 
-  var all_dots = [];
-
-  for (var i = 0; i < data.length; i++){
-    var data_points = {
-      date: (data[i]).date,
-      value: (data[i]).drivers,
-      name: "drivers",
-      label: "Drivers"
-    };
-    all_dots.push(data_points);
-    var data_points2 = {
-      date: (data[i]).date,
-      value: (data[i]).front,
-      name: "front",
-      label: "Front Passengers"
-    };
-    all_dots.push(data_points2);
-    var data_points3 = {
-      date: (data[i]).date,
-      value: (data[i]).rear,
-      name: "rear",
-      label: "Rear Passengers"
-    };
-    all_dots.push(data_points3);
-
-  }
+  console.log(data);
 
   var seatbelts = color.domain().map(function(name) {
     return {
@@ -94,7 +67,7 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.date; }));
 
-  y.domain([0 ,2700]);//d3.max(seatbelts, function(c) { return d3.max(c.values, function(v) { return v.number; }); }) ]);
+  y.domain([0 ,2700]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -129,12 +102,39 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
       .attr("x", 5)
       .text("or Seriously Injured");
 
+  var all_dots = [];
+
+  for (var i = 0; i < data.length; i++){
+    var data_points = {
+      date: (data[i]).date,
+      value: (data[i]).drivers,
+      name: "drivers",
+      label: "Drivers"
+    };
+    all_dots.push(data_points);
+    var data_points2 = {
+      date: (data[i]).date,
+      value: (data[i]).front,
+      name: "front",
+      label: "Front Passengers"
+    };
+    all_dots.push(data_points2);
+    var data_points3 = {
+      date: (data[i]).date,
+      value: (data[i]).rear,
+      name: "rear",
+      label: "Rear Passengers"
+    };
+    all_dots.push(data_points3);
+  }
+
   var dot = svg.append("g")
       .attr("class", "dots")
     .selectAll(".dot")
       .data(all_dots)
     .enter().append("circle")
       .attr("class", "dot")
+      .attr("id", function(d) { return d.name; })
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
       .attr("r", 4)
@@ -159,55 +159,46 @@ d3.csv("../data/seatbelts.csv", function(error, data) {
         else if (d.name == "rear"){ return "Rear Passengers"; }
         else { return "Drivers"; }; });
   
-  window.onload = d3.select("input#check1").property("checked", true)
-                    .each(function(){
-                      var opacity = this.checked ? 1 : 0;
-                        d3.select("path#drivers").transition().duration(500)
-                          .style("opacity", opacity); 
-                        d3.select("text#drivers").transition().duration(500)
-                          .style("opacity", opacity); }),
-                  d3.select("input#check2").property("checked", true)
-                    .each(function(){
-                      var opacity = this.checked ? 1 : 0;
-                        d3.select("path#front").transition().duration(500)
-                          .style("opacity", opacity);
-                        d3.select("text#front").transition().duration(500)
-                          .style("opacity", opacity); }),
-                  d3.select("input#check3").property("checked", true)
-                    .each(function(){
-                      var opacity = this.checked ? 1 : 0;
-                        d3.select("path#rear").transition().duration(500)
-                          .style("opacity", opacity);
-                        d3.select("text#rear").transition().duration(500)
-                          .style("opacity", opacity); });  
+  window.onload = d3.select("input#check1").property("checked", true),
+                  d3.select("input#check2").property("checked", true),
+                  d3.select("input#check3").property("checked", true); 
 
   d3.select("input#check1").on("change", function(){
     var opacity = this.checked ? 1 : 0;
+    var radius = this.checked ? 4 : 0;
 
     d3.select("path#drivers").transition().duration(500)
       .style("opacity", opacity);
     d3.select("text#drivers").transition().duration(500)
       .style("opacity", opacity);
+    
+    d3.selectAll("circle#drivers").attr("r", radius);
+
   });
 
   d3.select("input#check2").on("change", function(){
     var opacity = this.checked ? 1 : 0;
+    var radius = this.checked ? 4 : 0;
 
     d3.select("path#front").transition().duration(500)
       .style("opacity", opacity);
     d3.select("text#front").transition().duration(500)
       .style("opacity", opacity);
+
+    d3.selectAll("circle#front").attr("r", radius);
   });
 
   d3.select("input#check3").on("change", function(){
     var opacity = this.checked ? 1 : 0;
+    var radius = this.checked ? 4 : 0;
 
     d3.select("path#rear").transition().duration(500)
       .style("opacity", opacity);
     d3.select("text#rear").transition().duration(500)
       .style("opacity", opacity);
-  });
 
+    d3.selectAll("circle#rear").attr("r", radius);
+  });
 
 });
 
