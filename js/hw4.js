@@ -26,7 +26,7 @@ color.domain(genres);
 
 function area_chart(){
 
-    var m = {top: 15, right: 0, bottom: 20, left: 20},
+    var m = {top: 0, right: 0, bottom: 20, left: 20},
         w = 700 - m.left - m.right,
         h = 80 - m.top - m.bottom;
 
@@ -61,14 +61,12 @@ function area_chart(){
         d3.max(movies, function(s) { return s.values[s.values.length - 1].year; })
       ]);
 
-      // Add an SVG element for each symbol.
       var svg = d3.select("#area_chart").selectAll("g")
           .data(movies)
         .enter().append("g")
           .attr("transform", function(d, i){
             return "translate(" + m.left + "," + (i*70 + m.top) + ")";});
 
-      // Add the area path elements.
       svg.append("path")
           .attr("class", "area")
           .attr("id", "hide")
@@ -76,7 +74,6 @@ function area_chart(){
           .style("fill", function(d) { return color(d.key); })
           .transition().delay(800).duration(800);
 
-      // Add a small label for the symbol name.
       svg.append("text")
           .attr("x", 0)
           .attr("y", h - 10)
@@ -114,7 +111,7 @@ function bar_chart(){
     var svg = d3.select("#bar_chart").append("g")
                 .attr("transform", "translate(" + m.left + "," + m.top + ")");
 
-    d3.csv("../data/movies_data2.csv", function(error, data) {
+    d3.csv("../data/movies_data.csv", function(error, data) {
 
         var bar_values = {Action: 0, Comedy: 0, Documentary: 0,
                           Drama: 0, Romance: 0};
@@ -223,7 +220,7 @@ function scatter_chart(){
 
     d3.csv("../data/low_budget_movies.csv", type, function(error, data) {
 
-      y.domain([70, 140]);
+      y.domain([60, 160]);
       x.domain([2, 9]);
 
       svg.append("g")
@@ -253,7 +250,7 @@ function scatter_chart(){
           .attr("text-anchor", "middle")
           .attr("x", w/2)
           .attr("y", -10)
-          .text("Low Budget Movies (Under $5 million): Rating by Length")
+          .text("Low Budget Movies (Under $3 million): Rating by Length")
           .style("font-size","14px");
 
       var dot = svg.append("g")
@@ -314,15 +311,12 @@ function scatter_chart(){
 
             });
 
-      // Positions the dots based on data.
       function position(dot) {
-        // dot .attr("cx", function(d) { return x(d.length); })
-        //     .attr("cy", function(d) { return y(+d.rating); })
         dot .attr("cy", function(d) { return y(d.length); })
             .attr("cx", function(d) { return x(+d.rating); })
             .attr("fill", function(d){ return color(d.genre)})
             .attr("opacity", 1)
-            .attr("r", 5);
+            .attr("r", 4);
       }
 
     });
@@ -335,8 +329,6 @@ function scatter_chart(){
 }
 
 function draw_area_chart(id){
-    // d3.selectAll("path#show").remove().transition().duration(400);
-    // d3.selectAll("g#show").remove().transition().duration(400);
 
     var m = {top: 20, right: 0, bottom: 60, left: 40},
         w = 700 - m.left - m.right,
@@ -383,13 +375,11 @@ function draw_area_chart(id){
 
       y.domain([0, d3.max(values)]);
 
-      // Add an SVG element for each symbol.
       var svg = d3.select("#area_chart").append("g")
             .attr("width", w + m.left + m.right)
             .attr("height", h + m.top + m.bottom)
             .attr("transform", "translate(" + m.left + "," + m.top + ")");
 
-      // Add the area path elements.
       svg.append("path")
           .datum(movies[index])
           .attr("class", "area")
@@ -421,7 +411,6 @@ function draw_area_chart(id){
       return d;
     }
 }
-
 
 area_chart();
 
