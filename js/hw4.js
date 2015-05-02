@@ -89,6 +89,15 @@ function area_chart(){
           .call(xAxis)
           .transition().delay(800).duration(800);
 
+      var text = d3.select("#area_chart").select("g")
+            // .enter().append("text")
+            .append("text")
+           .attr("y", 15)
+           .attr("x", w/2)
+           .style("text-anchor", "middle")
+           .text("Movie Count over Time by Genre")
+           .style("font-size","14px");
+
     });
 
     function type(d) {
@@ -136,6 +145,13 @@ function bar_chart(){
             .attr("x", 15)
             .style("text-anchor", "end")
             .text("Frequency");
+
+        svg.append("text")
+           .attr("y", -10)
+           .attr("x", w/2)
+           .style("text-anchor", "middle")
+           .text("Movie Count by Genre")
+           .style("font-size","14px");
 
         var bar = svg.append("g")
               .attr("class", "bars")
@@ -325,7 +341,6 @@ function scatter_chart(){
       d.year = parseDate(d.year);
       return d; 
     }
-
 }
 
 function draw_area_chart(id){
