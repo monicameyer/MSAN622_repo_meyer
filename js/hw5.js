@@ -114,10 +114,8 @@ function symbolMap() {
         radius = radius.domain(d3.extent(values, value));
 
         // create groups for each of our components
-        // this just reduces our search time for specific states
+        // this just reduces our search time for specific countries
         var country = svg.append("g").attr("id", "country");
-        // var states  = svg.append("g").attr("id", "states");
-        // var countries = svg.append("g").attr("id", "countries");
         var symbols = svg.append("g").attr("id", "dots");
 
         // draw base map

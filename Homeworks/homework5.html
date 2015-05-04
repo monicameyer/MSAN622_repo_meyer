@@ -128,32 +128,33 @@
 
       <div class="row">
           <div class="box text-center">
-            <p style="font-size:20px"></p>
-              <div id="block" class="col-lg-12 text-center">
-                <svg id="map" width="940" height="480"></svg>
+            <p style="font-size:20px">Earthquake Visualization</p>
+              <div id="block" class="col-lg-12">
+              </div>
+                <svg id="map" width="1100" height="600"></svg>
                 <p id="log">Loading map... please wait.</p>
                 <script src="http://d3js.org/topojson.v1.min.js"></script>
                 <script src="../js/d3.min.js"></script>
                 <script src="../js/hw5.js"></script>
-              </div>
+              
           </div>
       </div>
+
       <div class = "row">
           <div class="box">
               <div class="col-lg-12">
-                <div class="col-md-2">
-                </div>
+                <div class="col-md-2"></div>
                 <div class="col-md-8">
                   <hr>
                   <h3 class= "text-center">Functionality</h3>
                   <hr>
                   <p style="font-size:18px">Basic</p>
                   <ul style="font-size:14px">
-                    <li>Modified code to use world map and earthquake data for visualization</li>
+                    <li>Modified code to use the world map (world-50m.json) and earthquake data (4.5 - 30 day) for visualization.</li>
                   </ul>
                   <p style="font-size:18px">Moderate</p>
                   <ul style="font-size:14px">
-                    <li>Used a sequential color scale to encode color to the circles by depth of earthquakes</li>
+                    <li>Used a sequential color scale to encode color to the circles by depth of earthquakes. Edited both css and js to add this feature.</li>
                   </ul>
                   <p style="font-size:18px">Advanced</p>
                   <ul style="font-size:14px">
@@ -162,10 +163,9 @@
                   <hr>
                   <h3 class= "text-center">Interactivity Guide</h3>
                   <hr>
-                  <p style="font-size:14px">Hover over the circles to see details on location, magnitude and depth of the earthquake.</p>
+                  <p style="font-size:14px">Hover over the circles to see details on location, magnitude and depth of the earthquake at the bottom of the svg.</p>
                 </div>  
-                <div class="col-md-2">
-                </div> 
+                <div class="col-md-2"></div> 
               </div>
           </div> 
       </div>         
@@ -174,13 +174,13 @@
 </body>
 
 <script>
-  // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  // ga('create', 'UA-41707651-2', 'auto');
-  // ga('send', 'pageview');
+  ga('create', 'UA-41707651-2', 'auto');
+  ga('send', 'pageview');
 </script>
 
 <footer>
