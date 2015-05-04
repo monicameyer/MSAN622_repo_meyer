@@ -1,19 +1,18 @@
-var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 19.5},
-    width = 960 - margin.right,
+var margin = {top: 19.5, right: 30, bottom: 19.5, left: 30},
+    width = 600 - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var xScale = d3.scale.linear().domain([3000, 6400]).range([0, width]),
-    yScale = d3.scale.linear().domain([0, 16]).range([height, 0]),
-    radiusScale = d3.scale.sqrt().domain([0, 25000]).range([0, 40]),
-    colorScale = d3.scale.ordinal()
-        .range(colorbrewer.Dark2[4]);
+var xScale = d3.scale.linear().domain([0, 1]).range([0, width]),
+    yScale = d3.scale.linear().domain([-.1, 1]).range([height, 0]),
+    radiusScale = d3.scale.sqrt().domain([0, 1]).range([5, 30]),
+    colorScale = d3.scale.ordinal().domain([1, 5])
+        .range(colorbrewer.Dark2[8]);
 
 var formatting = d3.format(",.0f");
 
 var xAxis = d3.svg.axis()
     .orient("bottom")
-    .scale(xScale)
-    .ticks(20, d3.format(",d"));
+    .scale(xScale);
 
 var yAxis = d3.svg.axis()
     .scale(yScale)
@@ -23,10 +22,10 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span style='color:white font-size:14px'>"+ d.State +"</span><br>Region: <span style='color:" + color(d.Region) + "'>" + d.Region + "</span><br>Population: <span style='color:white'>" + formatting(d.Population) + "</span><br>Income: <span style='color:white'>" + formatting(d.Income) + "</span><br>Murder: <span style='color:white'>" + d.Murder + "</span>";
+    return "<span style='color:white font-size:14px'>"+ d.State +"</span><br>Population: <span style='color:white'>" + formatting(d.Population) + "</span><br>Income: <span style='color:white'>" + formatting(d.Income) + "</span><br>Murder: <span style='color:white'>" + d.Murder + "</span>";
   })
 
-var svg = d3.select("#chart").append("svg")
+var svg = d3.select("#chart1").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -58,10 +57,10 @@ svg.append("text")
     .text("Murder (per 100K Pop)");
               
 // Load the data.
-d3.json("../data/statex77.json", function(states) {
+d3.json("../data/community_resiliency.json", function(states) {
   
   states.forEach(function(d){
-    d.color = colorScale(d.Region)
+    d.color = colorScale(d.Haz_Score)
   })
 
   var dot = svg.append("g")
@@ -72,20 +71,20 @@ d3.json("../data/statex77.json", function(states) {
       .attr("class", "dot")
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
-      .style("fill", function(d) { return colorScale(d.Region); })
+      .style("fill", function(d) { return colorScale(d.Haz_Score); })
       .call(position)
       .sort(order);
 
   // Positions the dots based on data.
   function position(dot) {
-    dot .attr("cx", function(d) { return xScale(d.Income); })
-        .attr("cy", function(d) { return yScale(d.Murder); })
-        .attr("r", function(d) { return radiusScale(d.Population); });
+    dot .attr("cx", function(d) { return xScale(d.Imp_Per); })
+        .attr("cy", function(d) { return yScale(d.Liq_Per); })
+        .attr("r", function(d) { return radiusScale(d.Heat_Per); });
   }
 
   // Defines a sort order so that the smallest dots are drawn on top.
   function order(a, b) {
-    return b.Population - a.Population;
+    return b.Heat_Per - a.Heat_Per;
   }
 
   // Draw a legend to explain color of dots
@@ -93,7 +92,7 @@ d3.json("../data/statex77.json", function(states) {
   color_div = {}
   for  (var i = 0; i < states.length; i++)
   {
-      color_div[states[i].Region] = states[i].color;
+      color_div[states[i].Haz_Score] = states[i].color;
   };
 
   var legendSize = 18;
