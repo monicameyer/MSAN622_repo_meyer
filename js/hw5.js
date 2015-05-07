@@ -143,8 +143,7 @@ function symbolMap() {
                 return projection([d.longitude, d.latitude])[1];
             })
             .attr("fill", function(d, i){ return color(d.depth); })
-            .attr("stroke", "black")
-            // .attr
+            .attr("stroke", "darkgrey")
             .classed({"symbol": true})
             .on("mouseover", showHighlight)
             .on("mouseout", hideHighlight);
@@ -277,14 +276,6 @@ function symbolMap() {
             "symbol": true
         });
 
-        // highlight state associated with symbol
-        d3.select("g#states")
-            .select("path#state" + lookup[d.state])
-            .classed({
-                "highlight": true,
-                "state": true
-            });
-
         updateLog(d.place + 
             " experienced an earthquake of magnitude " + d.mag +
             ", and depth " + d.depth + ".");
@@ -297,14 +288,6 @@ function symbolMap() {
             "highlight": false,
             "symbol": true
         });
-
-        // reset state associated with symbol
-        d3.select("g#states")
-            .select("path#state" + lookup[d.state])
-            .classed({
-                "highlight": false,
-                "state": true
-            });
 
         // reset log message
         updateLog();
