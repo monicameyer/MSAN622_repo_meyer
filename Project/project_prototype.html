@@ -15,13 +15,30 @@
   <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
   <style>
 
-    svg {
-      font: 11px;
+    /*body {
+      background: #363A44;
+      color: #FFFFFF;
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      font-family: 'Fjalla One', sans-serif;
     }
+
+    svg {
+      margin: 20px;
+    }
+
+    path:hover {
+      opacity: 0.5;
+    }*/
+
+/*    svg {
+      font: 11px;
+    }*/
     
     .dot {
       stroke: #000;
-      fill-opacity:  .7;
+      fill-opacity:  .8;
     }
 
     .axis path, .axis line {
@@ -32,6 +49,38 @@
 
     svg {
       font: 10px sans-serif;
+    }
+
+    .background path {
+      fill: none;
+      stroke: none;
+      stroke-width: 20px;
+      pointer-events: stroke;
+    }
+
+    .foreground path {
+      fill: none;
+      stroke-width: 1.5px;
+    }
+
+    .axis .title {
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .axis .label {
+      font-size:11px;
+    }
+
+    .label.inactive {
+      fill: #ccc;
+    }
+
+
+    .foreground path.inactive {
+      stroke: #ccc;
+      stroke-opacity: .1;
+      stroke-width: 1px;
     }
 
     .d3-tip {
@@ -112,64 +161,38 @@
               <hr>
               <h3 class= "text-center">Visualization Prototype</h3>
               <hr>
-            <div class="col-lg-12 text-center" id="chart1">
+            <div class="col-lg-12" id="chart1">
             </div>
             <script src="../js/d3.min.js"></script>
-            <script src="http://d3js.org/topojson.v1.min.js"></script>
             <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
             <script src="../js/colorbrewer.js"></script>
-            <script src="../js/prototype_bubble.js"></script>
+            <script src="http://d3js.org/topojson.v1.min.js"></script>
+            <!-- // <script src="../js/prototype_bubble.js"></script> -->
+            <script src="../js/project.js"></script>
 
-            <!--<script>
-              var width = 800,
-                  height = 500;
-
-              var svg = d3.select("#chart1").append("svg")
-                  .attr("width", width)
-                  .attr("height", height);
-
-              // var projection = d3.geo.mercator()
-              //     .scale(500)
-              //     .translate([width / 2, height / 2]);
-              var projection = d3.geo.albers()
-                  .center([0, 55.4])
-                  .rotate([4.4, 0])
-                  .parallels([50, 60])
-                  .scale(6000)
-                  .translate([width / 2, height / 2]);
-
-              var path = d3.geo.path()
-                  .projection(projection);
-
-
-              d3.json("../data/sf_n.json", function(error, sf) {
-
-                var neighborhoods = topojson.feature(sf, sf.objects.sf);
-                console.log(neighborhoods);
-                svg.append("path")
-                    .datum(neighborhoods)
-                    .attr("d", path);
-              });
-            </script>-->
             <div class="col-lg-12 text-center" id="chart2">
             </div>
-            <script src="../js/prototype_smallmult.js"></script>
+            <!-- // <script src="../js/prototype_smallmult.js"></script> -->
+            <div class="col-lg-12" id="chart3">
+            </div>
+            
+            <!-- // <script src="../js/prototype_map.js"></script> -->
           </div>
       </div>
 
       <div class="row">
-          <div class="box text-center">
+          <div class="box">
             <div class="col-lg-12">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                   <hr>
                   <h3 class= "text-center">Dataset Summary</h3>
                   <hr>
-                  <p style="font-size:14px">Discuss Dataset here</p>
+                  <p style="font-size:14px">This dataset is part of the San Francisco Climate and Health Profile, a report identifying locations most vulnerable to climate change health outcomes. The dataset includes 40 different variables used to provide quantitative measurements of a given neighborhood's resiliency and vulnerability to climate change stressors as well as several aggregated scores indicating overall resiliency by different standards (environmental, economic, hazard, housing, etc). For more information, view the <a href="../Project/project_dataset.html">project dataset</a> page.</p>
                   <hr>
                   <h3 class= "text-center">Sketch Summary</h3>
                   <hr>
-                  <p style="font-size:14px">Explain sketch here</p>
+                  <p style="font-size:14px">My plan is to implement a map of San Francisco that will allow filtering so the user can pick between several columns of the data to see on the map. I will have a bubble chart indicating several of the hazard risk columns of the dataset, and a small multiples bar chart showing some health related columns (shelter rate, previous hospitalizations, population density, etc). I have added a parallel coordinates plot because it is the best way to visualize each of the associated scores (all on scales of 1 to 5) of the data. For more information, view the <a href="../Project/project_sketch.html">project sketch</a> page.</p>
                 </div>  
                 <div class="col-md-2"></div> 
             </div>
