@@ -226,10 +226,12 @@ function bar_chart(){
             .offset([-10, 0])
             .direction('n')
             .html(function(d) {
-              return "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Residential Score: <span style='color:" + color(d.Res_Score) + "'>" + d.Res_Score + "</span><br>Rent Per <span style='color:white'>" + formatting(d.Rent_Per) + "</span><br>Dem Score: <span style='color:white'>" + d.Dem_Score + "</span><br>Res_Rank: <span style='color:white'>" + d.Res_Rank + "</span><br>PTrans_Sco: <span style='color:white'>" + d.PTrans_Sco + "</span><br>";
+              return "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Residential Score: <span style='color:" + color(d.Res_Score) + "'>" + d.Res_Score + "</span><br>Shelt_Rate: <span style='color:white'>" + d.Shelt_Rate + "</span><br>PrevHos: <span style='color:white'>" + d.PrevHos + "</span><br>Res_Rank: <span style='color:white'>" + d.Res_Rank + "</span><br>Over65_Per: <span style='color:white'>" + formatting(d.Over65_Per) + "</span><br>Viol_Rate: <span style='color:white'>" + d.Viol_Rate + "</span>";
             });
 
         svg.call(tip);
+
+        // ["Shelt_Rate", "PrevHos", "Over65_Per", "Res_Rank", "Viol_Rate"]
 
         function multiple(category) {
             var svg = d3.select(this);
