@@ -15,11 +15,8 @@ chart = chart.value(function(d) { return d.mag; });
 d3.json(url.world, function(mapError, mapJSON) {
     if (processError(mapError)) return;
 
-    // update map data
     chart = chart.map(mapJSON);
 
-    // Wait until the map is drawn before loading
-    // and drawing the data values
     d3.csv(url.earthquakes, function(dataError, dataJSON) {
         if (processError(dataError)) return;
 
@@ -51,10 +48,6 @@ function processError(error) {
     return false;
 }
 
-/*
- * Parses us-state-names.tsv into components.
- * Used by d3.tsv() function.
-*/
 function parseStateName(row) {
     return {
         id: +row.id,
@@ -75,7 +68,7 @@ function symbolMap() {
 
     var color = d3.scale.linear()
             .domain([0, 605])
-            .range(["white", "tomato"])
+            .range(["#fee0d2", "#a50f15"])
             .interpolate(d3.interpolateLab);
 
     var map = null; // map data
@@ -96,8 +89,7 @@ function symbolMap() {
         var svg = d3.select("svg#" + id);
         var bbox = svg.node().getBoundingClientRect();
 
-        // update project scale
-        // (this may need to be customized for different projections)
+        // update project scale (this may need to be customized for different projections)
         projection = projection.scale((bbox.width + 1)/2/Math.PI);
 
         // update projection translation
@@ -109,8 +101,7 @@ function symbolMap() {
         // set path generator based on projection
         var path = d3.geo.path().projection(projection);
 
-        // update radius domain
-        // uses our value function to get the right property
+        // update radius domain, uses our value function to get the right property
         radius = radius.domain(d3.extent(values, value));
 
         // create groups for each of our components
@@ -153,14 +144,6 @@ function symbolMap() {
      * These are functions for getting and setting values.
      * If no argument is provided, the function returns the
      * current value. Otherwise, it sets the value.
-     *
-     * If setting the value, ALWAYS return the chart object.
-     * This will allow you to save the updated version of
-     * this environment.
-     *
-     * Personally, I do not like _ to indicate the argument
-     * that may or may not be provided, but its what the
-     * original model uses.
      */
 
     // gets/sets the mapping from state abbreviation to topojson id
@@ -186,12 +169,6 @@ function symbolMap() {
         return chart;
     };
 
-    /*
-     * Note the semi-colon above. This was an assignment,
-     * even though we were defining a function. All assignments
-     * should end in a semi-colon.
-     */
-
     // allows for customization of projection used
     chart.projection = function(_) {
         if (!arguments.length) {
@@ -201,11 +178,6 @@ function symbolMap() {
         projection = _;
         return chart;
     };
-
-    /*
-     * You can get/set functions just like variables.
-     * The basic format is always the same.
-     */
 
     // allows for customization of radius scale
     chart.radius = function(_) {
@@ -250,11 +222,6 @@ function symbolMap() {
         value = _;
         return chart;
     };
-
-    /*
-     * These functions are not outwardly accessible. They
-     * are only used within this environment.
-     */
 
     // updates the log message
     function updateLog(message) {
