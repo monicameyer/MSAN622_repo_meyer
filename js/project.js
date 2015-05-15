@@ -235,15 +235,15 @@ function bar_chart(){
 
         function multiple(category) {
             var svg = d3.select(this);
-            y.domain([0, d3.max(category.values, function(d) { return d[category.key]; })]);
+            y.domain([0, d3.max(category.values, function(d) { return +d[category.key]; })]);
             svg.selectAll(".bar")
                   .data(function(d) {return d.values;})
                 .enter().append("rect")
                   .attr("class", "bar")
                   .attr("x", function(d) { return x(d.Neighborhood); })
                   .attr("width", x.rangeBand())
-                  .attr("y", function(d) { return y(d[category.key]); })
-                  .attr("height", function(d) { return h - y(d[category.key]); })
+                  .attr("y", function(d) { return y(+d[category.key]); })
+                  .attr("height", function(d) { return h - y(+d[category.key]); })
                   .style("fill", function(d) {return color(d.Res_Score); })
                   .on('mouseover', function (d) {
                       tip.show(d);
