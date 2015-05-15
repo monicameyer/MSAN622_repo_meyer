@@ -16,14 +16,13 @@
   <style>
     body {
         background-color: whitesmoke;
-        margin: 8px 10px;
+        margin: 8px 8px;
         padding: 0px;
     }
 
     svg {
         background-color: white;
         margin: 0px;
-        float: left;
     }
 
     #block {
@@ -31,53 +30,21 @@
     }
 
     #log {
-        color: dimgray;
-
-        font-size: 10px;
-        font-style: italic;
-        text-align: center;
-
-        margin: 0px;
-        padding: 0px;
+        color: black;
+        font-size: 12px;
     }
 
     .country {
         fill: gainsboro;
     }
 
-    .state {
-        fill: none;
-    }
-
-    /*
-     * Setting "opacity" can affect both
-     * fill and stroke. We want to set
-     * both of those separately.
-     */
-
     .symbol {
-        /*fill: royalblue;*/
         fill-opacity: 1;
-
-        /*stroke: royalblue;*/
-    /*    stroke-width: 1px;
-        stroke-opacity: 1.0;*/
     }
-
-    /*
-     * We can specify how to highlight based
-     * on the type of underlying object.
-     */
 
     circle.highlight {
         stroke: orangered;
         stroke-width: 2px;
-    }
-
-    path.highlight {
-        fill: whitesmoke;
-        stroke: tomato;
-        stroke-width: 1px;
     }
 
   </style>
@@ -129,8 +96,7 @@
           <div class="box text-center">
             <p style="font-size:20px">Earthquake Visualization</p>
               <div id="block" class="col-lg-12">
-              
-                <svg id="map" width="1100" height="600"></svg>
+                <svg id="map" width="1100" height="550"></svg>
                 <p id="log">Loading map... please wait.</p>
                 <script src="http://d3js.org/topojson.v1.min.js"></script>
                 <script src="../js/d3.min.js"></script>
@@ -155,10 +121,6 @@
                   <ul style="font-size:14px">
                     <li>Used a sequential color scale to encode color to the circles by depth of earthquakes. Edited both css and js to add this feature.</li>
                   </ul>
-                  <p style="font-size:18px">Advanced</p>
-                  <ul style="font-size:14px">
-                    <li></li>
-                  </ul> 
                   <hr>
                   <h3 class= "text-center">Interactivity Guide</h3>
                   <hr>

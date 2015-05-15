@@ -1,13 +1,18 @@
-var margin2 = {top: 10, right: 100, bottom: 10, left: 30},
-    width2 = 1100 - margin2.left - margin2.right,
+var margin2 = {top: 10, right: 100, bottom: 10, left: 100},
+    width2 = 1020 - margin2.left - margin2.right,
     height2 = 120 - margin2.top - margin2.bottom;
 
 var formatting = d3.format(".0%")
 
-var color = d3.scale.ordinal()
-        .range(colorbrewer.Dark2[8]);
+var color = d3.scale.linear().domain([0, 1, 2, 3, 4, 5])
+    // .range(["#fcfbfd", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f"]);
+    // .range(["#f7fbff", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#08519c"]);
+    .range(["#fdae61","#fee08b","#abdda4","#66c2a5","#3288bd","#5e4fa2"]);
+        // .range(colorbrewer.BuPu[6]);
+        // .range(["#8dd3c7", "#bebada", "#80b1d3", "#fb8072", "#fdb462","#ffed6f"]);
+// var color = d3.scale.linear().domain([1, 36]).range(["#a50026", "#313695"]).interpolate(d3.interpolateLab)
 
-var plot_names = ["Rent_Per", "AC_Per", "OC_Per", "EldLivAl_Per"];
+var plot_names = ["Rent_Per", "Dem_Score", "Res_Rank", "PTrans_Sco"];
 
 var x2 = d3.scale.ordinal()
     .rangeRoundBands([0, width2 + 10], .1);
@@ -80,7 +85,7 @@ d3.json("../data/community_resiliency.json", function(data) {
         .offset([-10, 0])
         .direction('n')
         .html(function(d) {
-          return "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Residential Score: <span style='color:" + color(d.Res_Score) + "'>" + d.Res_Score + "</span><br>Rent Per <span style='color:white'>" + formatting(d.Rent_Per) + "</span><br>AC Per: <span style='color:white'>" + formatting(d.AC_Per) + "</span><br>OC_Per: <span style='color:white'>" + formatting(d.OC_Per) + "</span><br>EldLivAl_Per: <span style='color:white'>" + formatting(d.EldLivAl_Per) + "</span><br>";
+          return "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Residential Score: <span style='color:" + color(d.Res_Score) + "'>" + d.Res_Score + "</span><br>Rent Per <span style='color:white'>" + formatting(d.Rent_Per) + "</span><br>Dem Score: <span style='color:white'>" + d.Dem_Score + "</span><br>Res_Rank: <span style='color:white'>" + d.Res_Rank + "</span><br>PTrans_Sco: <span style='color:white'>" + d.PTrans_Sco + "</span><br>";
         });
 
     svg.call(tip2);

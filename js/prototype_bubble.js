@@ -1,12 +1,12 @@
 var margin = {top: 19.5, right: 30, bottom: 19.5, left: 30},
-    width = 600 - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 560 - margin.right- margin.left,
+    height = 400 - margin.top - margin.bottom;
 
 var xScale = d3.scale.linear().domain([0, 1]).range([0, width]),
     yScale = d3.scale.linear().domain([-.1, 1]).range([height, 0]),
-    radiusScale = d3.scale.sqrt().domain([0, 1]).range([5, 30]),
-    colorScale = d3.scale.ordinal().domain([1, 5])
-        .range(colorbrewer.Dark2[8]);
+    radiusScale = d3.scale.sqrt().domain([0, 1]).range([5, 25]),
+    colorScale = d3.scale.linear().domain([1, 2, 3, 4, 5])
+          .range(["#fff5f0", "#fcbba1", "#fb6a4a", "#ef3b2c", "#a50f15"]);
 
 var formatting = d3.format(",.0f");
 
@@ -22,8 +22,11 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span style='color:white font-size:14px'>"+ d.State +"</span><br>Population: <span style='color:white'>" + formatting(d.Population) + "</span><br>Income: <span style='color:white'>" + formatting(d.Income) + "</span><br>Murder: <span style='color:white'>" + d.Murder + "</span>";
+    return "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Hazard Score: <span style='color:" + colorScale(d.Haz_Score) + "'>" + d.Haz_Score + "</span><br>Imp Per: <span style='color:white'>" + formatting(d.Imp_Per) + "</span><br>Liq_Per: <span style='color:white'>" + formatting(d.Liq_Per) + "</span><br>Heat Per: <span style='color:white'>" + formatting(d.Heat_Per) + "</span>";
   })
+
+// "<span style='color:white font-size:14px'>"+ d.Neighborhood +"</span><br>Residential Score: <span style='color:" + color(d.Res_Score) + "'>" + d.Res_Score + "</span><br>Rent Per <span style='color:white'>" + formatting(d.Rent_Per) + "</span><br>AC Per: <span style='color:white'>" + formatting(d.AC_Per) + "</span><br>OC_Per: <span style='color:white'>" + formatting(d.OC_Per) + "</span><br>EldLivAl_Per: <span style='color:white'>" + formatting(d.EldLivAl_Per) + "</span><br>";
+
 
 var svg = d3.select("#chart1").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -47,14 +50,14 @@ svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
     .attr("y", height - 6)
-    .text("Income");
+    .text("Imp Per");
 
 svg.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "left")
     .attr("y", 7)
     .attr("x", 5)
-    .text("Murder (per 100K Pop)");
+    .text("Liq Per");
               
 // Load the data.
 d3.json("../data/community_resiliency.json", function(states) {
@@ -96,7 +99,7 @@ d3.json("../data/community_resiliency.json", function(states) {
   };
 
   var legendSize = 18;
-  var legendSpace = 4;
+  var legendSpace = 22;
   var colors = d3.entries(color_div)
 
   var legend = svg.selectAll('.legend')
@@ -105,7 +108,7 @@ d3.json("../data/community_resiliency.json", function(states) {
       .append('g')
       .attr('class', 'legend')
       .attr('transform', function(d, i) { 
-        return 'translate(' + (width - 130) + ',' + (i * (legendSize + legendSpace)) + ')';
+        return 'translate(' + (30 + (i * (legendSize + legendSpace))) + ',' + 50 + ')';
         });
 
   legend.append('rect')
@@ -113,11 +116,19 @@ d3.json("../data/community_resiliency.json", function(states) {
     .attr('height', legendSize)
     .style('fill', function(d) { return d.value; })
     .style('opacity', .8)
-    .style('stroke', 'black');
+    .style('stroke', 'black')
+    .style('stroke-width', '.7px');
 
   legend.append('text')
-    .attr('x', legendSize + legendSpace)
-    .attr('y', legendSize - legendSpace)
+    .attr('x', legendSize + 5)
+    .attr('y', legendSize - 7)
     .text(function(d) { return d.key; });
+
+  svg.append('text')
+    .attr('x', 140)
+    .attr('y', 35)
+    .attr("text-anchor", "middle")
+    .text('Hazard Score')
+    .style('font-size', '13px');
 
 });
