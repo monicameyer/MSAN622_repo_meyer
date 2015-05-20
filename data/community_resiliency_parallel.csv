@@ -1,37 +1,38 @@
-"Neighborhood","Haz_Score","Env_Score","Trans_Sco","Com_Score","PR_Score","House_Score","Ec_Score","Dem_Score","Res_Score","Res_Rank"
-"Bayview",1,1,1,2,1,2,1,1,1,"35"
-"Bernal Heights",3,2,3,4,3,5,3,3,3,"16"
-"Castro/Upper Market",5,4,4,5,5,3,4,5,5,"2"
-"Chinatown",1,1,5,1,3,1,1,1,1,"36"
-"Crocker Amazon",3,3,1,2,1,4,1,1,1,"30"
-"Diamond Heights/Glen Park",4,5,2,5,3,4,4,4,5,"5"
-"Downtown/Civic Center",1,1,5,1,5,1,1,2,1,"34"
-"Excelsior",3,3,2,2,1,5,2,1,2,"29"
-"Financial District",1,1,5,1,5,1,2,1,1,"31"
-"Haight Ashbury",4,4,4,5,5,3,4,5,5,"4"
-"Inner Richmond",5,3,3,3,4,3,3,4,4,"15"
-"Inner Sunset",5,5,2,4,3,4,5,4,4,"10"
-"Lakeshore",4,5,1,2,1,2,2,3,2,"23"
-"Marina",2,2,4,5,4,3,3,5,4,"9"
-"Mission",2,2,4,2,4,2,3,3,2,"25"
-"Mission Bay",1,1,4,1,3,5,5,4,3,"17"
-"Nob Hill",2,2,5,3,5,1,4,4,3,"19"
-"Noe Valley",5,4,3,5,4,3,5,5,5,"3"
-"North Beach",1,3,5,2,4,1,3,2,2,"24"
-"Ocean View",4,3,1,2,1,4,1,2,2,"27"
-"Outer Mission",2,2,2,3,2,4,4,1,2,"26"
-"Outer Richmond",5,3,3,3,2,3,3,3,3,"18"
-"Outer Sunset",5,4,1,3,2,5,3,2,3,"20"
-"Pacific Heights",3,4,4,4,4,2,5,5,5,"7"
-"Parkside",5,4,1,4,2,5,1,2,3,"22"
-"Potrero Hill",2,2,3,4,2,5,2,5,4,"13"
-"Presidio",4,5,3,3,2,5,5,5,5,"1"
-"Presidio Heights",4,4,4,5,5,2,2,4,4,"11"
-"Russian Hill",3,3,5,4,5,1,5,5,4,"14"
-"Seacliff",3,5,2,4,2,3,5,2,5,"6"
-"South of Market",1,1,5,1,4,2,4,3,2,"28"
-"Treasure Island YBI",2,1,3,1,1,4,2,2,1,"32"
-"Twin Peaks",4,5,2,5,3,2,2,4,4,"12"
-"Visitacion Valley",3,5,1,1,1,4,1,1,1,"33"
-"West of Twin Peaks",5,5,2,5,3,5,4,3,5,"8"
-"Western Addition",2,2,5,3,5,1,5,3,3,"21"
+"Neighborhood","Res_Rank","District","Haz_Score","Env_Score","Trans_Sco","Com_Score","PR_Score","House_Score","Ec_Score","Dem_Score","Res_Score"
+"Bayview",35,"10",1,1,1,2,1,2,1,1,1
+"Bernal Heights",16,"9",3,2,3,4,3,5,3,3,3
+"Castro",2,"5",5,4,4,5,5,3,4,5,5
+"Chinatown",36,"8",1,1,5,1,3,1,1,1,1
+"Crocker Amazon",30,"10",3,3,1,2,1,4,1,1,1
+"Diamond Heights",5,"4",4,5,2,5,3,4,4,4,5
+"Downtown",34,"8",1,1,5,1,5,1,1,2,1
+"Excelsior",29,"10",3,3,2,2,1,5,2,1,2
+"Financial District",31,"8",1,1,5,1,5,1,2,1,1
+"Glen Park",5,"4",4,5,2,5,3,4,4,4,5
+"Haight Ashbury",4,"6",4,4,4,5,5,3,4,5,5
+"Inner Richmond",15,"1",5,3,3,3,4,3,3,4,4
+"Inner Sunset",10,"2",5,5,2,4,3,4,5,4,4
+"Lakeshore",23,"3",4,5,1,2,1,2,2,3,2
+"Marina",9,"7",2,2,4,5,4,3,3,5,4
+"Mission",25,"9",2,2,4,2,4,2,3,3,2
+"Mission Bay",17,"9",1,1,4,1,3,5,5,4,3
+"Nob Hill",19,"8",2,2,5,3,5,1,4,4,3
+"Noe Valley",3,"5",5,4,3,5,4,3,5,5,5
+"North Beach",24,"8",1,3,5,2,4,1,3,2,2
+"Ocean View",27,"3",4,3,1,2,1,4,1,2,2
+"Outer Mission",26,"3",2,2,2,3,2,4,4,1,2
+"Outer Richmond",18,"1",5,3,3,3,2,3,3,3,3
+"Outer Sunset",20,"2",5,4,1,3,2,5,3,2,3
+"Pacific Heights",7,"7",3,4,4,4,4,2,5,5,5
+"Parkside",22,"2",5,4,1,4,2,5,1,2,3
+"Potrero Hill",13,"9",2,2,3,4,2,5,2,5,4
+"Presidio",1,"11",4,5,3,3,2,5,5,5,5
+"Presidio Heights",11,"11",4,4,4,5,5,2,2,4,4
+"Russian Hill",14,"8",3,3,5,4,5,1,5,5,4
+"Seacliff",6,"1",3,5,2,4,2,3,5,2,5
+"South of Market",28,"9",1,1,5,1,4,2,4,3,2
+"Treasure Island",32,"8",2,1,3,1,1,4,2,2,1
+"Twin Peaks",12,"4",4,5,2,5,3,2,2,4,4
+"Visitacion Valley",33,"10",3,5,1,1,1,4,1,1,1
+"West of Twin Peaks",8,"4",5,5,2,5,3,5,4,3,5
+"Western Addition",21,"6",2,2,5,3,5,1,5,3,3
