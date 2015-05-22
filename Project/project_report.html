@@ -125,7 +125,7 @@
                   <h1 class="brand-name">Final Project</h1>
                   <hr class="tagline-divider">
                   <h2><small>By <strong> Monica Meyer</strong></small></h2>
-                  <p><a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/Project/project_prototype.html">See Code</a></p>
+                  <p><a href="https://github.com/monicameyer/MSAN622_repo_meyer/blob/gh-pages/Project/project_report.html">See Code</a></p>
               </div>
           </div>
       </div>
@@ -164,28 +164,38 @@
 
                   <h4 class= "text-center">Techniques</h4>
                   
+                  <p style="font-size:14px">The map encodes 6 columns of the data which are used to color each neighborhood in the map. The columns are chosen via a drop down menu, allowing the user to choose between crime, overcrowding, poverty, education, employment and community score to visualize on the map. Whichever column is chosen is then shown on the map via shading of neighborhoods by the metric's density. There is also a tooltip to show details on demand so that the user can see the value for each neighborhood. One issue that came up that affects the lie factor is the fact that the data had separate rows for Mission Bay and South of Market, while the map does not have separate neighborhood boundaries for these. In this case, this increases the lie factor because the values being displayed for South of Market in the map only includes a portion of the overall land area being displayed. I tried finding a better shape file to use in the creation of this topojson, but was unable to. The data ink ratio is very high, and the data density ratio is also high, since very little of the area is not dedicated to displaying data. The map identifies clusters of neighborhoods with similar values as well as providing overall context for the other visualizations in terms of locations that are close together or often have similar trends to the data. </p>
 
-                  <p style="font-size:14px">For each of your D3 visualizations, include the following information:
+                  <p style="font-size:14px">The bubble chart encodes 4 columns of the data, percent area in high heat vulnerability zones on the y-axis, percent impervious surface on the x-axis, percent area within .25 miles of a contamination risk as the bubble size and overall environmental resiliency score as the color. There is a tooltip implemented that allows the user to view all values for the neighborhood that is hovered over. The life factor is affected by the fact that bubble size starts at radius of 5 pixels, which is encoded as 0%. The data ink ratio is high, although the legend does affect the amount of ink being used strictly to display the data. The data density ratio is quite low, since the bubbles do not cover very much of the area being displayed in the chart. The bubble chart allows the user to see the pattern in the data between the x and y axis. It also allows the user to see that Treasure Island is an outlier in terms of proximity to contaminated areas, since the circle is larger than neighborhoods near it on the x and y axis.</p>
 
-                  Describe how you encoded the data. Include specifics on which columns/rows are mapped to which pre-attentive attributes in your visualization, and describe the design choices you made.
+                  <p style="font-size:14px">For the bar chart, there are 5 columns of the data being encoded as bar size, percent people living alone, residential violation rate, percent households paying rent over 50% of their monthly income, preventable hospitalization rate and average active minutes per resident per day. Resiliency score is also encoded as the color scale for all the bars. The data ink ratio is very high and the data density ratio is not high, but not very low either. There is nothing affecting the lie factor, since every bar starts at zero. This visualization is very good at showing an overview of multiple columns of the data. It also allows the user to see trends between neighborhoods with similar overal resiliency scores (encoded as color) because the interactivity allows the user to focus on neighborhoods with the same score while fading the other neighborhoods. I chose to do small multiples bar charts since a single bar chart only allows us to see one metric, but bar charts are simple enough that we can show multiple bar charts without losing the detail of each individual column of the data being displayed.</p>
 
-                  Provide an evaluation of the lie factor, data density, and data-ink ratio of your visualization.
-
-                  Discuss what you think the visualization excels at, such as showing an overview, identifying outliers, patterns, clusters, or trends, or providing context for other visualizations. In other words, describe why you choose to include this particular visualization versus other alternatives.
-                  Include a brief summary of any additional visualizations you provided as well. If you implemented them using something other than D3, please state as much in your discussion.</p>
+                  <p style="font-size:14px">The parallel coordinates chart encodes resiliency score as color and then encodes 8 category scores, the overall resiliency rank and the district the neighborhood belongs to as the axes. I chose to use the same color here as was encoded as color for the small multiples bar chart for consistency (both colors represent the neighborhood's overall resiliency score). This chart has low lie factor, low data density and high data ink ratio. This visualization is the best overview of the data. It allows the user insight into the overall trends across the main categories of the data, without bogging us down in the over 50 columns of data in the dataset. It allows the user to brush to see patterns and trends in the data, such as the fact that neighborhoods that score high in transportation score low in housing.</p>
                   
                   <h4 class= "text-center">Interactivity</h4>
                   
-                  <p style="font-size:14px">Discuss the interactivity implemented in your project. Indicate the type of interactivity and describe how it enhances your visualization. For example, interactivity can help provide focus + context, help overcome overplotting issues, decrease or increase data density, and so on.</p>
+                  <p style="font-size:14px">There is interactivity on each chart as well as inter-chart interactivity between the map and bubble chart. The map chart allows a user to filter the data to show a metric of their choice on the map. I implemented a tooltip on the map for the user to see what the value is for whichever metric is currently chosen. This interactivity provides context for the shading of the neighborhoods. For both the map and the bubble chart, when a neighborhood is clicked on, it fades all other neighborhoods on the map and bubble chart, allowing the user to view both charts within the context of the neighborhood they are interested in. </p>
+
+                  <p style="font-size:14px">In the small multiples bar chart, on mouseover, the graphic fades neighborhoods which do not have the same resiliency score, to highlight how different columns in the data affect the overall resiliency of a neighborhood. There is also a tooltip to provide details on demand for all the columns that are shown in the small multiples. This gives the user a better overall view of the bar charts.</p>
+
+                  <p style="font-size:14px">The parallel coordinates chart allows for brushing and panning across each of the x-axis. This provides focus + context, since when an axis is brushed, the lines that are not brushed are faded into the background, allowing the user to view specific aspects of the data.</p>
                   
                   <h4 class= "text-center">Feedback</h4>
-                  <p style="font-size:14px">Discuss the prototype you demonstrated in-class, the changes you made based on feedback, the feedback you found particularly helpful (and why), and feedback that you did not agree with (and why). If nothing falls under each category (for example, you did not make any changes based on feedback), please state as much so you are not docked points for missing information.</p>
+
+                  <p style="font-size:14px">In class, I demonstrated a prototype which did not contain any data on the map, but which had implemented a bubble chart, small multiples bar chart and a parallel coordinates chart. The feedback that I found particularly helpful was in regards to color. The colors of the small multiples bar chart were originally too difficult to compare, since the range was a multi-hue color scale from colorbrewer. It was also suggested that I use the same color scale (and by design, the same data column for the color) for both the small multiples and parallel coordinates chart, to tie them together in some way. These comments were very useful because they allowed me to find a way to connect the last two charts without adding interactivity between the charts, which did not make sense for the visualizations. Another suggestion was to change the interactivity I had implemented in the parallel coordinates chart. Originally, I had a hover implemented which highlighted the line (neighborhood) that was hovered over, but I changed this to allow the user to brush the axes instead. This allows the user to still view one neighborhood at a time by brushing on the ordinal axis of neighborhood, but also allows them to brush other axes to see more than one neighborhood at a time. There were not any particular pieces of feedback that I did not agree with, because all of these changes enhanced my visualizations.</p>
                   
                   <h4 class= "text-center">Challenges</h4>
-                  <p style="font-size:14px">Discuss the challenges you encountered during this project, how you addressed the challenge, or why you did not address the challenge. Use this discussion to (a) help illustrate for others how difficult small changes can be, and (b) to try and earn some credit for your work that did not make it into the final visualizations.</p>
+
+                  <p style="font-size:14px"></p>
+
+
+                  <!-- <p style="font-size:14px">Discuss the challenges you encountered during this project, how you addressed the challenge, or why you did not address the challenge. Use this discussion to (a) help illustrate for others how difficult small changes can be, and (b) to try and earn some credit for your work that did not make it into the final visualizations.</p> -->
 
                   <h4 class= "text-center">Conclusion</h4>
-                  <p style="font-size:14px">What did you learn about the dataset from your visualizations? This is a difficult but critical part of your discussion. We care utmost about the accuracy and informativeness in the field of information visualization, and you must convince me that your visualizations were informative. Use your visualizations to make conclusions about the data, explain those conclusions, and explain how your visualization supports those conclusions.</p>
+                  <p style="font-size:14px"></p>
+
+
+                  <!-- <p style="font-size:14px">What did you learn about the dataset from your visualizations? This is a difficult but critical part of your discussion. We care utmost about the accuracy and informativeness in the field of information visualization, and you must convince me that your visualizations were informative. Use your visualizations to make conclusions about the data, explain those conclusions, and explain how your visualization supports those conclusions.</p> -->
 
 
                 </div>  
@@ -197,7 +207,7 @@
 
 </body>
 
-<!--<script>
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -205,7 +215,7 @@
 
   ga('create', 'UA-41707651-2', 'auto');
   ga('send', 'pageview');
-</script>-->
+</script>
 
 <footer>
     <div class="row">          

@@ -26,7 +26,7 @@ text.append("text")
     .attr("y", height-300)
     .attr("fill", "black")
     .style("font-size","18px")
-    .text("title text");
+    .text("Residential Living Conditions by Resiliency Score");
 
 
 function map_chart(){
@@ -42,14 +42,12 @@ function map_chart(){
     var path = d3.geo.path().projection(projection);
     var formatting = d3.format(",.0%");
 
-    var valueById = d3.map();
-    var valueById = d3.map();
     var valueById1 = d3.map();
     var valueById2 = d3.map();
     var valueById3 = d3.map();
     var valueById4 = d3.map();
     var valueById5 = d3.map();
-    var valueByRank = d3.map();
+    var valueById6 = d3.map();
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
@@ -60,21 +58,17 @@ function map_chart(){
                 var select_value = "N/A"
             }
             else {
-                if (value == "Resiliency Score") { var select_value = valueById.get(d.id); }
-                else if (value == "Crime") { var select_value = valueById1.get(d.id); }
+                if (value == "Crime") { var select_value = valueById1.get(d.id); }
                 else if (value == "Overcrowding") { var select_value = formatting(valueById2.get(d.id)); }
                 else if (value == "Poverty") {var select_value = formatting(valueById3.get(d.id)); }
                 else if (value == "Education") {var select_value = formatting(valueById4.get(d.id)); }
                 else if (value == "Employment") { var select_value = formatting(valueById5.get(d.id)); }
-                else if (value == "Resiliency Rank") { var select_value = valueByRank.get(d.id); }
+                else if (value == "Community Score") {var select_value = valueById6.get(d.id); }
                 else {var select_value = "N/A"}
             }
             return "<span style='color:white'tooltip here: >" + (d.id).replace(/_/g, ' ') + "<br>" + value + ": " + select_value + "</span>";
         });
 
-    var quantize = d3.scale.quantize()
-        .domain([1,5])
-        .range(["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"]);
     var quantize1 = d3.scale.threshold()
         .domain([10, 30, 70, 180, 300])
         .range(["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"]);
@@ -91,10 +85,10 @@ function map_chart(){
         .domain([0.85, .9, .92, .95, 1])
         .range(["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"]);
     var quantize6 = d3.scale.quantize()
-        .domain([1,36])
+        .domain([1, 5])
         .range(["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"]);
 
-    optionlist = ["Res_Score","VCrim_Rate","OC_Per","Pov_Per", "HS_Per", "Emp_per", "Res_Rank"];
+    optionlist = ["VCrim_Rate","OC_Per","Pov_Per", "HS_Per", "Emp_per", "Com_Score"];
 
     var select = d3.select("#drop_down")
         .append("select")
@@ -106,12 +100,11 @@ function map_chart(){
         .data(optionlist).enter()
         .append("option")
         .text(function (d) { 
-            if (d == "Res_Score") { return "Resiliency Score"; } 
-            else if (d == "VCrim_Rate") { return "Crime"; }
+            if (d == "VCrim_Rate") { return "Crime"; }
+            else if (d == "Com_Score") { return "Community Score"; }
             else if (d == "OC_Per") { return "Overcrowding"; }
             else if (d == "Pov_Per") { return "Poverty"; }
             else if (d == "HS_Per") { return "Education"; }
-            else if (d == "Res_Rank") { return "Resiliency Rank"; }
             else                    { return "Employment"; }
         });
 
@@ -136,13 +129,12 @@ function map_chart(){
         })
 
         for (var i = 0; i < dataCollection.length; i++){
-            valueById.set(dataCollection[i].Neighborhood, +dataCollection[i].Res_Score );
             valueById1.set(dataCollection[i].Neighborhood, +dataCollection[i].VCrim_Rate );
             valueById2.set(dataCollection[i].Neighborhood, +dataCollection[i].OC_Per );
             valueById3.set(dataCollection[i].Neighborhood, +dataCollection[i].Pov_Per );
             valueById4.set(dataCollection[i].Neighborhood, +dataCollection[i].HS_Per );
             valueById5.set(dataCollection[i].Neighborhood, +dataCollection[i].Emp_per );
-            valueByRank.set(dataCollection[i].Neighborhood, +dataCollection[i].Res_Rank );
+            valueById6.set(dataCollection[i].Neighborhood, +dataCollection[i].Com_Score );
         };
 
         var neighborhoods = [];
@@ -157,7 +149,7 @@ function map_chart(){
             .attr("d", path)
             .attr("id", function(d){ return d.id; })
           .style("fill", function(d){ 
-              if (typeof(valueById.get(d.id)) == "number") { return quantize(valueById.get(d.id)); }
+              if (typeof(valueById1.get(d.id)) == "number") { return quantize1(valueById1.get(d.id)); }
                   else { return "#d9d9d9"; } })
           .style("stroke", "black");
 
@@ -165,7 +157,7 @@ function map_chart(){
             .attr("text-anchor", "middle")
             .attr("x", w/2)
             .attr("y", 10)
-            .text("Resiliency Score")
+            .text("Violent Crimes, Per 1000 People")
             .style("font-size","18px");
 
         svg.call(tip);
@@ -213,10 +205,7 @@ function map_chart(){
         svg.selectAll("path")
             .attr("opacity", 1)
             .style("fill", function(d){ 
-              if (val == "Resiliency Score") {
-                  if (typeof(valueById.get(d.id)) == "number") { return quantize(valueById.get(d.id)); }
-                  else { return "#d9d9d9"; }
-              } else if (val == "Crime") {
+              if (val == "Crime") {
                   if (typeof(valueById1.get(d.id)) == "number") { return quantize1(valueById1.get(d.id)); }
                   else { return "#d9d9d9"; }
               } else if (val == "Overcrowding") {
@@ -228,8 +217,8 @@ function map_chart(){
               } else if (val == "Education") {
                   if (typeof(valueById4.get(d.id)) == "number") { return quantize4(valueById4.get(d.id)); }
                   else { return "#d9d9d9"; }
-              } else if (val == "Resiliency Rank"){
-                  if (typeof(valueByRank.get(d.id)) == "number") { return quantize6(valueByRank.get(d.id)); }
+              } else if (val == "Community Score") {
+                  if (typeof(valueById6.get(d.id)) == "number") { return quantize6(valueById6.get(d.id)); }
                   else { return "#d9d9d9"; }
               } else { 
                   if (typeof(valueById5.get(d.id)) == "number") { return quantize5(valueById5.get(d.id)); }
@@ -241,12 +230,11 @@ function map_chart(){
             .attr("x", w/2)
             .attr("y", 10)
             .text(function(d){ 
-                if (val == "Resiliency Score") { return "Resiliency Score"; } 
-                else if (val == "Crime") { return "Violent Crimes, Per 1000 People"; } 
+                if (val == "Crime") { return "Violent Crimes, Per 1000 People"; } 
                 else if (val == "Overcrowding") { return "Percent Households with 1 or More Person Per Room"; }
                 else if (val == "Poverty") { return "Percent People Living Under 200% of the Poverty Line"; }
                 else if (val == "Education") { return "Percent High School Graduates"; }
-                else if (val == "Resiliency Rank") { return "Overall Resiliency Rank"; }
+                else if (val == "Community Score") { return "Community Score"; }
                 else { return "Percent of Population over 16 that are Employed"; }
             })
             .style("font-size","18px");
@@ -256,20 +244,17 @@ function map_chart(){
 
 function bar_chart(){
 
-    var m = {top: 10, right: 40, bottom: 10, left: 100},
+    var m = {top: 10, right: 100, bottom: 10, left: 180},
         w = 1100 - m.left - m.right,
         h = 110 - m.top - m.bottom;
 
     var formatting = d3.format(".0%")
 
     var color = d3.scale.linear().domain([1, 2, 3, 4, 5])
-        // .range(["#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081", "#253494"]);
-        // .range(["#74a9cf", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"])
-        // .range(["#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"])
         .range(["#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"]);
 
     // var plot_names = ["Shelt_Rate", "PrevHos", "Over65_Per", "Res_Rank", "PTrans_Sco", "AT_Min"];
-    var plot_names = ["LivAl_Per", "Viol_Rate", "Rent_Per", "Under18_Per", "NonWhi_Per"];
+    var plot_names = ["LivAl_Per", "Viol_Rate", "Rent_Per","PrevHos", "AT_Min"];
 
 
     var x = d3.scale.ordinal()
@@ -323,14 +308,13 @@ function bar_chart(){
             .attr("dy", ".71em")
             .attr("text-anchor", "end")
             .attr("font-size", "12px")
-            .text(function(d){  return d.key;
-                // if (d.key == "Shelt_Rate") { return "Shelter Rate"; } 
-                // else if (d.key == "PrevHos") { return "Preventable Hospitalizations"; }
-                // else if (d.key == "Res_Rank") { return "Resiliency Rank"; }
-                // else if (d.key == "Viol_Rate") { return "Res Violation Rate"; }
-                // else if (d.key == "Dem_Score") { return "Demographic Score"; } 
+            .text(function(d){  //return d.key;
+                if (d.key == "LivAl_Per") { return "Percent Living Alone"; }
+                else if (d.key == "Viol_Rate") { return "Residential Violations"; }
+                else if (d.key == "Rent_Per") { return "Rent Over 50% Income"; }
+                else if (d.key == "PrevHos") { return "Preventable Hospitalizations"; }
+                else if (d.key == "AT_Min") { return "Average Active Minutes"; }
             });
-    // var plot_names = ["Shelt_Rate", "Rent_Per", "Res_Rank", "PTrans_Sco", "AT_Min"];
 
         var tip = d3.tip()
             .attr('class', 'd3-tip')
@@ -339,18 +323,17 @@ function bar_chart(){
             .html(function(d) {
                 return "<span style='color:#F0F8FF font-size:14px'>"+ d.Neighborhood + 
                 "</span><br>Resiliency Score: <span style='color:" + color(d.Res_Score) + 
-                "'>" + d.Res_Score + "</span><br>Shelter Rate: <span style='color:#F0F8FF'>" + 
-                d.Shelt_Rate + "</span><br>Preventable Hospitalizations <br>(Per 100K Residents): <span style='color:#F0F8FF'>" + 
-                d.PrevHos + "</span><br>Resiliency Rank: <span style='color:#F0F8FF'>" + d.Res_Rank + 
-                "</span><br>Violence Rate: <span style='color:#F0F8FF'>" + d.Viol_Rate + 
-                "</span><br>Demographic Score: <span style='color:#F0F8FF'>" + d.Dem_Score + "</span>";
+                "'>" + d.Res_Score + "</span><br>Percent Residents Living Alone: <span style='color:#F0F8FF'>" + 
+                formatting(d.LivAl_Per) + "</span><br>Residential Violations<br>(Per 1000 Residents): <span style='color:#F0F8FF'>" + d.Viol_Rate +
+                "</span><br>Rent Over 50% Monthly Income: <span style='color:#F0F8FF'>" + formatting(d.Rent_Per) +
+                "</span><br>Preventable Hospitalizations<br>(Per 100K Residents): <span style='color:#F0F8FF'>" + 
+                d.PrevHos + "</span><br>Average Active Minutes Per Resident: <span style='color:#F0F8FF'>" + d.AT_Min + "</span>";
             });
 
         svg.call(tip);
 
         function multiple(category) {
             var svg = d3.select(this);
-            // console.log(category.key);
             y.domain([0, d3.max(category.values, function(d) { return +d[category.key]; })]);
             svg.selectAll(".bar")
                 .data(function(d) {return d.values;})
@@ -375,6 +358,7 @@ function bar_chart(){
                     tip.hide(d);
                     fadeIn(d.Neighborhood);
                 });
+
             svg.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + h + ")")
@@ -384,7 +368,7 @@ function bar_chart(){
                     .attr("dx", "-.8em")
                     .attr("dy", ".15em")
                     .attr("opacity", function(d){ 
-                        if (category.key == "NonWhi_Per"){ return 1; }
+                        if (category.key == "AT_Min"){ return 1; }
                         else { return 0};
                     })
                     .attr("transform", function(d) {
@@ -396,17 +380,16 @@ function bar_chart(){
             res_score = scaleNum.get(neighborhood);
             svg.selectAll("rect")
                 .style("opacity", 1)
-                .transition().delay(200)//.duration(400)
+                .transition().delay(200)
                 .filter(function (d) { return d.Res_Score != res_score; })
                 .attr("fill", function(d){ return "#ccc"; })
-                .style("opacity", .3);
+                .style("opacity", .1);
         }
 
         function fadeIn(neighborhood) {
             res_score = scaleNum.get(neighborhood);
             svg.selectAll("rect")
                 .transition().delay(200)//.duration(400)
-                // .filter(function (d) { return d.Res_Score != res_score; })
                 .attr("fill", function(d){ return color(d.Res_Score); })
                 .style("opacity", 1);
         }
@@ -465,7 +448,7 @@ function bubble_chart(){
         .attr("text-anchor", "middle")
         .attr("x", w/2)
         .attr("y", -50)
-        .text("Bubble Chart")
+        .text("Environmental Factors Affecting Neighborhood Resiliency")
         .style("font-size","18px");
 
     svg.append("g")
@@ -589,7 +572,7 @@ function bubble_chart(){
             .text(function(d) { return d.key; });
 
         svg.append('text')
-            .attr('x', 120)
+            .attr('x', 110)
             .attr('y', 15)
             .attr("text-anchor", "middle")
             .text('Environment Score')
@@ -599,8 +582,8 @@ function bubble_chart(){
 
         svg.append("text")
             .attr("text-anchor", "start")
-            .attr("x", 75)
-            .attr("y", 60)
+            .attr("x", 80)
+            .attr("y", 65)
             .text("Size Scale")
             .style('font-size', '13px');
 
@@ -631,7 +614,7 @@ function bubble_chart(){
 
 };
 
-function parallel2 (){
+function parallel_chart(){
     //http://bl.ocks.org/mbostock/7586334
 
     var m = {top: 30, right: 50, bottom: 20, left: 120},
@@ -750,143 +733,7 @@ function parallel2 (){
 
 }
 
-function parallel_chart(){
-    //http://bl.ocks.org/mbostock/3709000
 
-    var m = {top: 30, right: 50, bottom: 20, left: 120},
-        w = 1100 - m.right - m.left,
-        h = 500 - m.top - m.bottom;
-
-    var colorscale = d3.scale.ordinal()
-        .domain([1, 2, 3, 4, 5])
-        .range(["#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"]);
-
-    var line = d3.svg.line()
-        .defined(function(d) { return !isNaN(d[1]); });
-
-    d3.csv("../data/community_resiliency_parallel3.csv", function(data) {
-
-        var test = d3.entries(data[0])
-
-        var dimensions = []
-        for (var i = 0; i < test.length; i++){
-            new_dim = {}
-            if ((test[i]).key == "Neighborhood"){
-                new_dim["name"] = (test[i]).key;
-                new_dim["scale"] = d3.scale.ordinal().rangePoints([0, h]);
-                new_dim["type"] = "string";
-            } else {
-                new_dim["name"] = (test[i]).key;
-                new_dim["scale"] = d3.scale.linear().range([h, 0]);
-                new_dim["type"] = "number";
-            };
-            dimensions.push(new_dim);
-        };
-
-        var x = d3.scale.ordinal()
-            .domain(dimensions.map(function(d) { return d.name; }))
-            .rangePoints([0, w]);
-
-        var y = d3.svg.axis()
-            .orient("left")
-            .ticks(5);
-
-        var y2 = d3.svg.axis()
-            .orient("left");
-
-        var svg = d3.select("#chart2").append("svg")
-            .attr("width", w + m.left + m.right)
-            .attr("height", h + m.top + m.bottom)
-          .append("g")
-            .attr("transform", "translate(" + m.left + "," + m.top + ")");
-
-        var dimension = svg.selectAll(".dimension")
-            .data(dimensions)
-          .enter().append("g")
-            .attr("class", "dimension")
-            .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });
-
-        dimensions.forEach(function(dimension) {
-            dimension.scale.domain(dimension.type === "number"
-                ? d3.extent(data, function(d) { return +d[dimension.name]; })
-                : data.map(function(d) { return d[dimension.name]; }).sort());
-        });
-
-        svg.append("g")
-            .attr("class", "background")
-          .selectAll("path")
-            .data(data)
-          .enter().append("path")
-            .attr("d", draw);
-
-        svg.append("g")
-            .attr("class", "foreground")
-          .selectAll("path")
-            .data(data)
-          .enter().append("path")
-            .style("stroke", function(d) { return colorscale(d.Res_Score); })
-            .style("opacity", 1)
-            .attr("d", draw);
-
-        dimension.append("g")
-            .attr("class", "axis")
-            .each(function(d) { 
-                if (d.name == "Res_Rank" || d.name == "District"){
-                    d3.select(this).call(y2.scale(d.scale));
-                } else {
-                    d3.select(this).call(y.scale(d.scale)); 
-                }
-            })
-          .append("text")
-            .attr("class", "title")
-            .attr("text-anchor", "middle")
-            .attr("y", -9)
-            .text(function(d) { 
-                if (d.name == "Haz_Score") { return "Hazard"; } 
-                else if (d.name == "Env_Score") { return "Environment"; }
-                else if (d.name == "Trans_Sco") { return "Transportation"; }
-                else if (d.name == "Com_Score") { return "Community"; }
-                else if (d.name == "PR_Score") { return "Public Realm"; }
-                else if (d.name == "House_Score") { return "Housing"; }
-                else if (d.name == "Ec_Score") { return "Economy"; }
-                else if (d.name == "Dem_Score") { return "Demographic"; } 
-                else if (d.name == "Res_Score") { return "Resiliency"; }
-                else if (d.name == "Res_Rank") { return "Rank"; }
-                else { return d.name; }
-            });
-
-        svg.select(".axis").selectAll("text:not(.title)")
-            .attr("class", "label")
-            .data(data, function(d) { return d.Neighborhood || d; });
-
-        var projection = svg.selectAll(".label,.background path,.foreground path")
-            .on("mouseover", mouseover)
-            .on("mouseout", mouseout);
-
-        // dimension.append("g")
-        //     .attr("class", "axis")
-        //     .each(function(d) { d3.select(this).call(y.scale(d.scale)); });
-
-        function mouseover(d) {
-            svg.classed("active", true);
-            projection.classed("inactive", function(p) { return p !== d; });
-            projection.filter(function(p) { return p === d; });
-        }
-
-        function mouseout(d) {
-            svg.classed("active", false);
-            projection.classed("inactive", false);
-        }
-
-        function draw(d) {
-            return line(dimensions.map(function(dimension) {
-                return [x(dimension.name), dimension.scale(d[dimension.name])];
-            }));
-        }
-
-    });
-
-};
 
 map_chart();
 
@@ -894,7 +741,5 @@ bubble_chart();
 
 bar_chart();
 
-// parallel_chart();
-
-parallel2();
+parallel_chart();
 
