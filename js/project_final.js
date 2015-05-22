@@ -160,12 +160,18 @@ function map_chart(){
             .text("Violent Crimes, Per 1000 People")
             .style("font-size","18px");
 
+        svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", w/2)
+            .attr("y", 25)
+            .text("(Click on a Neighborhood to Highlight)")
+            .style("font-size","12px");
+
         svg.call(tip);
 
         svg.selectAll("path")
             .on("mouseover", tip.show)
             .on("mouseout", tip.hide);
-
 
         svg.selectAll("path")
             .on("click", function(d){
@@ -201,7 +207,7 @@ function map_chart(){
 
     function filter() {
         var val = d3.select("select").property("value");
-        svg.select("text").remove();
+        svg.selectAll("text").remove();
         svg.selectAll("path")
             .attr("opacity", 1)
             .style("fill", function(d){ 
@@ -238,6 +244,13 @@ function map_chart(){
                 else { return "Percent of Population over 16 that are Employed"; }
             })
             .style("font-size","18px");
+
+        svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", w/2)
+            .attr("y", 25)
+            .text("(Click on a Neighborhood to Highlight)")
+            .style("font-size","12px");
     }
 
 };
@@ -253,9 +266,7 @@ function bar_chart(){
     var color = d3.scale.linear().domain([1, 2, 3, 4, 5])
         .range(["#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"]);
 
-    // var plot_names = ["Shelt_Rate", "PrevHos", "Over65_Per", "Res_Rank", "PTrans_Sco", "AT_Min"];
     var plot_names = ["LivAl_Per", "Viol_Rate", "Rent_Per","PrevHos", "AT_Min"];
-
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, w + 10], .1);
@@ -451,6 +462,13 @@ function bubble_chart(){
         .text("Environmental Factors Affecting Neighborhood Resiliency")
         .style("font-size","18px");
 
+    svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", w/2)
+            .attr("y", -35)
+            .text("(Click on a Neighborhood to Highlight)")
+            .style("font-size","12px");
+
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
@@ -587,13 +605,13 @@ function bubble_chart(){
             .text("Size Scale")
             .style('font-size', '13px');
 
-        var legendPopBox1 = svg.append("g")
+        var legend2 = svg.append("g")
                 .attr("class", "legend")
             .selectAll(".legend")
                 .data(percent)
                 .enter().append("g");
 
-        legendPopBox1.append("circle")
+        legend2.append("circle")
             .attr("cx", 100)
             .attr("cy", function(d, i) { 
                 return 120 + i - .9*radiusScale(d); 
@@ -602,7 +620,7 @@ function bubble_chart(){
             .attr("fill", "white")
             .attr("stroke", "black");
 
-        legendPopBox1.append("text")
+        legend2.append("text")
             .attr("text-anchor", "start")
             .attr("x", 130)
             .attr("y", function(d, i) { 
@@ -724,6 +742,7 @@ function parallel_chart(){
           foreground.style("display", function(d) {
               return actives.every(function(p, i)
               {
+                // Code for brushing ordinal scales thanks to http://bl.ocks.org/chrisbrich/4173826
                   if (p == "Neighborhood") { return extents[i][0] <= y[p](d[p]) && y[p](d[p]) <= extents[i][1];
                   } else { return extents[i][0] <= d[p] && d[p] <= extents[i][1]; }
               }) ? null : "none";
@@ -732,8 +751,6 @@ function parallel_chart(){
     })
 
 }
-
-
 
 map_chart();
 
